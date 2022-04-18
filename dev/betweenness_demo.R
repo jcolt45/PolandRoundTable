@@ -1,11 +1,13 @@
 #remotes::install_github("kbodwin/polarexpress")
 
+
 library(tidyverse)
 library(polarexpress)
 
 ##### betweenness demo with PZPR and NSZZS
 
 ## Calculating betweenness for limited dates
+### This takes about 30 sec to run
 
 pzpr <- get_betweenness_orgs("ORG01113",
                              start = "1960-01-01",
@@ -39,6 +41,7 @@ thing %>%
 
 
 ## Recalculating betweenness
+### This takes about 30 sec to run
 
 Lech <- get_betweenness_members("MEM0209",
                                 start = "1975-01-01")

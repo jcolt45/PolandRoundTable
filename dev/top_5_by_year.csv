@@ -1,0 +1,695 @@
+year(Start.Date),Member.ID,avg_overall_bet,Full.Name,Age,Gender,RT.Affiliation,Profession
+1924,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1925,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1926,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1927,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1928,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1928,MEM0187,0,Stanisław Stomma,81,M,Opposition,Academic
+1928,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1929,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1929,MEM0187,0,Stanisław Stomma,81,M,Opposition,Academic
+1929,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1930,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1930,MEM0187,0,Stanisław Stomma,81,M,Opposition,Academic
+1930,MEM0206,0,Jerzy Turowicz,86,M,Opposition,Journalist
+1930,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1931,MEM0146,0,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1931,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1931,MEM0173,0,Władysław Siła-Nowicki,75,M,Government,Lawyer
+1931,MEM0187,0,Stanisław Stomma,81,M,Opposition,Academic
+1931,MEM0206,0,Jerzy Turowicz,86,M,Opposition,Journalist
+1931,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1932,MEM0146,0,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1932,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1932,MEM0173,0,Władysław Siła-Nowicki,75,M,Government,Lawyer
+1932,MEM0187,0,Stanisław Stomma,81,M,Opposition,Academic
+1932,MEM0206,0,Jerzy Turowicz,86,M,Opposition,Journalist
+1932,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1933,MEM0146,0,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1933,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1933,MEM0173,0,Władysław Siła-Nowicki,75,M,Government,Lawyer
+1933,MEM0187,0,Stanisław Stomma,81,M,Opposition,Academic
+1933,MEM0206,0,Jerzy Turowicz,86,M,Opposition,Journalist
+1933,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1934,MEM0116,0,Antoni Leopold,72,M,Opposition,Academic Agriculture
+1934,MEM0146,0,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1934,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1934,MEM0173,0,Władysław Siła-Nowicki,75,M,Government,Lawyer
+1934,MEM0187,0,Stanisław Stomma,81,M,Opposition,Academic
+1934,MEM0206,0,Jerzy Turowicz,86,M,Opposition,Journalist
+1934,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1935,MEM0071,0,Arwid Yrio Hansen,71,M,Opposition,Medical Doctor
+1935,MEM0116,0,Antoni Leopold,72,M,Opposition,Academic Agriculture
+1935,MEM0146,0,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1935,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1935,MEM0173,0,Władysław Siła-Nowicki,75,M,Government,Lawyer
+1935,MEM0187,0,Stanisław Stomma,81,M,Opposition,Academic
+1935,MEM0206,0,Jerzy Turowicz,86,M,Opposition,Journalist
+1935,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1936,MEM0071,0,Arwid Yrio Hansen,71,M,Opposition,Medical Doctor
+1936,MEM0110,0,Władysław J.H. Kunicki-Goldfinger,72,M,Opposition,Academic Microbiologist
+1936,MEM0116,0,Antoni Leopold,72,M,Opposition,Academic Agriculture
+1936,MEM0146,0,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1936,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1936,MEM0173,0,Władysław Siła-Nowicki,75,M,Government,Lawyer
+1936,MEM0187,0,Stanisław Stomma,81,M,Opposition,Academic
+1936,MEM0206,0,Jerzy Turowicz,86,M,Opposition,Journalist
+1936,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1937,MEM0071,0,Arwid Yrio Hansen,71,M,Opposition,Medical Doctor
+1937,MEM0110,0,Władysław J.H. Kunicki-Goldfinger,72,M,Opposition,Academic Microbiologist
+1937,MEM0116,0,Antoni Leopold,72,M,Opposition,Academic Agriculture
+1937,MEM0146,0,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1937,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1937,MEM0173,0,Władysław Siła-Nowicki,75,M,Government,Lawyer
+1937,MEM0187,0,Stanisław Stomma,81,M,Opposition,Academic
+1937,MEM0206,0,Jerzy Turowicz,86,M,Opposition,Journalist
+1937,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1938,MEM0068,0,Jerzy Grzywacz,60,M,Opposition,Academic Physics
+1938,MEM0071,0,Arwid Yrio Hansen,71,M,Opposition,Medical Doctor
+1938,MEM0110,0,Władysław J.H. Kunicki-Goldfinger,72,M,Opposition,Academic Microbiologist
+1938,MEM0116,0,Antoni Leopold,72,M,Opposition,Academic Agriculture
+1938,MEM0146,0,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1938,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1938,MEM0173,0,Władysław Siła-Nowicki,75,M,Government,Lawyer
+1938,MEM0187,0,Stanisław Stomma,81,M,Opposition,Academic
+1938,MEM0192,0,Jan Józef Szczepański,70,M,Opposition,Journalist
+1938,MEM0206,0,Jerzy Turowicz,86,M,Opposition,Journalist
+1938,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1939,MEM0068,0,Jerzy Grzywacz,60,M,Opposition,Academic Physics
+1939,MEM0071,0,Arwid Yrio Hansen,71,M,Opposition,Medical Doctor
+1939,MEM0110,0,Władysław J.H. Kunicki-Goldfinger,72,M,Opposition,Academic Microbiologist
+1939,MEM0146,0,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1939,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1939,MEM0164,0,Andrzej Rozmarynowicz,65,M,Opposition,Lawyer
+1939,MEM0173,0,Władysław Siła-Nowicki,75,M,Government,Lawyer
+1939,MEM0187,0,Stanisław Stomma,81,M,Opposition,Academic
+1939,MEM0192,0,Jan Józef Szczepański,70,M,Opposition,Journalist
+1939,MEM0205,0,Witold Trzeciakowski,62,M,Opposition,Academic
+1939,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1939,MEM0220,0,Jacek Woźniakowski,68,M,Opposition,Academic
+1940,MEM0068,0,Jerzy Grzywacz,60,M,Opposition,Academic Physics
+1940,MEM0110,0,Władysław J.H. Kunicki-Goldfinger,72,M,Opposition,Academic Microbiologist
+1940,MEM0146,0,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1940,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1940,MEM0164,0,Andrzej Rozmarynowicz,65,M,Opposition,Lawyer
+1940,MEM0173,0,Władysław Siła-Nowicki,75,M,Government,Lawyer
+1940,MEM0205,0,Witold Trzeciakowski,62,M,Opposition,Academic
+1940,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1940,MEM0220,0,Jacek Woźniakowski,68,M,Opposition,Academic
+1941,MEM0038,0,Wladysław Dobrowolski,61,M,Opposition,Academic Economics
+1941,MEM0068,0,Jerzy Grzywacz,60,M,Opposition,Academic Physics
+1941,MEM0110,0,Władysław J.H. Kunicki-Goldfinger,72,M,Opposition,Academic Microbiologist
+1941,MEM0146,0,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1941,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1941,MEM0164,0,Andrzej Rozmarynowicz,65,M,Opposition,Lawyer
+1941,MEM0173,0,Władysław Siła-Nowicki,75,M,Government,Lawyer
+1941,MEM0205,0,Witold Trzeciakowski,62,M,Opposition,Academic
+1941,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1941,MEM0220,0,Jacek Woźniakowski,68,M,Opposition,Academic
+1942,MEM0038,0,Wladysław Dobrowolski,61,M,Opposition,Academic Economics
+1942,MEM0068,0,Jerzy Grzywacz,60,M,Opposition,Academic Physics
+1942,MEM0083,0,Stanisław Juchnowicz,65,M,Opposition,Academic Architect
+1942,MEM0110,0,Władysław J.H. Kunicki-Goldfinger,72,M,Opposition,Academic Microbiologist
+1942,MEM0146,0,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1942,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1942,MEM0164,0,Andrzej Rozmarynowicz,65,M,Opposition,Lawyer
+1942,MEM0173,0,Władysław Siła-Nowicki,75,M,Government,Lawyer
+1942,MEM0179,0,Adam Stanowski,61,M,Opposition,Academic
+1942,MEM0192,0,Jan Józef Szczepański,70,M,Opposition,Journalist
+1942,MEM0205,0,Witold Trzeciakowski,62,M,Opposition,Academic
+1942,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1942,MEM0214,0,Andrzej Wielowieyski,61,M,Opposition,Lawyer
+1942,MEM0220,0,Jacek Woźniakowski,68,M,Opposition,Academic
+1943,MEM0214,3.25,Andrzej Wielowieyski,61,M,Opposition,Lawyer
+1943,MEM0038,0,Wladysław Dobrowolski,61,M,Opposition,Academic Economics
+1943,MEM0068,0,Jerzy Grzywacz,60,M,Opposition,Academic Physics
+1943,MEM0083,0,Stanisław Juchnowicz,65,M,Opposition,Academic Architect
+1943,MEM0110,0,Władysław J.H. Kunicki-Goldfinger,72,M,Opposition,Academic Microbiologist
+1943,MEM0138,0,Róża Nowotna-Walcowa,66,F,Opposition,Medical Doctor
+1943,MEM0146,0,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1943,MEM0156,0,Jerzy Regulski,64,M,Opposition,Academic Economist
+1943,MEM0158,0,Ryszard Reiff,65,M,Opposition,Journalist
+1943,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1943,MEM0164,0,Andrzej Rozmarynowicz,65,M,Opposition,Lawyer
+1943,MEM0173,0,Władysław Siła-Nowicki,75,M,Government,Lawyer
+1943,MEM0179,0,Adam Stanowski,61,M,Opposition,Academic
+1943,MEM0190,0,Klemens Szaniawski,63,M,Opposition,Academic
+1943,MEM0192,0,Jan Józef Szczepański,70,M,Opposition,Journalist
+1943,MEM0205,0,Witold Trzeciakowski,62,M,Opposition,Academic
+1943,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1943,MEM0215,0,Zbigniew Wierzbicki,69,M,Opposition,Academic
+1943,MEM0220,0,Jacek Woźniakowski,68,M,Opposition,Academic
+1943,MEM0229,0,Andrzej Ziabicki,55,M,Opposition,Academic
+1943,MEM0230,0,Tadeusz Zieliński,62,M,Opposition,Lawyer
+1944,MEM0214,12.5,Andrzej Wielowieyski,61,M,Opposition,Lawyer
+1944,MEM0205,4.716666666666666,Witold Trzeciakowski,62,M,Opposition,Academic
+1944,MEM0068,4.25,Jerzy Grzywacz,60,M,Opposition,Academic Physics
+1944,MEM0179,3.9305555555555554,Adam Stanowski,61,M,Opposition,Academic
+1944,MEM0190,3.9305555555555554,Klemens Szaniawski,63,M,Opposition,Academic
+1945,MEM0214,3.75,Andrzej Wielowieyski,61,M,Opposition,Lawyer
+1945,MEM0038,0,Wladysław Dobrowolski,61,M,Opposition,Academic Economics
+1945,MEM0045,0,Marek Edelman,66,M,Opposition,Medical Doctor
+1945,MEM0049,0,Władysław Findeisen,63,M,Opposition,Academic Electrical Engineer
+1945,MEM0062,0,Stanisława Grabska,66,F,Opposition,Academic Artist and Theologian
+1945,MEM0068,0,Jerzy Grzywacz,60,M,Opposition,Academic Physics
+1945,MEM0083,0,Stanisław Juchnowicz,65,M,Opposition,Academic Architect
+1945,MEM0110,0,Władysław J.H. Kunicki-Goldfinger,72,M,Opposition,Academic Microbiologist
+1945,MEM0135,0,Jan Mujżel,65,M,Opposition,Academic Economics
+1945,MEM0138,0,Róża Nowotna-Walcowa,66,F,Opposition,Medical Doctor
+1945,MEM0146,0,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1945,MEM0156,0,Jerzy Regulski,64,M,Opposition,Academic Economist
+1945,MEM0158,0,Ryszard Reiff,65,M,Opposition,Journalist
+1945,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1945,MEM0164,0,Andrzej Rozmarynowicz,65,M,Opposition,Lawyer
+1945,MEM0173,0,Władysław Siła-Nowicki,75,M,Government,Lawyer
+1945,MEM0179,0,Adam Stanowski,61,M,Opposition,Academic
+1945,MEM0187,0,Stanisław Stomma,81,M,Opposition,Academic
+1945,MEM0190,0,Klemens Szaniawski,63,M,Opposition,Academic
+1945,MEM0192,0,Jan Józef Szczepański,70,M,Opposition,Journalist
+1945,MEM0205,0,Witold Trzeciakowski,62,M,Opposition,Academic
+1945,MEM0206,0,Jerzy Turowicz,86,M,Opposition,Journalist
+1945,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1945,MEM0215,0,Zbigniew Wierzbicki,69,M,Opposition,Academic
+1945,MEM0220,0,Jacek Woźniakowski,68,M,Opposition,Academic
+1945,MEM0229,0,Andrzej Ziabicki,55,M,Opposition,Academic
+1945,MEM0230,0,Tadeusz Zieliński,62,M,Opposition,Lawyer
+1945,MEM0231,0,Janusz Ziółkowski,64,M,Opposition,Academic
+1946,MEM0016,0,Włodzimierz Bojarski,58,M,Opposition,Academic Economist
+1946,MEM0036,0,Jerzy Dietl,61,M,Opposition,Academic Economics
+1946,MEM0038,0,Wladysław Dobrowolski,61,M,Opposition,Academic Economics
+1946,MEM0045,0,Marek Edelman,66,M,Opposition,Medical Doctor
+1946,MEM0047,0,Wanda Falkowska-Szymańska,65,F,Opposition,Journalist
+1946,MEM0049,0,Władysław Findeisen,63,M,Opposition,Academic Electrical Engineer
+1946,MEM0062,0,Stanisława Grabska,66,F,Opposition,Academic Artist and Theologian
+1946,MEM0068,0,Jerzy Grzywacz,60,M,Opposition,Academic Physics
+1946,MEM0083,0,Stanisław Juchnowicz,65,M,Opposition,Academic Architect
+1946,MEM0110,0,Władysław J.H. Kunicki-Goldfinger,72,M,Opposition,Academic Microbiologist
+1946,MEM0125,0,Tadeusz Mazowiecki,61,M,Opposition,Journalist
+1946,MEM0135,0,Jan Mujżel,65,M,Opposition,Academic Economics
+1946,MEM0138,0,Róża Nowotna-Walcowa,66,F,Opposition,Medical Doctor
+1946,MEM0143,0,Aleksander Paszyński,60,M,Opposition,Journalist
+1946,MEM0146,0,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1946,MEM0156,0,Jerzy Regulski,64,M,Opposition,Academic Economist
+1946,MEM0158,0,Ryszard Reiff,65,M,Opposition,Journalist
+1946,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1946,MEM0164,0,Andrzej Rozmarynowicz,65,M,Opposition,Lawyer
+1946,MEM0168,0,Henryk Samsonowicz,59,M,Opposition,Academic Historian
+1946,MEM0173,0,Władysław Siła-Nowicki,75,M,Government,Lawyer
+1946,MEM0175,0,Magdalena Sokołowska,66,F,Opposition,Academic
+1946,MEM0179,0,Adam Stanowski,61,M,Opposition,Academic
+1946,MEM0187,0,Stanisław Stomma,81,M,Opposition,Academic
+1946,MEM0190,0,Klemens Szaniawski,63,M,Opposition,Academic
+1946,MEM0192,0,Jan Józef Szczepański,70,M,Opposition,Journalist
+1946,MEM0205,0,Witold Trzeciakowski,62,M,Opposition,Academic
+1946,MEM0206,0,Jerzy Turowicz,86,M,Opposition,Journalist
+1946,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1946,MEM0214,0,Andrzej Wielowieyski,61,M,Opposition,Lawyer
+1946,MEM0215,0,Zbigniew Wierzbicki,69,M,Opposition,Academic
+1946,MEM0220,0,Jacek Woźniakowski,68,M,Opposition,Academic
+1946,MEM0225,0,Janina Zakrzewska,59,F,Opposition,Academic
+1946,MEM0229,0,Andrzej Ziabicki,55,M,Opposition,Academic
+1946,MEM0230,0,Tadeusz Zieliński,62,M,Opposition,Lawyer
+1946,MEM0231,0,Janusz Ziółkowski,64,M,Opposition,Academic
+1947,MEM0008,0,Janusz Beksiak,59,M,Opposition,Academic Economics
+1947,MEM0016,0,Włodzimierz Bojarski,58,M,Opposition,Academic Economist
+1947,MEM0036,0,Jerzy Dietl,61,M,Opposition,Academic Economics
+1947,MEM0038,0,Wladysław Dobrowolski,61,M,Opposition,Academic Economics
+1947,MEM0045,0,Marek Edelman,66,M,Opposition,Medical Doctor
+1947,MEM0047,0,Wanda Falkowska-Szymańska,65,F,Opposition,Journalist
+1947,MEM0048,0,Dariusz Fikus,56,M,Opposition,Journalist
+1947,MEM0049,0,Władysław Findeisen,63,M,Opposition,Academic Electrical Engineer
+1947,MEM0053,0,Bronisław Geremek,56,M,Opposition,Academic Historian
+1947,MEM0062,0,Stanisława Grabska,66,F,Opposition,Academic Artist and Theologian
+1947,MEM0068,0,Jerzy Grzywacz,60,M,Opposition,Academic Physics
+1947,MEM0083,0,Stanisław Juchnowicz,65,M,Opposition,Academic Architect
+1947,MEM0110,0,Władysław J.H. Kunicki-Goldfinger,72,M,Opposition,Academic Microbiologist
+1947,MEM0125,0,Tadeusz Mazowiecki,61,M,Opposition,Journalist
+1947,MEM0135,0,Jan Mujżel,65,M,Opposition,Academic Economics
+1947,MEM0138,0,Róża Nowotna-Walcowa,66,F,Opposition,Medical Doctor
+1947,MEM0143,0,Aleksander Paszyński,60,M,Opposition,Journalist
+1947,MEM0146,0,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1947,MEM0156,0,Jerzy Regulski,64,M,Opposition,Academic Economist
+1947,MEM0158,0,Ryszard Reiff,65,M,Opposition,Journalist
+1947,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1947,MEM0164,0,Andrzej Rozmarynowicz,65,M,Opposition,Lawyer
+1947,MEM0165,0,Henryk Rutkowski,59,M,Opposition,Academic Historian
+1947,MEM0168,0,Henryk Samsonowicz,59,M,Opposition,Academic Historian
+1947,MEM0173,0,Władysław Siła-Nowicki,75,M,Government,Lawyer
+1947,MEM0175,0,Magdalena Sokołowska,66,F,Opposition,Academic
+1947,MEM0179,0,Adam Stanowski,61,M,Opposition,Academic
+1947,MEM0187,0,Stanisław Stomma,81,M,Opposition,Academic
+1947,MEM0190,0,Klemens Szaniawski,63,M,Opposition,Academic
+1947,MEM0192,0,Jan Józef Szczepański,70,M,Opposition,Journalist
+1947,MEM0205,0,Witold Trzeciakowski,62,M,Opposition,Academic
+1947,MEM0206,0,Jerzy Turowicz,86,M,Opposition,Journalist
+1947,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1947,MEM0214,0,Andrzej Wielowieyski,61,M,Opposition,Lawyer
+1947,MEM0215,0,Zbigniew Wierzbicki,69,M,Opposition,Academic
+1947,MEM0220,0,Jacek Woźniakowski,68,M,Opposition,Academic
+1947,MEM0225,0,Janina Zakrzewska,59,F,Opposition,Academic
+1947,MEM0226,0,Jan Zalewski,58,M,Opposition,Journalist
+1947,MEM0229,0,Andrzej Ziabicki,55,M,Opposition,Academic
+1947,MEM0230,0,Tadeusz Zieliński,62,M,Opposition,Lawyer
+1947,MEM0231,0,Janusz Ziółkowski,64,M,Opposition,Academic
+1948,MEM0125,0.16666666666666663,Tadeusz Mazowiecki,61,M,Opposition,Journalist
+1948,MEM0215,0.08333333333333334,Zbigniew Wierzbicki,69,M,Opposition,Academic
+1948,MEM0163,0.08333333333333331,Jan Rosner,83,M,Opposition,Academic Economics
+1948,MEM0008,0,Janusz Beksiak,59,M,Opposition,Academic Economics
+1948,MEM0016,0,Włodzimierz Bojarski,58,M,Opposition,Academic Economist
+1948,MEM0019,0,Stefan Bratkowski,54,M,Opposition,Journalist
+1948,MEM0036,0,Jerzy Dietl,61,M,Opposition,Academic Economics
+1948,MEM0038,0,Wladysław Dobrowolski,61,M,Opposition,Academic Economics
+1948,MEM0044,0,Kazimierz Dziewanowski,58,M,Opposition,Journalist
+1948,MEM0045,0,Marek Edelman,66,M,Opposition,Medical Doctor
+1948,MEM0047,0,Wanda Falkowska-Szymańska,65,F,Opposition,Journalist
+1948,MEM0048,0,Dariusz Fikus,56,M,Opposition,Journalist
+1948,MEM0049,0,Władysław Findeisen,63,M,Opposition,Academic Electrical Engineer
+1948,MEM0053,0,Bronisław Geremek,56,M,Opposition,Academic Historian
+1948,MEM0062,0,Stanisława Grabska,66,F,Opposition,Academic Artist and Theologian
+1948,MEM0068,0,Jerzy Grzywacz,60,M,Opposition,Academic Physics
+1948,MEM0073,0,Maciej Tadeusz Iłowiecki,53,M,Opposition,Journalist
+1948,MEM0083,0,Stanisław Juchnowicz,65,M,Opposition,Academic Architect
+1948,MEM0102,0,Stefan Kozłowski,61,M,Opposition,Academic Geology
+1948,MEM0110,0,Władysław J.H. Kunicki-Goldfinger,72,M,Opposition,Academic Microbiologist
+1948,MEM0112,0,Zofia Kuratowska,57,F,Opposition,Medical Doctor
+1948,MEM0114,0,Jacek Kuroń,54,M,Opposition,Academic Historian
+1948,MEM0135,0,Jan Mujżel,65,M,Opposition,Academic Economics
+1948,MEM0138,0,Róża Nowotna-Walcowa,66,F,Opposition,Medical Doctor
+1948,MEM0143,0,Aleksander Paszyński,60,M,Opposition,Journalist
+1948,MEM0146,0,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1948,MEM0156,0,Jerzy Regulski,64,M,Opposition,Academic Economist
+1948,MEM0158,0,Ryszard Reiff,65,M,Opposition,Journalist
+1948,MEM0164,0,Andrzej Rozmarynowicz,65,M,Opposition,Lawyer
+1948,MEM0165,0,Henryk Rutkowski,59,M,Opposition,Academic Historian
+1948,MEM0168,0,Henryk Samsonowicz,59,M,Opposition,Academic Historian
+1948,MEM0175,0,Magdalena Sokołowska,66,F,Opposition,Academic
+1948,MEM0179,0,Adam Stanowski,61,M,Opposition,Academic
+1948,MEM0187,0,Stanisław Stomma,81,M,Opposition,Academic
+1948,MEM0190,0,Klemens Szaniawski,63,M,Opposition,Academic
+1948,MEM0192,0,Jan Józef Szczepański,70,M,Opposition,Journalist
+1948,MEM0199,0,Hanna świlda-Ziemba,58,F,Opposition,Academic
+1948,MEM0205,0,Witold Trzeciakowski,62,M,Opposition,Academic
+1948,MEM0206,0,Jerzy Turowicz,86,M,Opposition,Journalist
+1948,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1948,MEM0214,0,Andrzej Wielowieyski,61,M,Opposition,Lawyer
+1948,MEM0220,0,Jacek Woźniakowski,68,M,Opposition,Academic
+1948,MEM0225,0,Janina Zakrzewska,59,F,Opposition,Academic
+1948,MEM0226,0,Jan Zalewski,58,M,Opposition,Journalist
+1948,MEM0229,0,Andrzej Ziabicki,55,M,Opposition,Academic
+1948,MEM0230,0,Tadeusz Zieliński,62,M,Opposition,Lawyer
+1948,MEM0231,0,Janusz Ziółkowski,64,M,Opposition,Academic
+1949,MEM0125,1.4166666666666665,Tadeusz Mazowiecki,61,M,Opposition,Journalist
+1949,MEM0053,0.8333333333333334,Bronisław Geremek,56,M,Opposition,Academic Historian
+1949,MEM0008,0,Janusz Beksiak,59,M,Opposition,Academic Economics
+1949,MEM0016,0,Włodzimierz Bojarski,58,M,Opposition,Academic Economist
+1949,MEM0019,0,Stefan Bratkowski,54,M,Opposition,Journalist
+1949,MEM0026,0,Zbigniew Chłap,59,M,Opposition,Medical Doctor
+1949,MEM0036,0,Jerzy Dietl,61,M,Opposition,Academic Economics
+1949,MEM0038,0,Wladysław Dobrowolski,61,M,Opposition,Academic Economics
+1949,MEM0044,0,Kazimierz Dziewanowski,58,M,Opposition,Journalist
+1949,MEM0045,0,Marek Edelman,66,M,Opposition,Medical Doctor
+1949,MEM0047,0,Wanda Falkowska-Szymańska,65,F,Opposition,Journalist
+1949,MEM0048,0,Dariusz Fikus,56,M,Opposition,Journalist
+1949,MEM0049,0,Władysław Findeisen,63,M,Opposition,Academic Electrical Engineer
+1949,MEM0062,0,Stanisława Grabska,66,F,Opposition,Academic Artist and Theologian
+1949,MEM0068,0,Jerzy Grzywacz,60,M,Opposition,Academic Physics
+1949,MEM0073,0,Maciej Tadeusz Iłowiecki,53,M,Opposition,Journalist
+1949,MEM0083,0,Stanisław Juchnowicz,65,M,Opposition,Academic Architect
+1949,MEM0102,0,Stefan Kozłowski,61,M,Opposition,Academic Geology
+1949,MEM0111,0,Gotfryd Kupryszewski,59,M,Opposition,Academic Chemistry
+1949,MEM0112,0,Zofia Kuratowska,57,F,Opposition,Medical Doctor
+1949,MEM0114,0,Jacek Kuroń,54,M,Opposition,Academic Historian
+1949,MEM0135,0,Jan Mujżel,65,M,Opposition,Academic Economics
+1949,MEM0138,0,Róża Nowotna-Walcowa,66,F,Opposition,Medical Doctor
+1949,MEM0140,0,Jan Olszewski,58,M,Opposition,Lawyer
+1949,MEM0143,0,Aleksander Paszyński,60,M,Opposition,Journalist
+1949,MEM0146,0,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1949,MEM0156,0,Jerzy Regulski,64,M,Opposition,Academic Economist
+1949,MEM0158,0,Ryszard Reiff,65,M,Opposition,Journalist
+1949,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1949,MEM0164,0,Andrzej Rozmarynowicz,65,M,Opposition,Lawyer
+1949,MEM0165,0,Henryk Rutkowski,59,M,Opposition,Academic Historian
+1949,MEM0168,0,Henryk Samsonowicz,59,M,Opposition,Academic Historian
+1949,MEM0175,0,Magdalena Sokołowska,66,F,Opposition,Academic
+1949,MEM0179,0,Adam Stanowski,61,M,Opposition,Academic
+1949,MEM0187,0,Stanisław Stomma,81,M,Opposition,Academic
+1949,MEM0188,0,Adam Strzembosz,58,M,Opposition,Lawyer
+1949,MEM0190,0,Klemens Szaniawski,63,M,Opposition,Academic
+1949,MEM0192,0,Jan Józef Szczepański,70,M,Opposition,Journalist
+1949,MEM0199,0,Hanna świlda-Ziemba,58,F,Opposition,Academic
+1949,MEM0205,0,Witold Trzeciakowski,62,M,Opposition,Academic
+1949,MEM0206,0,Jerzy Turowicz,86,M,Opposition,Journalist
+1949,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1949,MEM0214,0,Andrzej Wielowieyski,61,M,Opposition,Lawyer
+1949,MEM0215,0,Zbigniew Wierzbicki,69,M,Opposition,Academic
+1949,MEM0220,0,Jacek Woźniakowski,68,M,Opposition,Academic
+1949,MEM0225,0,Janina Zakrzewska,59,F,Opposition,Academic
+1949,MEM0226,0,Jan Zalewski,58,M,Opposition,Journalist
+1949,MEM0230,0,Tadeusz Zieliński,62,M,Opposition,Lawyer
+1949,MEM0231,0,Janusz Ziółkowski,64,M,Opposition,Academic
+1950,MEM0053,10,Bronisław Geremek,56,M,Opposition,Academic Historian
+1950,MEM0008,0,Janusz Beksiak,59,M,Opposition,Academic Economics
+1950,MEM0016,0,Włodzimierz Bojarski,58,M,Opposition,Academic Economist
+1950,MEM0019,0,Stefan Bratkowski,54,M,Opposition,Journalist
+1950,MEM0026,0,Zbigniew Chłap,59,M,Opposition,Medical Doctor
+1950,MEM0027,0,Maria Chmiel,59,F,Opposition,Medical Doctor
+1950,MEM0036,0,Jerzy Dietl,61,M,Opposition,Academic Economics
+1950,MEM0038,0,Wladysław Dobrowolski,61,M,Opposition,Academic Economics
+1950,MEM0044,0,Kazimierz Dziewanowski,58,M,Opposition,Journalist
+1950,MEM0045,0,Marek Edelman,66,M,Opposition,Medical Doctor
+1950,MEM0047,0,Wanda Falkowska-Szymańska,65,F,Opposition,Journalist
+1950,MEM0048,0,Dariusz Fikus,56,M,Opposition,Journalist
+1950,MEM0049,0,Władysław Findeisen,63,M,Opposition,Academic Electrical Engineer
+1950,MEM0062,0,Stanisława Grabska,66,F,Opposition,Academic Artist and Theologian
+1950,MEM0068,0,Jerzy Grzywacz,60,M,Opposition,Academic Physics
+1950,MEM0073,0,Maciej Tadeusz Iłowiecki,53,M,Opposition,Journalist
+1950,MEM0083,0,Stanisław Juchnowicz,65,M,Opposition,Academic Architect
+1950,MEM0102,0,Stefan Kozłowski,61,M,Opposition,Academic Geology
+1950,MEM0111,0,Gotfryd Kupryszewski,59,M,Opposition,Academic Chemistry
+1950,MEM0112,0,Zofia Kuratowska,57,F,Opposition,Medical Doctor
+1950,MEM0114,0,Jacek Kuroń,54,M,Opposition,Academic Historian
+1950,MEM0125,0,Tadeusz Mazowiecki,61,M,Opposition,Journalist
+1950,MEM0135,0,Jan Mujżel,65,M,Opposition,Academic Economics
+1950,MEM0138,0,Róża Nowotna-Walcowa,66,F,Opposition,Medical Doctor
+1950,MEM0140,0,Jan Olszewski,58,M,Opposition,Lawyer
+1950,MEM0143,0,Aleksander Paszyński,60,M,Opposition,Journalist
+1950,MEM0146,0,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1950,MEM0149,0,Zygmunt Polański,59,M,Opposition,Academic Economics
+1950,MEM0156,0,Jerzy Regulski,64,M,Opposition,Academic Economist
+1950,MEM0158,0,Ryszard Reiff,65,M,Opposition,Journalist
+1950,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1950,MEM0164,0,Andrzej Rozmarynowicz,65,M,Opposition,Lawyer
+1950,MEM0165,0,Henryk Rutkowski,59,M,Opposition,Academic Historian
+1950,MEM0168,0,Henryk Samsonowicz,59,M,Opposition,Academic Historian
+1950,MEM0175,0,Magdalena Sokołowska,66,F,Opposition,Academic
+1950,MEM0179,0,Adam Stanowski,61,M,Opposition,Academic
+1950,MEM0187,0,Stanisław Stomma,81,M,Opposition,Academic
+1950,MEM0188,0,Adam Strzembosz,58,M,Opposition,Lawyer
+1950,MEM0190,0,Klemens Szaniawski,63,M,Opposition,Academic
+1950,MEM0192,0,Jan Józef Szczepański,70,M,Opposition,Journalist
+1950,MEM0199,0,Hanna świlda-Ziemba,58,F,Opposition,Academic
+1950,MEM0205,0,Witold Trzeciakowski,62,M,Opposition,Academic
+1950,MEM0206,0,Jerzy Turowicz,86,M,Opposition,Journalist
+1950,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1950,MEM0214,0,Andrzej Wielowieyski,61,M,Opposition,Lawyer
+1950,MEM0220,0,Jacek Woźniakowski,68,M,Opposition,Academic
+1950,MEM0225,0,Janina Zakrzewska,59,F,Opposition,Academic
+1950,MEM0226,0,Jan Zalewski,58,M,Opposition,Journalist
+1950,MEM0230,0,Tadeusz Zieliński,62,M,Opposition,Lawyer
+1950,MEM0231,0,Janusz Ziółkowski,64,M,Opposition,Academic
+1951,MEM0053,2.666666666666667,Bronisław Geremek,56,M,Opposition,Academic Historian
+1951,MEM0114,2.083333333333334,Jacek Kuroń,54,M,Opposition,Academic Historian
+1951,MEM0019,2.083333333333333,Stefan Bratkowski,54,M,Opposition,Journalist
+1951,MEM0008,0,Janusz Beksiak,59,M,Opposition,Academic Economics
+1951,MEM0026,0,Zbigniew Chłap,59,M,Opposition,Medical Doctor
+1951,MEM0027,0,Maria Chmiel,59,F,Opposition,Medical Doctor
+1951,MEM0036,0,Jerzy Dietl,61,M,Opposition,Academic Economics
+1951,MEM0038,0,Wladysław Dobrowolski,61,M,Opposition,Academic Economics
+1951,MEM0044,0,Kazimierz Dziewanowski,58,M,Opposition,Journalist
+1951,MEM0045,0,Marek Edelman,66,M,Opposition,Medical Doctor
+1951,MEM0047,0,Wanda Falkowska-Szymańska,65,F,Opposition,Journalist
+1951,MEM0048,0,Dariusz Fikus,56,M,Opposition,Journalist
+1951,MEM0049,0,Władysław Findeisen,63,M,Opposition,Academic Electrical Engineer
+1951,MEM0062,0,Stanisława Grabska,66,F,Opposition,Academic Artist and Theologian
+1951,MEM0068,0,Jerzy Grzywacz,60,M,Opposition,Academic Physics
+1951,MEM0072,0,Stefania Hejmanowska,51,F,Opposition,Worker Chemist
+1951,MEM0073,0,Maciej Tadeusz Iłowiecki,53,M,Opposition,Journalist
+1951,MEM0083,0,Stanisław Juchnowicz,65,M,Opposition,Academic Architect
+1951,MEM0094,0,Janusz Kindler,54,M,Opposition,Academic Engineer
+1951,MEM0102,0,Stefan Kozłowski,61,M,Opposition,Academic Geology
+1951,MEM0111,0,Gotfryd Kupryszewski,59,M,Opposition,Academic Chemistry
+1951,MEM0112,0,Zofia Kuratowska,57,F,Opposition,Medical Doctor
+1951,MEM0125,0,Tadeusz Mazowiecki,61,M,Opposition,Journalist
+1951,MEM0135,0,Jan Mujżel,65,M,Opposition,Academic Economics
+1951,MEM0138,0,Róża Nowotna-Walcowa,66,F,Opposition,Medical Doctor
+1951,MEM0140,0,Jan Olszewski,58,M,Opposition,Lawyer
+1951,MEM0146,0,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1951,MEM0149,0,Zygmunt Polański,59,M,Opposition,Academic Economics
+1951,MEM0156,0,Jerzy Regulski,64,M,Opposition,Academic Economist
+1951,MEM0158,0,Ryszard Reiff,65,M,Opposition,Journalist
+1951,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1951,MEM0164,0,Andrzej Rozmarynowicz,65,M,Opposition,Lawyer
+1951,MEM0165,0,Henryk Rutkowski,59,M,Opposition,Academic Historian
+1951,MEM0168,0,Henryk Samsonowicz,59,M,Opposition,Academic Historian
+1951,MEM0175,0,Magdalena Sokołowska,66,F,Opposition,Academic
+1951,MEM0183,0,Antoni Stawikowski,55,M,Opposition,Academic
+1951,MEM0187,0,Stanisław Stomma,81,M,Opposition,Academic
+1951,MEM0188,0,Adam Strzembosz,58,M,Opposition,Lawyer
+1951,MEM0190,0,Klemens Szaniawski,63,M,Opposition,Academic
+1951,MEM0192,0,Jan Józef Szczepański,70,M,Opposition,Journalist
+1951,MEM0199,0,Hanna świlda-Ziemba,58,F,Opposition,Academic
+1951,MEM0205,0,Witold Trzeciakowski,62,M,Opposition,Academic
+1951,MEM0206,0,Jerzy Turowicz,86,M,Opposition,Journalist
+1951,MEM0210,0,Zofia Wasikowska,78,F,Opposition,Lawyer
+1951,MEM0214,0,Andrzej Wielowieyski,61,M,Opposition,Lawyer
+1951,MEM0220,0,Jacek Woźniakowski,68,M,Opposition,Academic
+1951,MEM0225,0,Janina Zakrzewska,59,F,Opposition,Academic
+1951,MEM0226,0,Jan Zalewski,58,M,Opposition,Journalist
+1951,MEM0231,0,Janusz Ziółkowski,64,M,Opposition,Academic
+1952,MEM0114,24.75,Jacek Kuroń,54,M,Opposition,Academic Historian
+1952,MEM0053,9.916666666666668,Bronisław Geremek,56,M,Opposition,Academic Historian
+1952,MEM0019,8.833333333333334,Stefan Bratkowski,54,M,Opposition,Journalist
+1952,MEM0210,1.5,Zofia Wasikowska,78,F,Opposition,Lawyer
+1952,MEM0008,0,Janusz Beksiak,59,M,Opposition,Academic Economics
+1952,MEM0026,0,Zbigniew Chłap,59,M,Opposition,Medical Doctor
+1952,MEM0027,0,Maria Chmiel,59,F,Opposition,Medical Doctor
+1952,MEM0036,0,Jerzy Dietl,61,M,Opposition,Academic Economics
+1952,MEM0038,0,Wladysław Dobrowolski,61,M,Opposition,Academic Economics
+1952,MEM0044,0,Kazimierz Dziewanowski,58,M,Opposition,Journalist
+1952,MEM0045,0,Marek Edelman,66,M,Opposition,Medical Doctor
+1952,MEM0047,0,Wanda Falkowska-Szymańska,65,F,Opposition,Journalist
+1952,MEM0048,0,Dariusz Fikus,56,M,Opposition,Journalist
+1952,MEM0049,0,Władysław Findeisen,63,M,Opposition,Academic Electrical Engineer
+1952,MEM0062,0,Stanisława Grabska,66,F,Opposition,Academic Artist and Theologian
+1952,MEM0068,0,Jerzy Grzywacz,60,M,Opposition,Academic Physics
+1952,MEM0072,0,Stefania Hejmanowska,51,F,Opposition,Worker Chemist
+1952,MEM0073,0,Maciej Tadeusz Iłowiecki,53,M,Opposition,Journalist
+1952,MEM0076,0,Andrzej Janowski,53,M,Opposition,Academic Polonist
+1952,MEM0082,0,Cezary Józefiak,56,M,Opposition,Academic Economics
+1952,MEM0083,0,Stanisław Juchnowicz,65,M,Opposition,Academic Architect
+1952,MEM0085,0,Mieczysław Kaczanowski,54,M,Opposition,Journalist
+1952,MEM0094,0,Janusz Kindler,54,M,Opposition,Academic Engineer
+1952,MEM0102,0,Stefan Kozłowski,61,M,Opposition,Academic Geology
+1952,MEM0111,0,Gotfryd Kupryszewski,59,M,Opposition,Academic Chemistry
+1952,MEM0112,0,Zofia Kuratowska,57,F,Opposition,Medical Doctor
+1952,MEM0125,0,Tadeusz Mazowiecki,61,M,Opposition,Journalist
+1952,MEM0135,0,Jan Mujżel,65,M,Opposition,Academic Economics
+1952,MEM0138,0,Róża Nowotna-Walcowa,66,F,Opposition,Medical Doctor
+1952,MEM0140,0,Jan Olszewski,58,M,Opposition,Lawyer
+1952,MEM0146,0,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1952,MEM0149,0,Zygmunt Polański,59,M,Opposition,Academic Economics
+1952,MEM0156,0,Jerzy Regulski,64,M,Opposition,Academic Economist
+1952,MEM0158,0,Ryszard Reiff,65,M,Opposition,Journalist
+1952,MEM0163,0,Jan Rosner,83,M,Opposition,Academic Economics
+1952,MEM0164,0,Andrzej Rozmarynowicz,65,M,Opposition,Lawyer
+1952,MEM0165,0,Henryk Rutkowski,59,M,Opposition,Academic Historian
+1952,MEM0168,0,Henryk Samsonowicz,59,M,Opposition,Academic Historian
+1952,MEM0175,0,Magdalena Sokołowska,66,F,Opposition,Academic
+1952,MEM0183,0,Antoni Stawikowski,55,M,Opposition,Academic
+1952,MEM0187,0,Stanisław Stomma,81,M,Opposition,Academic
+1952,MEM0188,0,Adam Strzembosz,58,M,Opposition,Lawyer
+1952,MEM0190,0,Klemens Szaniawski,63,M,Opposition,Academic
+1952,MEM0192,0,Jan Józef Szczepański,70,M,Opposition,Journalist
+1952,MEM0199,0,Hanna świlda-Ziemba,58,F,Opposition,Academic
+1952,MEM0206,0,Jerzy Turowicz,86,M,Opposition,Journalist
+1952,MEM0214,0,Andrzej Wielowieyski,61,M,Opposition,Lawyer
+1952,MEM0220,0,Jacek Woźniakowski,68,M,Opposition,Academic
+1952,MEM0225,0,Janina Zakrzewska,59,F,Opposition,Academic
+1952,MEM0226,0,Jan Zalewski,58,M,Opposition,Journalist
+1952,MEM0229,0,Andrzej Ziabicki,55,M,Opposition,Academic
+1952,MEM0231,0,Janusz Ziółkowski,64,M,Opposition,Academic
+1953,MEM0114,25.208333333333332,Jacek Kuroń,54,M,Opposition,Academic Historian
+1953,MEM0210,8.916666666666666,Zofia Wasikowska,78,F,Opposition,Lawyer
+1953,MEM0019,8.75,Stefan Bratkowski,54,M,Opposition,Journalist
+1953,MEM0188,2.5,Adam Strzembosz,58,M,Opposition,Lawyer
+1953,MEM0053,1.5416666666666667,Bronisław Geremek,56,M,Opposition,Academic Historian
+1954,MEM0019,19.75,Stefan Bratkowski,54,M,Opposition,Journalist
+1954,MEM0210,8.583333333333334,Zofia Wasikowska,78,F,Opposition,Lawyer
+1954,MEM0114,6.916666666666667,Jacek Kuroń,54,M,Opposition,Academic Historian
+1954,MEM0053,3.6666666666666665,Bronisław Geremek,56,M,Opposition,Academic Historian
+1954,MEM0076,1.25,Andrzej Janowski,53,M,Opposition,Academic Polonist
+1955,MEM0114,45.416666666666664,Jacek Kuroń,54,M,Opposition,Academic Historian
+1955,MEM0019,37.333333333333336,Stefan Bratkowski,54,M,Opposition,Journalist
+1955,MEM0210,15.333333333333334,Zofia Wasikowska,78,F,Opposition,Lawyer
+1955,MEM0053,10.25,Bronisław Geremek,56,M,Opposition,Academic Historian
+1955,MEM0076,10.083333333333332,Andrzej Janowski,53,M,Opposition,Academic Polonist
+1956,MEM0114,64.91666666666667,Jacek Kuroń,54,M,Opposition,Academic Historian
+1956,MEM0019,39.66666666666667,Stefan Bratkowski,54,M,Opposition,Journalist
+1956,MEM0229,37.333333333333336,Andrzej Ziabicki,55,M,Opposition,Academic
+1956,MEM0210,27.5,Zofia Wasikowska,78,F,Opposition,Lawyer
+1956,MEM0053,19.666666666666668,Bronisław Geremek,56,M,Opposition,Academic Historian
+1956,MEM0111,19.666666666666668,Gotfryd Kupryszewski,59,M,Opposition,Academic Chemistry
+1957,MEM0114,65.95833333333333,Jacek Kuroń,54,M,Opposition,Academic Historian
+1957,MEM0229,36.666666666666664,Andrzej Ziabicki,55,M,Opposition,Academic
+1957,MEM0210,34,Zofia Wasikowska,78,F,Opposition,Lawyer
+1957,MEM0019,19.333333333333332,Stefan Bratkowski,54,M,Opposition,Journalist
+1957,MEM0053,19.333333333333332,Bronisław Geremek,56,M,Opposition,Academic Historian
+1957,MEM0111,19.333333333333332,Gotfryd Kupryszewski,59,M,Opposition,Academic Chemistry
+1958,MEM0114,68.66666666666667,Jacek Kuroń,54,M,Opposition,Academic Historian
+1958,MEM0210,38.333333333333336,Zofia Wasikowska,78,F,Opposition,Lawyer
+1958,MEM0229,38.333333333333336,Andrzej Ziabicki,55,M,Opposition,Academic
+1958,MEM0053,20.166666666666668,Bronisław Geremek,56,M,Opposition,Academic Historian
+1958,MEM0111,20.166666666666668,Gotfryd Kupryszewski,59,M,Opposition,Academic Chemistry
+1958,MEM0146,20.166666666666668,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1958,MEM0168,20.166666666666668,Henryk Samsonowicz,59,M,Opposition,Academic Historian
+1959,MEM0114,77.66666666666667,Jacek Kuroń,54,M,Opposition,Academic Historian
+1959,MEM0210,41.666666666666664,Zofia Wasikowska,78,F,Opposition,Lawyer
+1959,MEM0229,35.166666666666664,Andrzej Ziabicki,55,M,Opposition,Academic
+1959,MEM0048,21.833333333333332,Dariusz Fikus,56,M,Opposition,Journalist
+1959,MEM0053,21.833333333333332,Bronisław Geremek,56,M,Opposition,Academic Historian
+1959,MEM0146,21.833333333333332,Edmund Jan Osmańczych,75,M,Opposition,Journalist
+1959,MEM0168,21.833333333333332,Henryk Samsonowicz,59,M,Opposition,Academic Historian
+1960,MEM0114,102.5,Jacek Kuroń,54,M,Opposition,Academic Historian
+1960,MEM0048,23.916666666666668,Dariusz Fikus,56,M,Opposition,Journalist
+1960,MEM0053,22.083333333333332,Bronisław Geremek,56,M,Opposition,Academic Historian
+1960,MEM0168,22.083333333333332,Henryk Samsonowicz,59,M,Opposition,Academic Historian
+1960,MEM0210,22.083333333333332,Zofia Wasikowska,78,F,Opposition,Lawyer
+1960,MEM0229,22.083333333333332,Andrzej Ziabicki,55,M,Opposition,Academic
+1961,MEM0114,104.54166666666667,Jacek Kuroń,54,M,Opposition,Academic Historian
+1961,MEM0048,44.791666666666664,Dariusz Fikus,56,M,Opposition,Journalist
+1961,MEM0053,22.083333333333332,Bronisław Geremek,56,M,Opposition,Academic Historian
+1961,MEM0229,22.083333333333332,Andrzej Ziabicki,55,M,Opposition,Academic
+1961,MEM0168,14.833333333333332,Henryk Samsonowicz,59,M,Opposition,Academic Historian
+1962,MEM0114,225.58333333333331,Jacek Kuroń,54,M,Opposition,Academic Historian
+1962,MEM0223,223.2,Henryk Wujec,48,M,Opposition,Worker
+1962,MEM0048,75.75,Dariusz Fikus,56,M,Opposition,Journalist
+1962,MEM0098,47.166666666666664,Jan Kofman,47,M,Opposition,Academic Historian
+1962,MEM0053,27.083333333333332,Bronisław Geremek,56,M,Opposition,Academic Historian
+1962,MEM0229,27.083333333333332,Andrzej Ziabicki,55,M,Opposition,Academic
+1963,MEM0114,284.5833333333333,Jacek Kuroń,54,M,Opposition,Academic Historian
+1963,MEM0223,212.25,Henryk Wujec,48,M,Opposition,Worker
+1963,MEM0048,89.25,Dariusz Fikus,56,M,Opposition,Journalist
+1963,MEM0206,46.375,Jerzy Turowicz,86,M,Opposition,Journalist
+1963,MEM0053,31.583333333333332,Bronisław Geremek,56,M,Opposition,Academic Historian
+1963,MEM0229,31.583333333333332,Andrzej Ziabicki,55,M,Opposition,Academic
+1964,MEM0048,71.45833333333333,Dariusz Fikus,56,M,Opposition,Journalist
+1964,MEM0055,71,Mieczysław Gil,45,M,Opposition,Worker Steel
+1964,MEM0114,71,Jacek Kuroń,54,M,Opposition,Academic Historian
+1964,MEM0229,30.166666666666664,Andrzej Ziabicki,55,M,Opposition,Academic
+1964,MEM0053,25.666666666666668,Bronisław Geremek,56,M,Opposition,Academic Historian
+1965,MEM0055,79.58333333333333,Mieczysław Gil,45,M,Opposition,Worker Steel
+1965,MEM0048,70.25,Dariusz Fikus,56,M,Opposition,Journalist
+1965,MEM0229,69.875,Andrzej Ziabicki,55,M,Opposition,Academic
+1965,MEM0053,25.416666666666668,Bronisław Geremek,56,M,Opposition,Academic Historian
+1965,MEM0168,25.416666666666668,Henryk Samsonowicz,59,M,Opposition,Academic Historian
+1966,MEM0055,106.08333333333333,Mieczysław Gil,45,M,Opposition,Worker Steel
+1966,MEM0048,73.25,Dariusz Fikus,56,M,Opposition,Journalist
+1966,MEM0229,46.333333333333336,Andrzej Ziabicki,55,M,Opposition,Academic
+1966,MEM0053,26.416666666666668,Bronisław Geremek,56,M,Opposition,Academic Historian
+1966,MEM0119,26.416666666666668,Helena Łuczywo,43,F,Opposition,Journalist
+1966,MEM0168,26.416666666666668,Henryk Samsonowicz,59,M,Opposition,Academic Historian
+1967,MEM0055,113.95833333333333,Mieczysław Gil,45,M,Opposition,Worker Steel
+1967,MEM0048,79.25,Dariusz Fikus,56,M,Opposition,Journalist
+1967,MEM0168,60.08333333333333,Henryk Samsonowicz,59,M,Opposition,Academic Historian
+1967,MEM0229,50.125,Andrzej Ziabicki,55,M,Opposition,Academic
+1967,MEM0109,39,Michał Kulesza,40,M,Opposition,Lawyer
+1968,MEM0115,255.17539682539683,Wojciech Lamentowicz,42,M,Opposition,Academic Law
+1968,MEM0168,236.68492063492062,Henryk Samsonowicz,59,M,Opposition,Academic Historian
+1968,MEM0185,147.71190476190475,Jerzy Stępien,42,M,Opposition,Lawyer
+1968,MEM0048,126.02777777777777,Dariusz Fikus,56,M,Opposition,Journalist
+1968,MEM0109,97.93055555555556,Michał Kulesza,40,M,Opposition,Lawyer
+1969,MEM0115,271.3333333333333,Wojciech Lamentowicz,42,M,Opposition,Academic Law
+1969,MEM0048,121.66666666666666,Dariusz Fikus,56,M,Opposition,Journalist
+1969,MEM0109,96,Michał Kulesza,40,M,Opposition,Lawyer
+1969,MEM0185,66,Jerzy Stępien,42,M,Opposition,Lawyer
+1969,MEM0082,33.333333333333336,Cezary Józefiak,56,M,Opposition,Academic Economics
+1969,MEM0089,33.333333333333336,Marian Kallas,50,M,Opposition,Academic Historian
+1969,MEM0091,33.333333333333336,Henryk Karaś,40,M,Opposition,Worker Mining Engineer
+1969,MEM0168,33.333333333333336,Henryk Samsonowicz,59,M,Opposition,Academic Historian
+1970,MEM0115,199.83333333333334,Wojciech Lamentowicz,42,M,Opposition,Academic Law
+1970,MEM0048,108.66666666666667,Dariusz Fikus,56,M,Opposition,Journalist
+1970,MEM0109,96.75,Michał Kulesza,40,M,Opposition,Lawyer
+1970,MEM0082,30.083333333333332,Cezary Józefiak,56,M,Opposition,Academic Economics
+1970,MEM0089,30.083333333333332,Marian Kallas,50,M,Opposition,Academic Historian
+1970,MEM0091,30.083333333333332,Henryk Karaś,40,M,Opposition,Worker Mining Engineer
+1970,MEM0168,30.083333333333332,Henryk Samsonowicz,59,M,Opposition,Academic Historian
+1971,MEM0115,139.33333333333334,Wojciech Lamentowicz,42,M,Opposition,Academic Law
+1971,MEM0190,101.33333333333333,Klemens Szaniawski,63,M,Opposition,Academic
+1971,MEM0206,101.08333333333333,Jerzy Turowicz,86,M,Opposition,Journalist
+1971,MEM0220,100.83333333333333,Jacek Woźniakowski,68,M,Opposition,Academic
+1971,MEM0048,97.66666666666667,Dariusz Fikus,56,M,Opposition,Journalist
+1972,MEM0190,127.22222222222223,Klemens Szaniawski,63,M,Opposition,Academic
+1972,MEM0206,124.83333333333333,Jerzy Turowicz,86,M,Opposition,Journalist
+1972,MEM0220,121.91666666666667,Jacek Woźniakowski,68,M,Opposition,Academic
+1972,MEM0115,120.08333333333333,Wojciech Lamentowicz,42,M,Opposition,Academic Law
+1972,MEM0048,95.44444444444444,Dariusz Fikus,56,M,Opposition,Journalist
+1973,MEM0115,162.75,Wojciech Lamentowicz,42,M,Opposition,Academic Law
+1973,MEM0048,126.91666666666666,Dariusz Fikus,56,M,Opposition,Journalist
+1973,MEM0190,126.16666666666667,Klemens Szaniawski,63,M,Opposition,Academic
+1973,MEM0206,124.83333333333333,Jerzy Turowicz,86,M,Opposition,Journalist
+1973,MEM0220,121.91666666666667,Jacek Woźniakowski,68,M,Opposition,Academic
+1974,MEM0221,540.5,Irena Wóycicka,38,F,Opposition,Journalist
+1974,MEM0115,498.33333333333337,Wojciech Lamentowicz,42,M,Opposition,Academic Law
+1974,MEM0109,455.1666666666667,Michał Kulesza,40,M,Opposition,Lawyer
+1974,MEM0206,340.5,Jerzy Turowicz,86,M,Opposition,Journalist
+1974,MEM0220,314.75,Jacek Woźniakowski,68,M,Opposition,Academic
+1975,MEM0109,1179.3958333333333,Michał Kulesza,40,M,Opposition,Lawyer
+1975,MEM0115,1172.4375,Wojciech Lamentowicz,42,M,Opposition,Academic Law
+1975,MEM0048,762.625,Dariusz Fikus,56,M,Opposition,Journalist
+1975,MEM0206,723,Jerzy Turowicz,86,M,Opposition,Journalist
+1975,MEM0221,697.8958333333334,Irena Wóycicka,38,F,Opposition,Journalist
+1976,MEM0109,1212.6525391275388,Michał Kulesza,40,M,Opposition,Lawyer
+1976,MEM0115,1176.8330946830945,Wojciech Lamentowicz,42,M,Opposition,Academic Law
+1976,MEM0221,1116.3608724608723,Irena Wóycicka,38,F,Opposition,Journalist
+1976,MEM0048,807.428292078292,Dariusz Fikus,56,M,Opposition,Journalist
+1976,MEM0206,585.0763588263587,Jerzy Turowicz,86,M,Opposition,Journalist
+1977,MEM0048,1467.2278378808255,Dariusz Fikus,56,M,Opposition,Journalist
+1977,MEM0075,1432.0285771346669,Janina Jankowska,49,F,Opposition,Journalist
+1977,MEM0192,487.6031989620223,Jan Józef Szczepański,70,M,Opposition,Journalist
+1977,MEM0100,396.25,Adam Tadeusz Kowalewski,48,M,Opposition,Academic Economist
+1977,MEM0129,379.46457269696793,Adam Michnik,42,M,Opposition,Academic Historian
+1978,MEM0115,1054.6289754802071,Wojciech Lamentowicz,42,M,Opposition,Academic Law
+1978,MEM0100,440.8333333333333,Adam Tadeusz Kowalewski,48,M,Opposition,Academic Economist
+1978,MEM0048,366.37944773949187,Dariusz Fikus,56,M,Opposition,Journalist
+1978,MEM0082,301.5212639676578,Cezary Józefiak,56,M,Opposition,Academic Economics
+1978,MEM0180,300.93094303120006,Krystyna Starczewska,51,F,Opposition,Academic
+1979,MEM0115,1066.4566081819164,Wojciech Lamentowicz,42,M,Opposition,Academic Law
+1979,MEM0100,450,Adam Tadeusz Kowalewski,48,M,Opposition,Academic Economist
+1979,MEM0048,368.76194803128004,Dariusz Fikus,56,M,Opposition,Journalist
+1979,MEM0082,304.06954721315725,Cezary Józefiak,56,M,Opposition,Academic Economics
+1979,MEM0180,293.4915540959487,Krystyna Starczewska,51,F,Opposition,Academic
+1980,MEM0115,694.4024626806355,Wojciech Lamentowicz,42,M,Opposition,Academic Law
+1980,MEM0229,493.32925136644997,Andrzej Ziabicki,55,M,Opposition,Academic
+1980,MEM0180,434.510109581953,Krystyna Starczewska,51,F,Opposition,Academic
+1980,MEM0100,394.1978574103333,Adam Tadeusz Kowalewski,48,M,Opposition,Academic Economist
+1980,MEM0214,364.72100735901324,Andrzej Wielowieyski,61,M,Opposition,Lawyer
+1981,MEM0214,992.5840693187002,Andrzej Wielowieyski,61,M,Opposition,Lawyer
+1981,MEM0229,802.2015954662886,Andrzej Ziabicki,55,M,Opposition,Academic
+1981,MEM0075,609.1794191425549,Janina Jankowska,49,F,Opposition,Journalist
+1981,MEM0142,588.6076463993245,Walerian Pańko,47,M,Opposition,Academic Law
+1981,MEM0189,534.4914396183075,Andrzej Suchocki,35,M,Opposition,Academic
+1982,MEM0229,1129.620375814726,Andrzej Ziabicki,55,M,Opposition,Academic
+1982,MEM0189,965.6937711921867,Andrzej Suchocki,35,M,Opposition,Academic
+1982,MEM0222,785.8942263346675,Wojciech Wróblewski,31,M,Opposition,Academic
+1982,MEM0135,591.9873742034404,Jan Mujżel,65,M,Opposition,Academic Economics
+1982,MEM0206,574.5448288904133,Jerzy Turowicz,86,M,Opposition,Journalist
+1983,MEM0229,711.2880944964693,Andrzej Ziabicki,55,M,Opposition,Academic
+1983,MEM0135,585.3156579566665,Jan Mujżel,65,M,Opposition,Academic Economics
+1983,MEM0185,572.0138468415981,Jerzy Stępien,42,M,Opposition,Lawyer
+1983,MEM0206,486.3932946390641,Jerzy Turowicz,86,M,Opposition,Journalist
+1983,MEM0067,485.78765274500006,Anna Grzymisławska,41,F,Opposition,Lawyer
+1984,MEM0229,840.080911101858,Andrzej Ziabicki,55,M,Opposition,Academic
+1984,MEM0186,566.5833333333334,Henryk Jerzy Stępniak,38,M,Opposition,Farmer
+1984,MEM0067,477.2184636201335,Anna Grzymisławska,41,F,Opposition,Lawyer
+1984,MEM0185,472.6230807162322,Jerzy Stępien,42,M,Opposition,Lawyer
+1984,MEM0211,428.6551915723029,Jerzy Wertenstein-Żuławski,41,M,Opposition,Academic
+1985,MEM0229,882.7707270401746,Andrzej Ziabicki,55,M,Opposition,Academic
+1985,MEM0186,638.0000000000001,Henryk Jerzy Stępniak,38,M,Opposition,Farmer
+1985,MEM0075,496.5762850828151,Janina Jankowska,49,F,Opposition,Journalist
+1985,MEM0067,473.37084747634555,Anna Grzymisławska,41,F,Opposition,Lawyer
+1985,MEM0185,473.15364618711374,Jerzy Stępien,42,M,Opposition,Lawyer
+1986,MEM0195,1009.0620963419703,Jacek Szymanderski,43,M,Opposition,Academic
+1986,MEM0186,665.3888786373808,Henryk Jerzy Stępniak,38,M,Opposition,Farmer
+1986,MEM0229,562.4253319142791,Andrzej Ziabicki,55,M,Opposition,Academic
+1986,MEM0041,514.0833333333334,Michał Downarowicz,33,M,Opposition,Academic
+1986,MEM0075,480.0646114668535,Janina Jankowska,49,F,Opposition,Journalist
+1987,MEM0195,1134.9416682889782,Jacek Szymanderski,43,M,Opposition,Academic
+1987,MEM0186,824.1606221447925,Henryk Jerzy Stępniak,38,M,Opposition,Farmer
+1987,MEM0041,657.6094744791842,Michał Downarowicz,33,M,Opposition,Academic
+1987,MEM0214,654.6955513070217,Andrzej Wielowieyski,61,M,Opposition,Lawyer
+1987,MEM0229,569.2281525861123,Andrzej Ziabicki,55,M,Opposition,Academic
+1988,MEM0195,816.2446440614543,Jacek Szymanderski,43,M,Opposition,Academic
+1988,MEM0214,656.1520253105177,Andrzej Wielowieyski,61,M,Opposition,Lawyer
+1988,MEM0186,639.157566629686,Henryk Jerzy Stępniak,38,M,Opposition,Farmer
+1988,MEM0200,633.8050561164075,Henryk Tachasiuk,26,M,Opposition,Worker
+1988,MEM0229,559.6441110249872,Andrzej Ziabicki,55,M,Opposition,Academic

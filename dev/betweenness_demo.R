@@ -13,6 +13,16 @@ pzpr <- get_betweenness_orgs("ORG01113",
                              start = "1960-01-01",
                              end = "1985-01-01")
 
+pzpr <- get_degree_orgs("ORG01113",
+                        start = "1960-01-01",
+                        end = "1985-01-01")
+
+pzpr_all <- get_vertex_metrics_orgs("ORG01113",
+                                    list(degree = igraph::degree,
+                                         betweenness = igraph::betweenness),
+                        start = "1980-01-01",
+                        end = "1985-01-01")
+
 pzpr %>%
   ggplot(aes(y = Betweenness,
              x = Start.Date)) +

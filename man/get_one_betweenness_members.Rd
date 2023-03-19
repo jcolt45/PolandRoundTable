@@ -2,20 +2,26 @@
 % Please edit documentation in R/get_betweenness.R
 \name{get_one_betweenness_members}
 \alias{get_one_betweenness_members}
-\title{Find the betweenness measures for a set of organizations over a time period}
+\title{Find the betweenness measures for one individual in a time period}
 \usage{
-get_one_betweenness_members(members, start = NULL, end = NULL)
+get_one_betweenness_members(network, members = NULL, start = NULL, end = NULL)
 }
 \arguments{
-\item{members}{A vector of member IDs.}
+\item{network}{The data frame containing edge connections.  Format must match
+built-in datasets \code{affiliation_dates}, \code{affiliation_dates_opp}, or \code{affiliation_dates_gov}.}
+
+\item{members}{A character vector of member IDs.}
 
 \item{start}{A start of date range, in DD-MM-YYYY string format.  Defaults to beginning of dates in data.}
 
 \item{end}{An end of date range, in DD-MM-YYYY string format. Defaults to end of dates in data.}
+
+\item{timesteps}{A string ("days", "months", "years") for the level of aggregation
+of the network before computing betweenness.}
 }
 \value{
-A tibble with pairs of organizations and their number of shared members in that range.
+A tibble with the betweenness of all invididuals in one time window.
 }
 \description{
-Find the betweenness measures for a set of organizations over a time period
+Find the betweenness measures for one individual in a time period
 }

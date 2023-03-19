@@ -6,6 +6,7 @@
 \usage{
 get_vertex_metrics_members(
   members,
+  metrics,
   start = NULL,
   end = NULL,
   timesteps = "months"

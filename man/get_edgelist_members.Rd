@@ -4,12 +4,20 @@
 \alias{get_edgelist_members}
 \title{Make an edgelist of members with organizational overlap in given date range}
 \usage{
-get_edgelist_members(start, end = NULL)
+get_edgelist_members(
+  affils_by_date,
+  on_cols,
+  start,
+  end = NULL,
+  weight_col = NULL
+)
 }
 \arguments{
-\item{start}{A start of date range, in DD-MM-YYYY string format.}
+\item{affils_by_date}{Data frame of affiliations with start and end dates}
 
-\item{end}{An end of date range, in DD-MM-YYYY string format.}
+\item{start}{A start of date range, in YYYY-MM-DD string format.}
+
+\item{end}{An end of date range, in YYYY-MM-DD string format.}
 }
 \value{
 A tibble with pairs of members who were in the same institution or participated in the same event in the date range.

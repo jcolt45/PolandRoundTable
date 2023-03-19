@@ -103,4 +103,11 @@ betweenness_all_members %>%
   write_csv("./Dev/top_5_by_year.csv")
 
 
+#### Testing function version
+
+
+all_betweenness_opp %>%
+  filter(Member.ID %in% c("MEM0019", "MEM0023")) %>%
+  left_join(member_meta_info, by = "Member.ID") %>%
+  plot_betweenness_mem(group_col = Full.Name)
 

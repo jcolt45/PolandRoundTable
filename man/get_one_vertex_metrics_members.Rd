@@ -4,7 +4,7 @@
 \alias{get_one_vertex_metrics_members}
 \title{Find the vertex_metrics measures for a set of organizations over a time period}
 \usage{
-get_one_vertex_metrics_members(members, start = NULL, end = NULL)
+get_one_vertex_metrics_members(members, metrics, start = NULL, end = NULL)
 }
 \arguments{
 \item{members}{A vector of member IDs.}

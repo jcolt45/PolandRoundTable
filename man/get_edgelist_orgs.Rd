@@ -2,7 +2,9 @@
 % Please edit documentation in R/make_network.R
 \name{get_edgelist_orgs}
 \alias{get_edgelist_orgs}
-\title{Make an edgelist of organizations with member overlap in given date range}
+\title{Make an edgelist of organizations with member overlap in given date range
+This function should be updated to take a datset piped in, and to calcluate
+edgeweight in the newer way.}
 \usage{
 get_edgelist_orgs(start, end = NULL)
 }
@@ -16,4 +18,6 @@ A tibble with pairs of organizations and their number of shared members in that 
 }
 \description{
 Make an edgelist of organizations with member overlap in given date range
+This function should be updated to take a datset piped in, and to calcluate
+edgeweight in the newer way.
 }

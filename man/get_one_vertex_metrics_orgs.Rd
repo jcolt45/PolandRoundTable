@@ -4,7 +4,7 @@
 \alias{get_one_vertex_metrics_orgs}
 \title{Find the vertex_metrics measures for a set of organizations over a time period}
 \usage{
-get_one_vertex_metrics_orgs(orgs, start = NULL, end = NULL)
+get_one_vertex_metrics_orgs(orgs, metrics, start = NULL, end = NULL)
 }
 \arguments{
 \item{start}{A start of date range, in DD-MM-YYYY string format.  Defaults to beginning of dates in data.}

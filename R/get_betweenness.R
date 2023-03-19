@@ -110,23 +110,34 @@ get_one_betweenness_orgs <- function(orgs, start = NULL, end = NULL) {
 
 #' Find the betweenness measures for a set of individuals over a time period
 #'
+#' @param network The data frame containing edge connections.  Format must match
+#' built-in datasets `affiliation_dates`, `affiliation_dates_opp`, or `affiliation_dates_gov`.
 #' @param members A character vector of member IDs.
 #' @param start A start of date range, in DD-MM-YYYY string format.  Defaults to beginning of dates in data.
 #' @param end An end of date range, in DD-MM-YYYY string format. Defaults to end of dates in data.
+#' @param timesteps A string ("days", "months", "years") for the level of aggregation
+#' of the network before computing betweenness.
 #'
 #' @return A tibble with pairs of organizations and their number of shared members in that range.
 #'
 #' @import dplyr
 #' @import lubridate
 #' @export
-get_betweenness_members <- function(members, start = NULL, end = NULL, timesteps = "months") {
+get_betweenness_members <- function(network,
+                                    members = NULL,
+                                    start = NULL, end = NULL,
+                                    timesteps = "months") {
+
+  if(is.null(members)) {
+    members <- unique(network$Member.ID)
+  }
 
   if (is.null(start)) {
-    start <- min(affiliation_dates$Start.Date)
+    start <- min(network$Start.Date, na.rm = TRUE)
   }
 
   if (is.null(end)) {
-    end <- max(affiliation_dates$Start.Date)
+    end <- max(network$Start.Date, na.rm = TRUE)
   }
 
   start <- lubridate::ymd(start)
@@ -153,7 +164,8 @@ get_betweenness_members <- function(members, start = NULL, end = NULL, timesteps
   }
 
   res <- purrr::map2_dfr(starts, ends,
-                         ~get_one_betweenness_members(members,
+                         ~get_one_betweenness_members(network,
+                                                      members,
                                                    start = .x,
                                                    end = .y))
 
@@ -171,30 +183,43 @@ get_betweenness_members <- function(members, start = NULL, end = NULL, timesteps
 
 }
 
-#' Find the betweenness measures for a set of organizations over a time period
+#' Find the betweenness measures for one individual in a time period
 #'
-#' @param members A vector of member IDs.
+#' @param network The data frame containing edge connections.  Format must match
+#' built-in datasets `affiliation_dates`, `affiliation_dates_opp`, or `affiliation_dates_gov`.
+#' @param members A character vector of member IDs.
 #' @param start A start of date range, in DD-MM-YYYY string format.  Defaults to beginning of dates in data.
 #' @param end An end of date range, in DD-MM-YYYY string format. Defaults to end of dates in data.
+#' @param timesteps A string ("days", "months", "years") for the level of aggregation
+#' of the network before computing betweenness.
 #'
-#' @return A tibble with pairs of organizations and their number of shared members in that range.
+#' @return A tibble with the betweenness of all invididuals in one time window.
+#'
 #' @import dplyr
+#' @import lubridate
 #' @export
-get_one_betweenness_members <- function(members, start = NULL, end = NULL) {
+get_one_betweenness_members <- function(network,
+                                        members = NULL,
+                                        start = NULL,
+                                        end = NULL) {
+
+  if(is.null(members)) {
+    members <- unique(network$Member.ID)
+  }
 
   if (is.null(start)) {
-    start <- min(affiliation_dates$Start.Date)
+    start <- min(network$Start.Date)
   }
 
   if (is.null(end)) {
-    end <- max(affiliation_dates$Start.Date)
+    end <- max(network$Start.Date)
   }
 
 
   start <- lubridate::ymd(start)
   end <- lubridate::ymd(end)
 
-  edgelist <- get_edgelist_members(start, end)
+  edgelist <- get_edgelist_members(network, start, end)
 
   if (is.null(edgelist)) {
     res <- rep(NA, length(members))

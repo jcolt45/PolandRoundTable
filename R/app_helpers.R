@@ -32,18 +32,19 @@ get_layout_df <- function(graph_df,
   if (!is.null(prev_layout)) {
 
     my_layout <- create_layout(graph_from_data_frame(graph_df),
-                               layout = "igraph",
-                               algorithm = "kk",
+                               layout = "nicely",
+                               algorithm = algorithm,
                                coords = layout_from_previous(graph_df, prev_layout)
-    ) %>%
-      left_join(node_meta, by = c("name" = node_var))
+    )
 
   } else {
 
-    my_layout <- create_layout(graph_from_data_frame(graph_df),
-                               layout = "igraph",
-                               algorithm = "kk") %>%
-      left_join(node_meta, by = c("name" = node_var))
+    # my_layout <- create_layout(graph_from_data_frame(graph_df),
+    #                            layout = "nicely",
+    #                            algorithm = algorithm)
+
+    my_layout <- layout_with_stress(graph_from_data_frame(graph_df)) %>%
+      cbind(graph_df)
 
   }
 

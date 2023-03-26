@@ -4,10 +4,17 @@
 \alias{get_one_betweenness_members}
 \title{Find the betweenness measures for one individual in a time period}
 \usage{
-get_one_betweenness_members(network, members = NULL, start = NULL, end = NULL)
+get_one_betweenness_members(
+  affils_by_date,
+  on_cols,
+  weight_col = NULL,
+  members = NULL,
+  start = NULL,
+  end = NULL
+)
 }
 \arguments{
-\item{network}{The data frame containing edge connections.  Format must match
+\item{affils_by_date}{The data frame containing edge connections.  Format must match
 built-in datasets \code{affiliation_dates}, \code{affiliation_dates_opp}, or \code{affiliation_dates_gov}.}
 
 \item{members}{A character vector of member IDs.}
@@ -17,7 +24,7 @@ built-in datasets \code{affiliation_dates}, \code{affiliation_dates_opp}, or \co
 \item{end}{An end of date range, in DD-MM-YYYY string format. Defaults to end of dates in data.}
 
 \item{timesteps}{A string ("days", "months", "years") for the level of aggregation
-of the network before computing betweenness.}
+of the affils_by_date before computing betweenness.}
 }
 \value{
 A tibble with the betweenness of all invididuals in one time window.

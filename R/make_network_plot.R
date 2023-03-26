@@ -23,22 +23,15 @@ make_network_plot <- function(edge_info, node_layout, date_string,
 
   #### Nodes ####
 
-  my_network <- plot_ly(x = ~node_layout$x,
-                        y = ~node_layout$y,
-                        type = "scatter",
-                        mode = "markers",
-                        marker = list(color = node_cols, size = node_size),
-                        text = node_layout[[node_label_var]],
-                        hoverinfo = "text",
-                        width = 700, height = 600)
+  my_network <- plot_ly(width = 700, height = 600)
 
 
   #### Edges ####
 
   # Find endpoints and midpoints of lines based on node info
   edge_info <- edge_info %>% mutate(
-    node_idx_from = map_int(from, ~which(node_layout[[node_var]] == .x)[1]),
-    node_idx_to = map_int(to, ~which(node_layout[[node_var]] == .x)[1]),
+    node_idx_from = map_int(from, ~which(node_layout[["name"]] == .x)[1]),
+    node_idx_to = map_int(to, ~which(node_layout[["name"]] == .x)[1]),
     start_x = map_dbl(node_idx_from, ~node_layout$x[.x]),
     start_y = map_dbl(node_idx_from, ~node_layout$y[.x]),
     end_x = map_dbl(node_idx_to, ~node_layout$x[.x]),
@@ -85,7 +78,9 @@ make_network_plot <- function(edge_info, node_layout, date_string,
       y = ~ edge_info$midpoint_y,
       type = "scatter",
       mode = "markers",
-      marker = list(size = edge_info$hover_size, color = edge_cols, opacity = 0),
+      marker = list(size = edge_info$hover_size,
+                    color = edge_cols,
+                    opacity = 0),
       text = edge_info$edge_members,
       hoverinfo = "text",
       showlegend = FALSE
@@ -100,7 +95,19 @@ make_network_plot <- function(edge_info, node_layout, date_string,
                                opacity = edge_transparency,
                                layer = 'below'),
                  hoverinfo = 'none',
-                 text = edge_info$edge_members)
+                 text = edge_info$edge_members,
+                 showlegend = FALSE) %>%
+    add_trace(
+      x = ~node_layout$x,
+      y = ~node_layout$y,
+      type = "scatter",
+      mode = "markers",
+      marker = list(color = node_cols,
+                    size = node_size),
+      text = node_layout[[node_label_var]],
+      hoverinfo = "text",
+      showlegend = FALSE
+    )
 
 
   #### prepare to erase axes ####
@@ -114,9 +121,8 @@ make_network_plot <- function(edge_info, node_layout, date_string,
 
   #### layout ####
 
-  layout(
+  plotly::layout(
     my_network,
-    #shapes = edge_shapes,
     title = date_string,
     xaxis = ax,
     yaxis = ax

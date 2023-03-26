@@ -5,7 +5,9 @@
 \title{Find the betweenness measures for a set of individuals over a time period}
 \usage{
 get_betweenness_members(
-  network,
+  affils_by_date,
+  on_cols,
+  weight_col = NULL,
   members = NULL,
   start = NULL,
   end = NULL,
@@ -13,7 +15,7 @@ get_betweenness_members(
 )
 }
 \arguments{
-\item{network}{The data frame containing edge connections.  Format must match
+\item{affils_by_date}{The data frame containing edge connections.  Format must match
 built-in datasets \code{affiliation_dates}, \code{affiliation_dates_opp}, or \code{affiliation_dates_gov}.}
 
 \item{members}{A character vector of member IDs.}
@@ -23,7 +25,7 @@ built-in datasets \code{affiliation_dates}, \code{affiliation_dates_opp}, or \co
 \item{end}{An end of date range, in DD-MM-YYYY string format. Defaults to end of dates in data.}
 
 \item{timesteps}{A string ("days", "months", "years") for the level of aggregation
-of the network before computing betweenness.}
+of the affils_by_date before computing betweenness.}
 }
 \value{
 A tibble with pairs of organizations and their number of shared members in that range.

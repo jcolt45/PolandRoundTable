@@ -13,7 +13,7 @@
 #' @import plotly
 #' @import igraph ggraph tidygraph
 #' @export
-make_network_plot <- function(edge_info, node_layout, date_string,
+make_network_plot <- function(edge_info, node_layout,
                               node_var, node_label_var,
                               weighted_edges = TRUE,
                               node_cols = rep("#619CFF", nrow(node_layout)),
@@ -23,23 +23,23 @@ make_network_plot <- function(edge_info, node_layout, date_string,
 
   #### Nodes ####
 
-  my_network <- plot_ly(width = 700, height = 600)
+  #my_network <- plot_ly(width = 700, height = 600)
 
 
   #### Edges ####
 
   # Find endpoints and midpoints of lines based on node info
-  edge_info <- edge_info %>% mutate(
-    node_idx_from = map_int(from, ~which(node_layout[["name"]] == .x)[1]),
-    node_idx_to = map_int(to, ~which(node_layout[["name"]] == .x)[1]),
-    start_x = map_dbl(node_idx_from, ~node_layout$x[.x]),
-    start_y = map_dbl(node_idx_from, ~node_layout$y[.x]),
-    end_x = map_dbl(node_idx_to, ~node_layout$x[.x]),
-    end_y = map_dbl(node_idx_to, ~node_layout$y[.x]),
-    midpoint_x = (start_x + end_x)/2,
-    midpoint_y = (start_y + end_y)/2,
-    hover_size = sqrt( (start_x - end_x)^2 + (start_y - end_y)^2 )/2
-  )
+  # edge_info <- edge_info %>% mutate(
+  #   node_idx_from = map_int(from, ~which(node_layout[["name"]] == .x)[1]),
+  #   node_idx_to = map_int(to, ~which(node_layout[["name"]] == .x)[1]),
+  #   start_x = map_dbl(node_idx_from, ~node_layout$x[.x]),
+  #   start_y = map_dbl(node_idx_from, ~node_layout$y[.x]),
+  #   end_x = map_dbl(node_idx_to, ~node_layout$x[.x]),
+  #   end_y = map_dbl(node_idx_to, ~node_layout$y[.x]),
+  #   midpoint_x = (start_x + end_x)/2,
+  #   midpoint_y = (start_y + end_y)/2,
+  #   hover_size = sqrt( (start_x - end_x)^2 + (start_y - end_y)^2 )/2
+  # )
 
 
   if (!weighted_edges) {
@@ -48,85 +48,7 @@ make_network_plot <- function(edge_info, node_layout, date_string,
 
   }
 
-  # edge_shapes <- list()
-  #
-  #
-  # for(i in 1:nrow(edge_info)) {
-  #
-  #   edge_shape = list(
-  #     type = "line",
-  #     line = list(color = edge_cols[i], width = edge_info$weight),
-  #     opacity = edge_transparency,
-  #     layer = 'below',
-  #     x0 = edge_info$start_x[i],
-  #     y0 = edge_info$start_y[i],
-  #     x1 = edge_info$end_x[i],
-  #     y1 = edge_info$end_y[i]
-  #   )
-#
-#     edge_shapes[[i]] <- edge_shape
-#   }
 
-
-  #### Edge hovers ####
-
-  edge_info <- edge_info %>% filter(from != to)
-
-  my_network <- my_network %>%
-    add_trace(
-      x = ~ edge_info$midpoint_x,
-      y = ~ edge_info$midpoint_y,
-      type = "scatter",
-      mode = "markers",
-      marker = list(size = edge_info$hover_size,
-                    color = edge_cols,
-                    opacity = 0),
-      text = edge_info$edge_members,
-      hoverinfo = "text",
-      showlegend = FALSE
-    ) %>%
-    add_segments(x = edge_info$start_x,
-                 y = edge_info$start_y,
-                 xend = edge_info$end_x,
-                 yend = edge_info$end_y,
-                  mode="lines",
-                 line = list(color = edge_cols,
-                               width = edge_info$weight,
-                               opacity = edge_transparency,
-                               layer = 'below'),
-                 hoverinfo = 'none',
-                 text = edge_info$edge_members,
-                 showlegend = FALSE) %>%
-    add_trace(
-      x = ~node_layout$x,
-      y = ~node_layout$y,
-      type = "scatter",
-      mode = "markers",
-      marker = list(color = node_cols,
-                    size = node_size),
-      text = node_layout[[node_label_var]],
-      hoverinfo = "text",
-      showlegend = FALSE
-    )
-
-
-  #### prepare to erase axes ####
-  ax <- list(
-    title = "",
-    zeroline = FALSE,
-    showline = FALSE,
-    showticklabels = FALSE,
-    showgrid = FALSE
-  )
-
-  #### layout ####
-
-  plotly::layout(
-    my_network,
-    title = date_string,
-    xaxis = ax,
-    yaxis = ax
-  )
 
 }
 

@@ -226,15 +226,15 @@ run_network_app <- function() {
                      #                "Gender" = "Gender")
                      # ),
 
-                     # Resize nodes by
-                     radioButtons('node_size',
-                                  'Resize nodes by:',
-                                  choices = c(
-                                    "None" = "None",
-                                    "Overall betweenness" = "betweenness",
-                                    "Overall degree" = "degree",
-                                    "Cross-group degree" = "cross_degree")
-                     ),
+                     # # Resize nodes by
+                     # radioButtons('node_size',
+                     #              'Resize nodes by:',
+                     #              choices = c(
+                     #                "None" = "None",
+                     #                "Overall betweenness" = "betweenness",
+                     #                "Overall degree" = "degree",
+                     #                "Cross-group degree" = "cross_degree")
+                     # ),
 
                      sliderInput('node_size',
                                  "Base node size",

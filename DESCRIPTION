@@ -32,4 +32,5 @@ Imports:
     shinyWidgets,
     devtools,
     shinythemes,
-    ggraph
+    ggraph,
+    ggiraph

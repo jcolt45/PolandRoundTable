@@ -78,6 +78,12 @@ get_edgelist_members <- function(affils_by_date,
   start <- lubridate::ymd(start)
   end <- lubridate::ymd(end)
 
+  #### Filter by date range
+
+  affils_by_date %>%
+    filter(Start.Date <= end
+           & End.Date >= start)
+
   ## No weight col supplied, we make one to weight everything as 1
 
   if (is.null(weight_col)) {
@@ -90,9 +96,7 @@ get_edgelist_members <- function(affils_by_date,
     weight_col = "weight"
   }
 
-  affil_mat <- affils_by_date %>%
-    filter(Start.Date <= end
-           & End.Date >= start) %>%
+  affil_mat <-  affils_by_date %>%
     select(Member.ID, all_of(on_cols[[1]]), weight_col) %>%
     drop_na(on_cols[[1]]) %>%
     distinct() %>%
@@ -105,9 +109,7 @@ get_edgelist_members <- function(affils_by_date,
 
   for(cols in on_cols[-1]) {
 
-    affil_mat_2 <- affils_by_date %>%
-      filter(Start.Date <= end
-             & End.Date >= start) %>%
+    affil_mat_2 <- affils_by_date  %>%
       select(Member.ID, all_of(cols), weight_col) %>%
       drop_na(cols) %>%
       distinct() %>%
@@ -139,10 +141,21 @@ get_edgelist_members <- function(affils_by_date,
                  names_to = "to",
                  values_to = "weight") %>%
     filter(from != to) %>%
-    filter(weight > 0) %>%
+    filter(weight > 0)
+
+
+  # drop duplicates
+  edgelist <- edgelist %>%
     mutate(
-      edge_members = "OOPS"
-    #  edge_members = map2_chr(to, from, ~find_edge_members(affils_by_date, "Member.ID", "Org.ID", "Name", .x, .y))
+      c1 = map2_chr(from, to, ~c(.x, .y) %>% min()),
+      c2 = map2_chr(to, from, ~c(.x, .y) %>% max())
+    ) %>%
+    distinct(c1, c2, .keep_all = TRUE)
+
+  edgelist <- edgelist %>%
+    mutate(
+      #edge_members = "OOPS"
+      edge_orgs = map2_chr(to, from, ~find_edge_members(affils_by_date, "Member.ID", "Org.ID", "Name", .x, .y))
     )
 
 

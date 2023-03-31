@@ -31,20 +31,20 @@ get_layout_df <- function(graph_df,
 
   if (!is.null(prev_layout)) {
 
-    my_layout <- create_layout(graph_from_data_frame(graph_df),
-                               layout = "nicely",
+    my_layout <- create_layout(graph_from_data_frame(graph_df, directed = FALSE),
+                               layout = "igraph",
                                algorithm = algorithm,
                                coords = layout_from_previous(graph_df, prev_layout)
     )
 
   } else {
 
-    # my_layout <- create_layout(graph_from_data_frame(graph_df),
-    #                            layout = "nicely",
-    #                            algorithm = algorithm)
+    my_layout <- create_layout(graph_from_data_frame(graph_df, directed = FALSE),
+                               layout = "igraph",
+                               algorithm = algorithm)
 
-    my_layout <- layout_with_stress(graph_from_data_frame(graph_df)) %>%
-      cbind(graph_df)
+    # my_layout <- layout_with_stress(graph_from_data_frame(graph_df)) %>%
+    #   cbind(graph_df)
 
   }
 
@@ -89,4 +89,18 @@ ggcolors <- function(n){
 #' @export
 get_date <- function(year, month, day){
   lubridate::ymd(paste(year, month, day, sep = "-"))
+}
+
+
+# Get unique non NA-values from a column
+#' @import dplyr
+#' @export
+get_opts_list <- function(dat, col) {
+
+  dat %>%
+    drop_na({{col}}) %>%
+    distinct({{col}}) %>%
+    pull({{col}}) %>%
+    sort()
+
 }

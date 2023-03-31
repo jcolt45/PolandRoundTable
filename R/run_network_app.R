@@ -519,7 +519,7 @@ run_network_app <- function() {
                        size = node_sizes()) +
             theme_void() +
             theme(aspect.ratio=1) +
-            ggtitle(format(first_date(), "%b %d, %y") )
+            ggtitle(format(first_date(), "%b %d, %Y") )
 
           girafe(ggobj = p) %>%
             girafe_options(

@@ -25,13 +25,20 @@ find_edge_members <- function(graph_info,
 get_layout_df <- function(graph_df,
                           node_meta,
                           node_var,
+                          weight_col = NULL,
                           prev_layout = NULL,
                           algorithm = "kk") {
 
 
+  graph <- graph_from_data_frame(graph_df, directed = FALSE)
+
+  if (!is.null(weight_col)) {
+    E(graph)$weight <- graph_df[[weight_col]]
+  }
+
   if (!is.null(prev_layout)) {
 
-    my_layout <- create_layout(graph_from_data_frame(graph_df, directed = FALSE),
+    my_layout <- create_layout(,
                                layout = "igraph",
                                algorithm = algorithm,
                                coords = layout_from_previous(graph_df, prev_layout)
@@ -80,8 +87,9 @@ layout_from_previous <- function(new_graph, prev_layout){
 # Function to generate ggplot colors (Original hcl: hues, 65 ,100)
 #' @export
 ggcolors <- function(n){
-  hues = seq(15, 375, length = n+2)
-  hcl(h = hues, l = 65, c = 100)[2:(n+1)]
+  # hues = seq(15, 375, length = n+2)
+  # hcl(h = hues, l = 65, c = 100)[2:(n+1)]
+  RColorBrewer::brewer.pal(n, "Set1")
 }
 
 # Function to get a Date value

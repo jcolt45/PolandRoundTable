@@ -3,6 +3,7 @@
 #' @import plotly
 #' @import devtools
 #' @import dplyr tidyr
+#' @import ggplotly
 #' @export
 run_network_app <- function() {
 
@@ -30,8 +31,6 @@ run_network_app <- function() {
   org_type_choices <- organization_meta_info %>%
     get_opts_list(Type)
 
-  network_type <- "kk"
-
   node_var <- "Member.ID"
   node_labels <- "Full.Name"
   edge_var <- "Org.ID"
@@ -48,6 +47,9 @@ run_network_app <- function() {
           theme = "journal",
           tabPanel("Setup",
                    sidebarPanel(
+
+                     ## Go button
+                     actionButton("setup", "Done with Setup", class = "btn-primary"),
 
                      h3("Choose which individuals will be shown in the network."),
 
@@ -68,8 +70,7 @@ run_network_app <- function() {
                                  'Professions to include:',
                                  choices = mem_job_choices,
                                  options = list(`actions-box` = TRUE),
-                                 multiple = TRUE,
-                                 selected = mem_job_choices
+                                 multiple = TRUE
                      ),
 
                      pickerInput('node_include_specific',
@@ -77,8 +78,7 @@ run_network_app <- function() {
                                  choices = mem_name_choices,
                                  options = list(`actions-box` = TRUE,
                                                 liveSearch = TRUE),
-                                 multiple = TRUE,
-                                 selected = mem_name_choices
+                                 multiple = TRUE
                      ),
 
                      h3("Choose which organizations will be used to create edge connections."),
@@ -100,8 +100,7 @@ run_network_app <- function() {
                                  choices = org_type_choices,
                                  options = list(`actions-box` = TRUE,
                                                 liveSearch = TRUE),
-                                 multiple = TRUE,
-                                 selected = org_type_choices
+                                 multiple = TRUE
                      ),
 
                      pickerInput('edge_include_specific',
@@ -109,8 +108,7 @@ run_network_app <- function() {
                                  choices = org_name_choices,
                                  options = list(`actions-box` = TRUE,
                                                 liveSearch = TRUE),
-                                 multiple = TRUE,
-                                 selected = org_name_choices
+                                 multiple = TRUE
                      ),
 
                      h3("Choose how edges will be computed and weighted."),
@@ -143,10 +141,7 @@ run_network_app <- function() {
                                  'Use cross-RT-group connections only?',
                                  choices = c("No" = FALSE, "Yes" = TRUE),
                                  selected = "No"
-                     ),
-
-                     ## Go button
-                     actionButton("setup", "Done with Setup", class = "btn-primary")
+                     )
                    ),
                    mainPanel(
                      dataTableOutput("dataset")
@@ -207,15 +202,15 @@ run_network_app <- function() {
                                     "Gender" = "Gender")
                      ),
 
-                     # Color groups
-                     radioButtons('node_shape_by_group',
-                                  'Different shapes for groups of:',
-                                  choices = c(
-                                    "None" = "None",
-                                    "Round Table Affiliation" = "RT Affiliation",
-                                    "Profession" = "Profession",
-                                    "Gender" = "Gender")
-                     ),
+                     # Shape groups
+                     # radioButtons('node_shape_by_group',
+                     #              'Different shapes for groups of:',
+                     #              choices = c(
+                     #                "None" = "None",
+                     #                "Round Table Affiliation" = "RT Affiliation",
+                     #                "Profession" = "Profession",
+                     #                "Gender" = "Gender")
+                     # ),
 
                      # Resize nodes by
                      radioButtons('node_size',
@@ -229,7 +224,7 @@ run_network_app <- function() {
 
                      sliderInput('node_size',
                                  "Base node size",
-                                 value = 10,
+                                 value = 2,
                                  min = 0, max = 30),
 
                      h3("Change Edge Appearance"),
@@ -253,7 +248,7 @@ run_network_app <- function() {
                      # Selecting edge transparency
                      sliderInput('edge_transparency',
                                  'Edge Transparency',
-                                 value = 1,
+                                 value = 0.3,
                                  min = 0, max = 1),
 
 
@@ -262,12 +257,12 @@ run_network_app <- function() {
                      # Removing a node
                      radioButtons('network_layout',
                                  'Algorithm:',
-                                 choices = c("kk" = "kk"),
+                                 choices = c("fr", "nicely", "kk", "lgl", "mds"),
                                  selected = "kk"
                      ),
                    ),
                    mainPanel(
-                     plotOutput('my_network')
+                     girafeOutput('my_network', width = "700px", height = "700px")
                      #tableOutput('test')
                    )
           ),
@@ -378,9 +373,11 @@ run_network_app <- function() {
         prev_layout <- NULL
 
         my_node_layout <- reactive({
-          get_layout_df(my_edgelist() %>% select(from, to, weight) ,
+          get_layout_df(my_edgelist() %>%
+                          select(from, to, weight),
                         node_meta = nodes_list(),
                         node_var = node_var,
+                        weight_col = "weight",
                         prev_layout = prev_layout,
                         algorithm = input$network_layout) %>%
             left_join(member_meta_info, by = c("name" = "Member.ID")) %>%
@@ -402,24 +399,68 @@ run_network_app <- function() {
         ## node_color_specific: a Member.ID (matches "name")
         ## node_shape_specific: a Member.ID
 
-        my_node_layout_details <- reactive({
-
-          temp <- my_node_layout() %>%
-            mutate(
-              color_var = my_node_layout()[[input$node_color_by_group]],
-              shape_var = my_node_layout()[[input$node_shape_by_group]]
-             )
+        node_colors <- reactive({
 
           if (!is.null(input$node_color_specific)) {
-            temp$color_var[temp$name == input$node_color_specific] = input$node_color_specific
+
+              n <- length(unique(input$node_color_specific))
+              these_cols <- ggcolors(n)
+              cols <- rep("black", nrow(my_node_layout()))
+
+              for (i in 1:n) {
+                cols[my_node_layout()$name == input$node_color_specific[i]] <- these_cols[i]
+              }
+          } else {
+
+            vals <- my_node_layout()[[input$node_color_by_group]] %>%
+              factor() %>%
+              as.integer()
+
+            cols <- ggcolors(max(vals))[vals]
+
           }
+
+          cols
+
+        })
+
+        node_shapes <- reactive({
+
+          shapes = rep(19, nrow(my_node_layout()))
 
           if (!is.null(input$node_shape_specific)) {
-            temp$shape_var[temp$name == input$node_shape_specific] = input$node_shape_specific
+            shapes[my_node_layout()$name == input$node_shape_specific] = 17
           }
 
+          shapes
 
-          temp
+        })
+
+
+        node_sizes <- reactive({
+
+          sizes <- rep(input$node_size, nrow(my_node_layout()))
+          all_highlighted <- c(input$node_shape_specific, input$node_color_specific)
+
+          if (!is.null(all_highlighted)) {
+            sizes[my_node_layout()$name %in% all_highlighted] = 3*input$node_size
+          }
+
+          sizes
+
+        })
+
+
+
+        #### Set up edge locations and info ####
+
+        my_edgelist_locs <- reactive({
+
+          my_edgelist() %>%
+            left_join(my_node_layout() %>% rename_all(~paste0(.x,"_from")),
+                      by = c("from" = "name_from")) %>%
+            left_join(my_node_layout() %>% rename_all(~paste0(.x,"_to")),
+                      by = c("to" = "name_to"))
 
         })
 
@@ -429,33 +470,30 @@ run_network_app <- function() {
         ## edge_color_cross: T/F
         ## edge_size_weight: T/F
 
-
-        my_edgelist_details <- reactive({
-
-          temp <- my_edgelist() %>%
-            left_join(my_node_layout() %>% rename_all(~paste0(.x,"_from")),
-                      by = c("from" = "name_from")) %>%
-            left_join(my_node_layout() %>% rename_all(~paste0(.x,"_to")),
-                      by = c("to" = "name_to"))
-
+        edge_colors <- reactive({
           if (input$edge_color_cross == "Yes") {
-            temp <- temp %>%
-            mutate(
-              cross_con = ifelse(`RT Affiliation_from` != `RT Affiliation_to`,
-                                 "Cross-Connection",
-                                 "Intra-Connection")
-            )
+
+             ggcolors(2)[(my_edgelist_locs()$`RT Affiliation_from` != my_edgelist_locs()$`RT Affiliation_to`) + 1]
+
           } else {
 
-            temp$cross_con = "1"
+            "black"
 
           }
 
-          if (input$edge_size_weight != "Yes") {
-            temp$weight = 1
+        })
+
+        edge_weights <- reactive({
+          if (input$edge_size_weight == "No") {
+
+            1
+
+          } else {
+
+            my_edgelist_locs()$weight
+
           }
 
-          temp
         })
 
         #output$test <- renderTable(my_edgelist_details())
@@ -463,21 +501,32 @@ run_network_app <- function() {
 
         #### Plot it ####
 
-        output$my_network <- renderPlot({
+        output$my_network <- renderGirafe({
 
-          my_node_layout_details() %>%
+          p <- my_node_layout() %>%
             ggplot() +
-            geom_point(aes(x = x, y = y,
-                           color = color_var,
-                           shape = shape_var)) #+
-           geom_segment(data = my_edgelist_details(),
-                        aes(x = x_from, y = y_from,
-                            xend = x_to, yend = y_to,
-                            color = cross_con),
-                        alpha = input$edge_transparency,
-                        linewidth = my_edgelist_details()$weight) #%>%
-           #theme_void()
+            geom_segment_interactive(data = my_edgelist_locs(),
+                         aes(x = x_from, y = y_from,
+                             xend = x_to, yend = y_to,
+                             tooltip = edge_orgs),
+                         alpha = input$edge_transparency,
+                         color = edge_colors(),
+                         linewidth = edge_weights()) +
+            geom_point_interactive(aes(x = x, y = y,
+                                       tooltip = Full.Name),
+                       color = node_colors(),
+                       shape = node_shapes(),
+                       size = node_sizes()) +
+            theme_void() +
+            theme(aspect.ratio=1) +
+            ggtitle(format(first_date(), "%b %d, %y") )
 
+          girafe(ggobj = p) %>%
+            girafe_options(
+              opts_zoom(min = .5, max = 5),
+             opts_tooltip(use_fill = TRUE,
+                          use_stroke = TRUE)
+            )
         })
       }
     )

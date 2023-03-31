@@ -6,7 +6,7 @@
 #' @param end An end of date range, in YYYY-MM-DD string format.
 #'
 #' @return A tibble with pairs of organizations and their number of shared members in that range.
-#' @import dplyr
+#' @import dplyr readr
 #' @export
 get_edgelist_orgs <- function(start, end = NULL) {
 
@@ -94,6 +94,7 @@ get_edgelist_members <- function(affils_by_date,
       )
 
     weight_col = "weight"
+
   }
 
   affil_mat <-  affils_by_date %>%
@@ -140,17 +141,20 @@ get_edgelist_members <- function(affils_by_date,
     tidyr::pivot_longer(-from,
                  names_to = "to",
                  values_to = "weight") %>%
-    filter(from != to) %>%
-    filter(weight > 0)
-
-
-  # drop duplicates
-  edgelist <- edgelist %>%
+    filter(parse_number(from) < parse_number(to)) %>%
+    filter(weight > 0) %>%
     mutate(
-      c1 = map2_chr(from, to, ~c(.x, .y) %>% min()),
-      c2 = map2_chr(to, from, ~c(.x, .y) %>% max())
-    ) %>%
-    distinct(c1, c2, .keep_all = TRUE)
+      weight = log(weight + 1, base = max(weight))/10
+    )
+
+
+  # # drop duplicates
+  # edgelist <- edgelist %>%
+  #   mutate(
+  #     c1 = map2_chr(from, to, ~c(.x, .y) %>% min()),
+  #     c2 = map2_chr(to, from, ~c(.x, .y) %>% max())
+  #   ) %>%
+  #   distinct(c1, c2, .keep_all = TRUE)
 
   edgelist <- edgelist %>%
     mutate(

@@ -40,6 +40,12 @@ run_network_app <- function() {
     dplyr::left_join(member_meta_info) %>%
     dplyr::left_join(organization_meta_info)
 
+  node_name_choices <- member_meta_info %>%
+    mutate(
+      Name = paste0(`Last Name`, ", ", `First Name Middle Name`)
+    ) %>%
+    get_opts_list(Name)
+
   shinyApp(
       ui = tagList(
         navbarPage(
@@ -187,10 +193,18 @@ run_network_app <- function() {
                      h3("Change Node Appearance"),
 
                      # Highlight a node by color
-                     uiOutput("node_color_specific"),
+                     #uiOutput("node_color_specific"),
 
                      # Highlight a node by shape
-                     uiOutput("node_shape_specific"),
+                     #uiOutput("node_shape_specific"),
+
+
+                     pickerInput('node_shape_specific',
+                                   'Highlight individuals:',
+                                   choices = node_name_choices,
+                                   options = list(`actions-box` = TRUE),
+                                   multiple = TRUE
+                       ),
 
                      # Color groups
                      radioButtons('node_color_by_group',
@@ -258,7 +272,7 @@ run_network_app <- function() {
                      radioButtons('network_layout',
                                  'Algorithm:',
                                  choices = c("fr", "nicely", "kk", "lgl", "mds"),
-                                 selected = "kk"
+                                 selected = "fr"
                      ),
                    ),
                    mainPanel(
@@ -269,7 +283,7 @@ run_network_app <- function() {
           tabPanel("Explore Metrics", "This panel is intentionally left blank")
         )
       ),
-      server = function(input, output) {
+      server = function(input, output, session) {
 
         #### Setup Options ####
 
@@ -313,32 +327,58 @@ run_network_app <- function() {
 
         nodes_list <- reactive({
           dat_limited() %>%
-            distinct(Member.ID, Full.Name) %>%
-            arrange(Full.Name)
+            distinct(Member.ID, Full.Name, `Last Name`, `First Name Middle Name`) %>%
+            mutate(
+              Name = paste0(`Last Name`, ", ", `First Name Middle Name`)
+            ) %>%
+            arrange(Name)
           })
 
         node_name_choices <- reactive({
             setNames(nodes_list()$Member.ID,
-                     nodes_list()$Full.Name)
+                     nodes_list()$Name)
           })
 
-        output$node_color_specific <- renderUI({
-          pickerInput('node_color_specific',
-                      'Highlight with color:',
-                      choices = node_name_choices(),
-                      options = list(`actions-box` = TRUE),
-                      multiple = TRUE
-          )
+        # selected_highlight <- NULL
+        #
+        # observeEvent(input$draw_network, {
+        #   selected_highlight <- isolate(input$node_color_specific)
+        # })
+
+        # output$node_shape_specific <- renderUI({
+        #   pickerInput('node_shape_specific',
+        #               'Highlight individual(s):',
+        #               choices = node_name_choices(),
+        #               options = list(`actions-box` = TRUE),
+        #               multiple = TRUE,
+        #               selected = selected_highlight
+        #   )
+        # })
+
+        # output$node_color_specific <- renderUI({
+        #   pickerInput('node_color_specific',
+        #               'Highlight with color:',
+        #               choices = node_name_choices(),
+        #               options = list(`actions-box` = TRUE),
+        #               multiple = TRUE
+        #   )
+        # })
+
+        # in server.R create reactiveVal
+        current_selection <- reactiveVal(NULL)
+
+        # now store your current selection in the reactive value
+        observeEvent(input$node_shape_specific, {
+          current_selection(input$node_shape_specific)
         })
 
-        output$node_shape_specific <- renderUI({
-          pickerInput('node_shape_specific',
-                      'Highlight with shape:',
-                      choices = node_name_choices(),
-                      options = list(`actions-box` = TRUE),
-                      multiple = TRUE
-          )
+        #now if you are updating your menu
+        observeEvent(node_name_choices(), {
+          updatePickerInput(session, inputId = "node_shape_specific",
+                          choices = node_name_choices(),
+                          selected = current_selection())
         })
+
 
 
 
@@ -406,49 +446,56 @@ run_network_app <- function() {
               n <- length(unique(input$node_color_specific))
               these_cols <- ggcolors(n)
               cols <- rep("black", nrow(my_node_layout()))
+              vals <- rep("Node", nrow(my_node_layout()))
 
               for (i in 1:n) {
-                cols[my_node_layout()$name == input$node_color_specific[i]] <- these_cols[i]
-              }
+                mem <- input$node_color_specific[i]
+                here <- my_node_layout()$name == mem
+                cols[here] <- these_cols[i]
+                vals[here] <- my_node_layout()$Full.Name[here]
+                }
           } else {
 
-            vals <- my_node_layout()[[input$node_color_by_group]] %>%
+            vals <- my_node_layout()[[input$node_color_by_group]]
+
+            vals_num <- vals %>%
               factor() %>%
               as.integer()
 
-            cols <- ggcolors(max(vals))[vals]
+            cols <- ggcolors(max(vals_num))[vals_num]
 
           }
 
+          names(cols) <- vals
           cols
 
         })
 
-        node_shapes <- reactive({
+        # node_shapes <- reactive({
+        #
+        #   shapes = rep(19, nrow(my_node_layout()))
+        #
+        #   if (!is.null(input$node_shape_specific)) {
+        #     shapes[my_node_layout()$name == input$node_shape_specific] = 17
+        #   }
+        #
+        #   shapes
+        #
+        # })
 
-          shapes = rep(19, nrow(my_node_layout()))
 
-          if (!is.null(input$node_shape_specific)) {
-            shapes[my_node_layout()$name == input$node_shape_specific] = 17
-          }
-
-          shapes
-
-        })
-
-
-        node_sizes <- reactive({
-
-          sizes <- rep(input$node_size, nrow(my_node_layout()))
-          all_highlighted <- c(input$node_shape_specific, input$node_color_specific)
-
-          if (!is.null(all_highlighted)) {
-            sizes[my_node_layout()$name %in% all_highlighted] = 3*input$node_size
-          }
-
-          sizes
-
-        })
+        # node_sizes <- reactive({
+        #
+        #   sizes <- rep(input$node_size, nrow(my_node_layout()))
+        #   all_highlighted <- c(input$node_shape_specific, input$node_color_specific)
+        #
+        #   if (!is.null(all_highlighted)) {
+        #     sizes[my_node_layout()$name %in% all_highlighted] = 3*input$node_size
+        #   }
+        #
+        #   sizes
+        #
+        # })
 
 
 
@@ -471,15 +518,16 @@ run_network_app <- function() {
         ## edge_size_weight: T/F
 
         edge_colors <- reactive({
+
+          colors <- rep("black", nrow(my_edgelist_locs()))
+
           if (input$edge_color_cross == "Yes") {
 
-             ggcolors(2)[(my_edgelist_locs()$`RT Affiliation_from` != my_edgelist_locs()$`RT Affiliation_to`) + 1]
-
-          } else {
-
-            "black"
+             colors[(my_edgelist_locs()$`RT Affiliation_from` != my_edgelist_locs()$`RT Affiliation_to`)] = "violetred"
 
           }
+
+          colors
 
         })
 
@@ -513,19 +561,50 @@ run_network_app <- function() {
                          color = edge_colors(),
                          linewidth = edge_weights()) +
             geom_point_interactive(aes(x = x, y = y,
-                                       tooltip = Full.Name),
-                       color = node_colors(),
-                       shape = node_shapes(),
-                       size = node_sizes()) +
+                                       tooltip = Full.Name,
+                                       color = names(node_colors()),
+                                       data_id = name),
+                       #color = node_colors(),
+                       #shape = node_shapes(),
+                       size = input$node_size
+                       ) +
+            ggstar::geom_star(data = my_node_layout() %>%
+                        filter(name %in% input$node_shape_specific |
+                                 name %in% input$my_network_selected),
+                      aes(x = x, y = y),
+                      fill = "lightyellow",
+                      size = input$node_size*2) +
+            geom_label(data = my_node_layout() %>%
+                        filter(name %in% input$my_network_selected),
+                      aes(x = x, y = y, label = Full.Name),
+                      fill = "lightyellow",
+                      nudge_x = 1,
+                      nudge_y = 1,
+                      size = input$node_size) +
             theme_void() +
-            theme(aspect.ratio=1) +
-            ggtitle(format(first_date(), "%b %d, %Y") )
+            theme(aspect.ratio=1,
+                  legend.position="bottom",
+                  legend.box.background = element_rect(colour = "black")) +
+            ggtitle(format(first_date(), "%b %d, %Y") ) +
+            # geom_blank(aes(color = "Edge Colors")) +
+            scale_color_manual(name = "",
+                                values = node_colors()) #+
+            # scale_color_manual(name = "Node Colors",
+            #                    values = node_colors()) +
+            # scale_shape_manual(name = "Highlighted",
+            #                    values = node_shapes())
+
+
+          if (input$node_color_by_group == "None") {
+            p <- p + theme(legend.position = "none")
+          }
 
           girafe(ggobj = p) %>%
             girafe_options(
               opts_zoom(min = .5, max = 5),
              opts_tooltip(use_fill = TRUE,
-                          use_stroke = TRUE)
+                          use_stroke = TRUE),
+             opts_selection(type = "multiple")
             )
         })
       }

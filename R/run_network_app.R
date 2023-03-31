@@ -3,7 +3,7 @@
 #' @import plotly
 #' @import devtools
 #' @import dplyr tidyr
-#' @import ggplotly
+#' @import ggiraph
 #' @export
 run_network_app <- function() {
 

@@ -159,7 +159,7 @@ get_edgelist_members <- function(affils_by_date,
   edgelist <- edgelist %>%
     mutate(
       #edge_members = "OOPS"
-      edge_orgs = map2_chr(to, from, ~find_edge_members(affils_by_date, "Member.ID", "Org.ID", "Name", .x, .y))
+      edge_orgs = map2_chr(to, from, ~find_edge_members(affils_by_date, "Member.ID", on_cols[[1]], "Organization", .x, .y))
     )
 
 

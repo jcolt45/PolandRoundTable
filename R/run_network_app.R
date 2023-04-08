@@ -7,11 +7,29 @@
 #' @export
 run_network_app <- function() {
 
+  member_meta_info <- member_meta_info %>%
+    mutate(
+      `RT Affiliation` = forcats::fct_relevel(`RT Affiliation`,
+                                           "Opposition",
+                                           "Government",
+                                           "Church",
+                                           "Expert",
+                                           "Observer")
+    )
+
+  type_cat_cols <- ggcolors(6)[-4]
+  names(type_cat_cols) <- c("Opposition",
+                            "Government",
+                            "Church",
+                            "Expert",
+                            "Observer")
+
+
   node_choices <- c(member_meta_info$Member.ID)
   names(node_choices) <- c(member_meta_info$Full.Name)
 
-  mem_name_choices <- member_meta_info %>%
-    get_opts_list(Full.Name)
+  # mem_name_choices <- member_meta_info %>%
+  #   get_opts_list(Full.Name)
 
   mem_rt_choices <- member_meta_info %>%
     get_opts_list(`RT Affiliation`)
@@ -81,7 +99,7 @@ run_network_app <- function() {
 
                      pickerInput('node_include_specific',
                                  'Specific individuals to include:',
-                                 choices = mem_name_choices,
+                                 choices = node_name_choices,
                                  options = list(`actions-box` = TRUE,
                                                 liveSearch = TRUE),
                                  multiple = TRUE
@@ -131,7 +149,7 @@ run_network_app <- function() {
                      sliderInput('event_length',
                                  'How many months after are Events be considered to last?',
                                  value = 1,
-                                 min = 1, max = 600,
+                                 min = 1, max = 120,
                                  sep = ""),
 
                      # Treat all connections as persistent
@@ -276,8 +294,9 @@ run_network_app <- function() {
                      ),
                    ),
                    mainPanel(
-                     girafeOutput('my_network', width = "700px", height = "700px")
+                     girafeOutput('my_network', width = "700px", height = "700px"),
                      #tableOutput('test')
+                     dataTableOutput("selected_node_info")
                    )
           ),
           tabPanel("Explore Metrics", "This panel is intentionally left blank")
@@ -392,6 +411,7 @@ run_network_app <- function() {
           if (input$edge_type == "group_labs") {
 
             dat_limited() %>%
+              arrange(Umbrella, Subgroup) %>%
               get_edgelist_members(on_cols = list("Umbrella",
                                                   c("Umbrella", "Subgroup")),
                                    start = first_date(),
@@ -400,6 +420,7 @@ run_network_app <- function() {
           } else if (input$edge_type == "org_id") {
 
            dat_limited() %>%
+              arrange(Org.ID) %>%
               get_edgelist_members(on_cols = list("Org.ID"),
                                    start = first_date(),
                                    end = last_date())
@@ -462,11 +483,15 @@ run_network_app <- function() {
               factor() %>%
               as.integer()
 
-            cols <- ggcolors(max(vals_num))[vals_num]
+            if (input$node_color_by_group == "RT Affiliation") {
+              cols <- type_cat_cols[vals]
+            } else {
+              cols <- ggcolors(max(vals_num))[vals_num]
+              names(cols) <- vals
+            }
 
           }
 
-          names(cols) <- vals
           cols
 
         })
@@ -553,13 +578,19 @@ run_network_app <- function() {
 
           p <- my_node_layout() %>%
             ggplot() +
+            geom_segment(data = my_edgelist_locs(),
+                                     aes(x = x_from, y = y_from,
+                                         xend = x_to, yend = y_to),
+                                     alpha = input$edge_transparency,
+                                     color = edge_colors(),
+                                     linewidth = edge_weights()) +
             geom_segment_interactive(data = my_edgelist_locs(),
                          aes(x = x_from, y = y_from,
                              xend = x_to, yend = y_to,
                              tooltip = edge_orgs),
-                         alpha = input$edge_transparency,
-                         color = edge_colors(),
-                         linewidth = edge_weights()) +
+                         alpha = 0,
+                         color = "black",
+                         linewidth = edge_weights()*10) +
             geom_point_interactive(aes(x = x, y = y,
                                        tooltip = Full.Name,
                                        color = names(node_colors()),
@@ -607,6 +638,17 @@ run_network_app <- function() {
              opts_selection(type = "multiple")
             )
         })
-      }
-    )
+
+       output$selected_node_info <- renderDataTable({
+
+         dat_limited() %>%
+           filter(Member.ID %in% input$my_network_selected |
+                    Member.ID %in% input$node_shape_specific) %>%
+           arrange(`Last Name`) %>%
+           select(Full.Name, `RT Affiliation`, Organization, Start.Date, End.Date)
+
+       })
+
+      } #server
+    ) #shinyapp
 } #function

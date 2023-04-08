@@ -11,7 +11,9 @@ find_edge_members <- function(graph_info,
 
   edge_mems <- intersect(node_1_sub, node_2_sub)
 
-  relevant <- graph_info[[node_var]] == node_1 & graph_info[[edge_var]] %in% edge_mems
+  ## Take only the first listing of the edge identifying variable
+  ## e.g. Org.ID or Umbrella
+  relevant <- graph_info[[edge_var]] %in% edge_mems & !duplicated(graph_info[[edge_var]])
 
   edge_mems_names <- graph_info[relevant, ][[edge_labels]]
 
@@ -109,6 +111,7 @@ get_opts_list <- function(dat, col) {
     drop_na({{col}}) %>%
     distinct({{col}}) %>%
     pull({{col}}) %>%
-    sort()
+    sort() %>%
+    as.character()
 
 }

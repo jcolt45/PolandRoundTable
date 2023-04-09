@@ -17,7 +17,7 @@ adj_affil_list <- function(affils_by_date,
   if (lifelong == "all") {
     affils_by_date <- affils_by_date %>%
       mutate(
-        End.Date = Sys.Date()
+        End.Date = lubridate::ymd("1989-02-06")
       )
   }
 
@@ -28,7 +28,7 @@ adj_affil_list <- function(affils_by_date,
     affils_by_date <- affils_by_date %>%
       mutate(
         End.Date = case_when(
-          Type_Category == "Event" ~ Sys.Date(),
+          Type_Category == "Event" ~ lubridate::ymd("1989-02-06"),
           TRUE ~ End.Date
         )
       )

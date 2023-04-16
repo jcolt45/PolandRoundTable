@@ -1,3 +1,8 @@
 ^polarexpress\.Rproj$
 ^\.Rproj\.user$
 ^app$
+^clean_data_old$
+^dev$
+^dat_cleaning$
+^internal_data$
+^data_cleaning$

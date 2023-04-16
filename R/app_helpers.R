@@ -105,13 +105,23 @@ get_date <- function(year, month, day){
 # Get unique non NA-values from a column
 #' @import dplyr
 #' @export
-get_opts_list <- function(dat, col) {
+get_opts_list <- function(dat, col, labels = NULL) {
 
-  dat %>%
+  dat <- dat %>%
     drop_na({{col}}) %>%
-    distinct({{col}}) %>%
+    distinct({{col}}, .keep_all = TRUE) %>%
+    arrange({{col}})
+
+  opts <- dat %>%
     pull({{col}}) %>%
-    sort() %>%
     as.character()
+
+  if (!is.null(labels)) {
+    names(opts) <- dat %>%
+      pull(labels) %>%
+      as.character()
+  }
+
+  opts
 
 }

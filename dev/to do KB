@@ -1,7 +1,0 @@
-- add new column from IA data and compute
-- add full member meta info, including plenary stuff
-- use exact dates, not months
-- make "by day" function, maybe
-- degree, membership, other connectednesses
-- overall connectedness measure and "leave one out" breaking effect
-- events be persistent, retain old version too

@@ -7,10 +7,6 @@
 #' @export
 run_network_app <- function() {
 
-  library(PolandRoundTable)
-  library(shinyWidgets)
-  library(ggiraph)
-
   member_meta_info <- member_meta_info %>%
     mutate(
       RT.Affiliation = forcats::fct_relevel(RT.Affiliation,

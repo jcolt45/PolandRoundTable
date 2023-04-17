@@ -33,4 +33,5 @@ Imports:
     shinythemes,
     ggraph,
     ggiraph (>= 0.8.2),
-    ggstar
+    ggstar,
+    slider

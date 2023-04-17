@@ -58,6 +58,7 @@ run_network_app <- function() {
   edge_labels <- "Organization.Name"
 
   full_data <- affiliation_dates %>%
+    select(Member.ID, Org.ID, Start.Date, End.Date) %>%
     dplyr::left_join(member_meta_info) %>%
     dplyr::left_join(organization_meta_info)
 
@@ -472,7 +473,7 @@ run_network_app <- function() {
       ## edge_include_cat -> Category
       ## edge_include_type -> Type
       ## edge_include_specific -> Name
-      ## node_include_rt -> RT Affiliation
+      ## node_include_rt -> RT.Affiliation
       ## node_include_job -> Profession.Sector
       ## node_include_specific -> Member.ID
 
@@ -982,6 +983,5 @@ run_network_app <- function() {
 
     } #server
   ) #shinyapp
-
 
 } #function

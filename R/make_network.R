@@ -41,6 +41,9 @@ get_edgelist_orgs <- function(start, end = NULL) {
 
    edgelist <- affil_mat %>%
      as_tibble() %>%
+     filter(
+       weight > 0
+     ) %>%
      mutate(
        from = orgs
      ) %>%
@@ -59,13 +62,14 @@ get_edgelist_orgs <- function(start, end = NULL) {
 #' @param affils_by_date Data frame of affiliations with start and end dates
 #' @param start A start of date range, in YYYY-MM-DD string format.
 #' @param end An end of date range, in YYYY-MM-DD string format.
-#'
+#' @param get_edge_names Boolean; should we label the edges by name?
 #' @return A tibble with pairs of members who were in the same institution or participated in the same event in the date range.
 #' @import dplyr
 #' @export
 get_edgelist_members <- function(affils_by_date,
                                  on_cols,
                                  start,
+                                 get_edge_names = TRUE,
                                  end = NULL,
                                  weight_col = NULL) {
 
@@ -80,7 +84,7 @@ get_edgelist_members <- function(affils_by_date,
 
   #### Filter by date range
 
-  affils_by_date %>%
+  affils_by_date <- affils_by_date %>%
     filter(Start.Date <= end
            & End.Date >= start)
 
@@ -97,27 +101,39 @@ get_edgelist_members <- function(affils_by_date,
 
   }
 
-  affil_mat <-  affils_by_date %>%
-    select(Member.ID, all_of(on_cols[[1]]), weight_col) %>%
-    drop_na(on_cols[[1]]) %>%
-    distinct() %>%
-    tidyr::pivot_wider(names_from = Member.ID,
+
+  tmp <-  affils_by_date %>%
+    select(Member.ID, on_cols[1], weight_col) %>%
+    drop_na(on_cols[1])
+
+
+    bad <- is.na(tmp[[on_cols[1]]]) | tmp[[on_cols[1]]] == ""
+    tmp[bad, weight_col] <- 0
+
+    affil_mat <- tmp %>%
+      distinct() %>%
+      tidyr::pivot_wider(names_from = Member.ID,
                 values_from = weight_col,
                 values_fill = 0) %>%
-    select(-on_cols[[1]]) %>%
+    select(-on_cols[1]) %>%
     as.matrix() %>%
     crossprod()
 
-  for(cols in on_cols[-1]) {
+  for(i in 2:length(on_cols)) {
 
-    affil_mat_2 <- affils_by_date  %>%
-      select(Member.ID, all_of(cols), weight_col) %>%
-      drop_na(cols) %>%
-      distinct() %>%
-      tidyr::pivot_wider(names_from = Member.ID,
+     tmp <- affils_by_date  %>%
+      select(Member.ID, on_cols[1:i], weight_col) %>%
+      drop_na(on_cols[1])
+
+      bad <- bad | is.na(tmp[[on_cols[i]]]) | tmp[[on_cols[i]]] == ""
+      tmp[bad, weight_col] <- 0
+
+      affil_mat_2 <- tmp %>%
+        distinct() %>%
+        tidyr::pivot_wider(names_from = Member.ID,
                          values_from = weight_col,
                          values_fill = 0) %>%
-      select(-cols) %>%
+      select(-on_cols[1:i]) %>%
       as.matrix() %>%
       crossprod()
 
@@ -142,10 +158,7 @@ get_edgelist_members <- function(affils_by_date,
                  names_to = "to",
                  values_to = "weight") %>%
     filter(parse_number(from) < parse_number(to)) %>%
-    filter(weight > 0) %>%
-    mutate(
-      weight = log(weight + 1, base = max(weight))/10
-    )
+    filter(weight > 0)
 
 
   # # drop duplicates
@@ -156,12 +169,14 @@ get_edgelist_members <- function(affils_by_date,
   #   ) %>%
   #   distinct(c1, c2, .keep_all = TRUE)
 
+  if (get_edge_names) {
+
   edgelist <- edgelist %>%
     mutate(
       #edge_members = "OOPS"
-      edge_orgs = map2_chr(to, from, ~find_edge_members(affils_by_date, "Member.ID", on_cols[[1]], "Organization", .x, .y))
+      edge_orgs = map2_chr(to, from, ~find_edge_members(affils_by_date, "Member.ID", on_cols[1], "Umbrella.Name", .x, .y))
     )
-
+  }
 
   return(edgelist)
 

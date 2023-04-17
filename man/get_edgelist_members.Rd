@@ -8,6 +8,7 @@ get_edgelist_members(
   affils_by_date,
   on_cols,
   start,
+  get_edge_names = TRUE,
   end = NULL,
   weight_col = NULL
 )
@@ -16,6 +17,8 @@ get_edgelist_members(
 \item{affils_by_date}{Data frame of affiliations with start and end dates}
 
 \item{start}{A start of date range, in YYYY-MM-DD string format.}
+
+\item{get_edge_names}{Boolean; should we label the edges by name?}
 
 \item{end}{An end of date range, in YYYY-MM-DD string format.}
 }

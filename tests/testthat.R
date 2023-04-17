@@ -1,4 +1,4 @@
 library(testthat)
-library(polarexpress)
+library(PolandRoundTable)
 
-test_check("polarexpress")
+test_check("PolandRoundTable")

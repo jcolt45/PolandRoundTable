@@ -28,7 +28,7 @@ adj_affil_list <- function(affils_by_date,
     affils_by_date <- affils_by_date %>%
       mutate(
         End.Date = case_when(
-          Type_Category == "Event" ~ lubridate::ymd("1989-02-06"),
+          Category == "Event" ~ lubridate::ymd("1989-02-06"),
           TRUE ~ End.Date
         )
       )
@@ -41,7 +41,7 @@ adj_affil_list <- function(affils_by_date,
     affils_by_date <- affils_by_date %>%
       mutate(
         End.Date = case_when(
-          Type_Category == "Event" ~ End.Date + lubridate::days(event_length),
+          Category == "Event" ~ End.Date + lubridate::days(event_length),
           TRUE ~ End.Date
         )
       )
@@ -67,7 +67,7 @@ adj_affil_list <- function(affils_by_date,
   #   affils_by_date <- affils_by_date %>%
   #     mutate(
   #       End.Date = case_when(
-  #         Type_Category == "Event" ~ End.Date + lubridate::days(event_length),
+  #         Category == "Event" ~ End.Date + lubridate::days(event_length),
   #         TRUE ~ End.Date
   #       )
   #     )

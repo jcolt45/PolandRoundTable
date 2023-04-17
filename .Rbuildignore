@@ -1,4 +1,4 @@
-^polarexpress\.Rproj$
+^PolandRoundTable\.Rproj$
 ^\.Rproj\.user$
 ^app$
 ^clean_data_old$
@@ -6,3 +6,4 @@
 ^dat_cleaning$
 ^internal_data$
 ^data_cleaning$
+^LICENSE\.md$

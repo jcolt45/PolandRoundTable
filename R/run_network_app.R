@@ -6,6 +6,10 @@
 #' @import ggiraph
 #' @export
 run_network_app <- function() {
+  library(PolandRoundTable)
+  library(tidyverse)
+  library(shinyWidgets)
+  library(ggiraph)
 
   member_meta_info <- member_meta_info %>%
     mutate(
@@ -587,7 +591,7 @@ run_network_app <- function() {
 
         if (input$edge_type == "group_labs") {
 
-          dat_limited() %>%
+          el <- dat_limited() %>%
             arrange(Umbrella, Subgroup) %>%
             get_edgelist_members(on_cols = c("Umbrella", "Subgroup"),
                                  start = first_date(),
@@ -595,13 +599,18 @@ run_network_app <- function() {
 
         } else if (input$edge_type == "org_id") {
 
-          dat_limited() %>%
+          el <- dat_limited() %>%
             arrange(Org.ID) %>%
             get_edgelist_members(on_cols = list("Org.ID"),
                                  start = first_date(),
                                  end = last_date())
 
         }
+
+        el %>%
+          mutate(
+            weight = log(weight + 1, base = max(weight))/10
+          ) # scale edge weights to have better visuals
 
       }) %>%
         bindEvent(input$make_network)
@@ -714,10 +723,7 @@ run_network_app <- function() {
           left_join(my_node_layout() %>% rename_all(~paste0(.x,"_from")),
                     by = c("from" = "name_from")) %>%
           left_join(my_node_layout() %>% rename_all(~paste0(.x,"_to")),
-                    by = c("to" = "name_to")) %>%
-          mutate(
-            weight = log(weight + 1, base = max(weight))/10
-          ) # scale edge weights to have better visuals
+                    by = c("to" = "name_to"))
 
       })
 
@@ -758,6 +764,11 @@ run_network_app <- function() {
 
 
       #### Plot it ####
+
+      my_title <- reactive({
+        format(first_date(), "%b %d, %Y")
+      }) %>%
+        bindEvent(input$make_network)
 
       output$my_network <- renderGirafe({
 
@@ -801,7 +812,7 @@ run_network_app <- function() {
                 legend.position="bottom",
                 legend.box.background = element_rect(colour = "black"),
                 legend.margin=margin(c(1,5,5,5))) +
-          ggtitle(format(first_date(), "%b %d, %Y") ) +
+          ggtitle(my_title()) +
           # geom_blank(aes(color = "Edge Colors")) +
           scale_color_manual(name = "",
                              values = node_colors()) #+

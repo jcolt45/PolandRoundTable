@@ -1,0 +1,569 @@
+Member.ID,Full.Name,First.Middle.Name,Last.Name,Age,Gender,RT.Affiliation,Profession,Profession.Sector
+MEM0021,Marek Budzyński,Marek,Budzyński,49,M,Expert,Academic Architect,Academia
+MEM0033,Włodzimierz Dąbkowski,Włodzimierz,Dąbkowski,52,M,Expert,Academic Agricultural Sciences,Academia
+MEM0038,Wladysław Dobrowolski,Wladysław,Dobrowolski,61,M,Expert,Academic Economics,Academia
+MEM0041,Michał Downarowicz,Michał,Downarowicz,33,M,Expert,Academic,Academia
+MEM0047,Wanda Falkowska-Szymańska,Wanda,Falkowska-Szymańska,65,F,Expert,Journalist,Press
+MEM0056,Maria Gintowt-Jankowicz,Maria,Gintowt-Jankowicz,45,F,Expert,Lawyer,Legal
+MEM0061,Jan Andrzej Górny,Jan Andrzej,Górny,33,M,Expert,Worker Computer Systems,Worker
+MEM0068,Jerzy Grzywacz,Jerzy,Grzywacz,60,M,Expert,Academic Physics,Academia
+MEM0071,Arwid Yrio Hansen,Arwid Yrio,Hansen,71,M,Expert,Medical Doctor,Medicine
+MEM0078,Lech Kazimierz Jarodzki,Lech Kazimierz,Jarodzki,61,M,Expert,Worker Mining Engineer,Worker
+MEM0080,Jerzy Jaśkowski,Jerzy,Jaśkowski,40,M,Expert,Medical Doctor,Medicine
+MEM0081,Wiesław Johann,Wiesław,Johann,49,M,Expert,Lawyer,Legal
+MEM0094,Janusz Kindler,Janusz,Kindler,54,M,Expert,Academic Engineer,Academia
+MEM0095,Andrzej Klasik,Andrzej,Klasik,45,M,Expert,Academic Economics,Academia
+MEM0111,Gotfryd Kupryszewski,Gotfryd,Kupryszewski,59,M,Expert,Academic Chemistry,Academia
+MEM0123,Wanda Majewska,Wanda,Majewska,42,F,Expert,Academic Economist,Academia
+MEM0136,Michał Nawrocki,Michał,Nawrocki,46,M,Expert,Academic Physics,Academia
+MEM0137,Jan Nowacki,Jan,Nowacki,49,M,Expert,Academic Law,Academia
+MEM0139,Edward Olszewski,Edward,Olszewski,33,M,Expert,Worker Robotics,Worker
+MEM0153,Julian Radziewicz,Julian,Radziewicz,51,M,Expert,Academic Pedagogy,Academia
+MEM0155,Krzysztof Rajpert,Krzysztof,Rajpert,55,M,Expert,Medical Doctor,Medicine
+MEM0159,Czesław Robakowski,Czesław,Robakowski,40,M,Expert,Worker Miner,Worker
+MEM0167,Jerzy Salmonowicz,Jerzy,Salmonowicz,63,M,Expert,Academic Chemist,Academia
+MEM0170,Adolf Sapkowski,Adolf,Sapkowski,62,M,Expert,Worker Engineer,Worker
+MEM0564,Elżbieta Maria Seferowicz,Elżbieta Maria,Seferowicz,52,F,Expert,Medical Doctor,Medicine
+MEM0175,Magdalena Sokołowska,Magdalena,Sokołowska,66,F,Expert,Medical Doctor,Medicine
+MEM0184,Kazimierz Stępczak,Kazimierz,Stępczak,52,M,Expert,Academic,Academia
+MEM0189,Andrzej Suchocki,Andrzej,Suchocki,35,M,Expert,Academic,Academia
+MEM0199,Hanna świlda-Ziemba,Hanna,świlda-Ziemba,58,F,Expert,Academic,Academia
+MEM0196,Piotr Szynkiel,Piotr,Szynkiel,21,M,Expert,Worker,Worker
+MEM0203,Edmund Tołwiński,Edmund,Tołwiński,52,M,Expert,Academic,Academia
+MEM0295,Andrzej Tuora,Andrzej,Tuora,"NA",M,Expert,Economist,Economist
+MEM0296,Janina Walukowa,Janina,Walukowa,"NA",F,Expert,"NA",Other
+MEM0211,Jerzy Wertenstein-Żuławski,Jerzy,Wertenstein-Żuławski,41,M,Expert,Academic,Academia
+MEM0219,Zbigniew Woźniak,Zbigniew,Woźniak,41,M,Expert,Medical Doctor,Medicine
+MEM0229,Andrzej Ziabicki,Andrzej,Ziabicki,55,M,Expert,Academic,Academia
+MEM0173,Władysław Siła-Nowicki,Władysław,Siła-Nowicki,75,M,Government,Lawyer,Legal
+MEM0003,Jacek Ambroziak,Jacek,Ambroziak,47,M,Opposition,Lawyer,Legal
+MEM0004,Stefan Amsterdamski,Stefan,Amsterdamski,60,M,Opposition,Academic Philosophy,Academia
+MEM0005,Artur Balazs,Artur,Balazs,37,M,Opposition,Agricultural Engineer,Worker
+MEM0006,Bolesław Banaszkiewich,Bolesław,Banaszkiewich,34,M,Opposition,Lawyer,Legal
+MEM0007,Piotr Baumgart,Piotr,Baumgart,47,M,Opposition,Agricultural Worker Technician,Worker
+MEM0008,Janusz Beksiak,Janusz,Beksiak,59,M,Opposition,Academic Economics,Academia
+MEM0009,Ryszard Bender,Ryszard,Bender,64,M,Opposition,Academic History,Academia
+MEM0010,Jan Beszta-Borowski,Jan,Beszta-Borowski,52,M,Opposition,Farmer,Farmer
+MEM0011,Krzysztof Betka,Krzysztof,Betka,37,M,Opposition,Miner,Worker
+MEM0012,Grzegorz Białkowski,Grzegorz,Białkowski,56,M,Opposition,Academic Physics,Academia
+MEM0013,Grzegorz Bierecki,Grzegorz,Bierecki,25,M,Opposition,Academic Humanities,Academia
+MEM0014,Robert Bitner,Robert,Bitner,22,M,Opposition,Academic Student,Academia
+MEM0015,Grzegorz Boguta,Grzegorz,Boguta,36,M,Opposition,Academic Biophysics,Academia
+MEM0016,Włodzimierz Bojarski,Włodzimierz,Bojarski,58,M,Opposition,Academic Economist,Academia
+MEM0017,Jakub Boratyński,Jakub,Boratyński,18,M,Opposition,Academic Student,Academia
+MEM0018,Mieczysław Borawski,Mieczysław,Borawski,58,M,Opposition,Lawyer,Legal
+MEM0019,Stefan Bratkowski,Stefan,Bratkowski,54,M,Opposition,Journalist,Press
+MEM0020,Ryszard Brzuzy,Ryszard,Brzuzy,28,M,Opposition,Worker Technician,Worker
+MEM0022,Ryszard Bugaj,Ryszard,Bugaj,44,M,Opposition,Academic Economist,Academia
+MEM0023,Zbigniew Bujak,Zbigniew,Bujak,33,M,Opposition,Worker Electrician,Worker
+MEM0024,Iwo Byczewski,Iwo,Byczewski,40,M,Opposition,Academic Law,Academia
+MEM0026,Zbigniew Chłap,Zbigniew,Chłap,59,M,Opposition,Medical Doctor,Medicine
+MEM0027,Maria Chmiel,Maria,Chmiel,59,F,Opposition,Medical Doctor,Medicine
+MEM0028,Eryk Chojnacki,Eryk,Chojnacki,26,M,Opposition,Academic Student,Academia
+MEM0029,Jerzy Ciemniewski,Jerzy,Ciemniewski,49,M,Opposition,Lawyer,Legal
+MEM0030,Piotr Ciompa,Piotr,Ciompa,21,M,Opposition,Academic Student,Academia
+MEM0031,Paweł Czartoryski,Paweł,Czartoryski,64,M,Opposition,Academic Economics and History of Science,Academia
+MEM0025,Andrzej Celiński,Andrzej,Celiński,38,M,Opposition,Academic Sociology,Academia
+MEM0032,Piotr Czerwiec,Piotr,Czerwiec,25,M,Opposition,Academic Student,Academia
+MEM0034,Piotr Dąbrowski,Piotr,Dąbrowski,38,M,Opposition,Engineer Agriculture,Worker
+MEM0035,Tadeusz Diem,Tadeusz,Diem,48,M,Opposition,Academic Chemistry,Academia
+MEM0036,Jerzy Dietl,Jerzy,Dietl,61,M,Opposition,Academic Economics,Academia
+MEM0037,Jerzy Dłużniewski,Jerzy,Dłużniewski,43,M,Opposition,Worker Textiles,Worker
+MEM0039,Andrzej Dobrucki,Andrzej,Dobrucki,65,M,Opposition,Lawyer,Legal
+MEM0040,Władysław Dominiak,Władysław,Dominiak,53,M,Opposition,Academic Economist,Academia
+MEM0042,Roman Duda,Roman,Duda,53,M,Opposition,Academic Mathematics,Academia
+MEM0043,Jan Dworak,Jan,Dworak,40,M,Opposition,Journalist,Press
+MEM0044,Kazimierz Dziewanowski,Kazimierz,Dziewanowski,58,M,Opposition,Journalist,Press
+MEM0045,Marek Edelman,Marek,Edelman,66,M,Opposition,Medical Doctor,Medicine
+MEM0046,Lech Falandysz,Lech,Falandysz,46,M,Opposition,Lawyer,Legal
+MEM0048,Dariusz Fikus,Dariusz,Fikus,56,M,Opposition,Journalist,Press
+MEM0049,Władysław Findeisen,Władysław,Findeisen,63,M,Opposition,Academic Electrical Engineer,Academia
+MEM0051,Marek Frąckowiak,Marek,Frąckowiak,31,M,Opposition,Worker Librarian,Worker
+MEM0050,Władysław Frasyniuk,Władysław,Frasyniuk,34,M,Opposition,Worker Bus Mechanic,Worker
+MEM0052,Radosław Gawlik,Radosław,Gawlik,31,M,Opposition,Worker Engineer,Worker
+MEM0053,Bronisław Geremek,Bronisław,Geremek,56,M,Opposition,Academic Historian,Academia
+MEM0054,Grażyna Gęsicka,Grażyna,Gęsicka,37,F,Opposition,Academic Sociologist,Academia
+MEM0055,Mieczysław Gil,Mieczysław,Gil,45,M,Opposition,Worker Steel,Worker
+MEM0057,Andrzej Glapiński,Andrzej,Glapiński,44,M,Opposition,Worker Miner,Worker
+MEM0059,Bogusław Kazimierz Gołąb,Bogusław Kazimierz,Gołąb,42,M,Opposition,Worker Mechanic,Worker
+MEM0058,Elżbieta Golik,Elżbieta,Golik,24,F,Opposition,Academic Student,Academia
+MEM0060,Helena Góralska,Helena,Góralska,41,F,Opposition,Academic Economist,Academia
+MEM0062,Stanisława Grabska,Stanisława,Grabska,66,F,Opposition,Academic Artist and Theologian,Academia
+MEM0063,Anna Grajcarek,Anna,Grajcarek,32,F,Opposition,Medical Doctor,Medicine
+MEM0064,Władysław Grocki,Władysław,Grocki,34,M,Opposition,Worker Mining Technician,Worker
+MEM0065,Andrzej Grudziński,Andrzej,Grudziński,64,M,Opposition,Academic Architect,Academia
+MEM0066,Janusz Grzelak,Janusz,Grzelak,47,M,Opposition,Academic Psychologist,Academia
+MEM0067,Anna Grzymisławska,Anna,Grzymisławska,41,F,Opposition,Lawyer,Legal
+MEM0069,Krzysztof Hagemejer,Krzysztof,Hagemejer,37,M,Opposition,Academic Economics,Academia
+MEM0070,Aleksander Hall,Aleksander,Hall,35,M,Opposition,Academic historian,Academia
+MEM0072,Stefania Hejmanowska,Stefania,Hejmanowska,51,F,Opposition,Worker Chemist,Worker
+MEM0073,Maciej Tadeusz Iłowiecki,Maciej Tadeusz,Iłowiecki,53,M,Opposition,Journalist,Press
+MEM0074,Wiesław Isio,Wiesław,Isio,37,M,Opposition,Worker,Worker
+MEM0075,Janina Jankowska,Janina,Jankowska,49,F,Opposition,Journalist,Press
+MEM0077,Gabriel Janowski,Gabriel,Janowski,41,M,Opposition,Academic Agriculture,Academia
+MEM0076,Andrzej Janowski,Andrzej,Janowski,53,M,Opposition,Academic Polonist,Academia
+MEM0079,Jerzy Jasiński,Jerzy,Jasiński,58,M,Opposition,Lawyer,Legal
+MEM0082,Cezary Józefiak,Cezary,Józefiak,56,M,Opposition,Academic Economics,Academia
+MEM0083,Stanisław Juchnowicz,Stanisław,Juchnowicz,65,M,Opposition,Academic Architect,Academia
+MEM0084,Stefan Jurczak,Stefan,Jurczak,50,M,Opposition,Worker Steel Mechanic,Worker
+MEM0085,Mieczysław Kaczanowski,Mieczysław,Kaczanowski,54,M,Opposition,Journalist,Press
+MEM0086,Jarosław Kaczyński,Jarosław,Kaczyński,39,M,Opposition,Lawyer,Legal
+MEM0087,Lech Kaczyński,Lech,Kaczyński,39,M,Opposition,Lawyer,Legal
+MEM0088,Witold Paweł Kalbarczyk,Witold Paweł,Kalbarczyk,22,M,Opposition,Student,Other
+MEM0089,Marian Kallas,Marian,Kallas,50,M,Opposition,Academic Historian,Academia
+MEM0090,Mariusz Kamiński,Mariusz,Kamiński,23,M,Opposition,Student,Other
+MEM0091,Henryk Karaś,Henryk,Karaś,40,M,Opposition,Worker Mining Engineer,Worker
+MEM0092,Rafał Kasprzyk,Rafał,Kasprzyk,36,M,Opposition,Academic Law,Academia
+MEM0093,Andrzej Kassenberg,Andrzej,Kassenberg,40,M,Opposition,Academic Geographer,Academia
+MEM0096,Zdisław Kłeczek,Zdisław,Kłeczek,51,M,Opposition,Academic Engineering,Academia
+MEM0097,Wojciech Kłosowski,Wojciech,Kłosowski,30,M,Opposition,Artist Sculpter,Other
+MEM0098,Jan Kofman,Jan,Kofman,47,M,Opposition,Academic Historian,Academia
+MEM0099,Ryszard Kostrzewa,Ryszard,Kostrzewa,42,M,Opposition,Worker,Worker
+MEM0100,Adam Tadeusz Kowalewski,Adam Tadeusz,Kowalewski,48,M,Opposition,Academic Economist,Academia
+MEM0102,Stefan Kozłowski,Stefan,Kozłowski,61,M,Opposition,Academic Geology,Academia
+MEM0101,Krzysztof Kozłowski,Krzysztof,Kozłowski,57,M,Opposition,Journalist,Press
+MEM0103,Marek Krankowski,Marek,Krankowski,42,M,Opposition,Worker Administration,Worker
+MEM0104,Marcin Król,Marcin,Król,44,M,Opposition,Journalist,Press
+MEM0105,Wiktor Krywulko,Wiktor,Krywulko,37,M,Opposition,Worker Mining Technician,Worker
+MEM0107,Wiktor Kulerski,Wiktor,Kulerski,44,M,Opposition,Academic Historian,Academia
+MEM0106,Marek Kulerski,Marek,Kulerski,50,M,Opposition,Medical Doctor,Medicine
+MEM0108,Hanna Kulesza,Hanna,Kulesza,58,F,Opposition,Academic Economist,Academia
+MEM0109,Michał Kulesza,Michał,Kulesza,40,M,Opposition,Lawyer,Legal
+MEM0110,Władysław J.H. Kunicki-Goldfinger,Władysław J.H.,Kunicki-Goldfinger,72,M,Opposition,Academic Microbiologist,Academia
+MEM0112,Zofia Kuratowska,Zofia,Kuratowska,57,F,Opposition,Medical Doctor,Medicine
+MEM0113,Jacek Kurczewski,Jacek,Kurczewski,46,M,Opposition,Academic Sociologist,Academia
+MEM0114,Jacek Kuroń,Jacek,Kuroń,54,M,Opposition,Academic Historian,Academia
+MEM0115,Wojciech Lamentowicz,Wojciech,Lamentowicz,42,M,Opposition,Academic Law,Academia
+MEM0116,Antoni Leopold,Antoni,Leopold,72,M,Opposition,Academic Agriculture,Academia
+MEM0117,Edward Lipiec,Edward,Lipiec,52,M,Opposition,Academic Agronomist,Academia
+MEM0120,Bogdan Lis,Bogdan,Lis,36,M,Opposition,Worker Electrician,Worker
+MEM0121,Jan Lityński,Jan,Lityński,43,M,Opposition,Academic Mathematician,Academia
+MEM0118,Władysław Liwak,Władysław,Liwak,46,M,Opposition,Lawyer,Legal
+MEM0119,Helena Łuczywo,Helena,Łuczywo,43,F,Opposition,Journalist,Press
+MEM0122,Andrzej Łuszewski,Andrzej,Łuszewski,32,M,Opposition,Worker Agriculture,Worker
+MEM0124,Edward Małecki,Edward,Małecki,47,M,Opposition,Worker Individual Farmer,Worker
+MEM0125,Tadeusz Mazowiecki,Tadeusz,Mazowiecki,61,M,Opposition,Journalist,Press
+MEM0126,Jan Mazurkiewicz,Jan,Mazurkiewicz,34,M,Opposition,Worker,Worker
+MEM0127,Albin Melcer,Albin,Melcer,46,M,Opposition,Worker Building Engineer,Worker
+MEM0128,Jacek Merkel,Jacek,Merkel,34,M,Opposition,Worker Engineer,Worker
+MEM0129,Adam Michnik,Adam,Michnik,42,M,Opposition,Academic Historian,Academia
+MEM0130,Witold Mieszkowski,Witold,Mieszkowski,50,M,Opposition,Academic Architect,Academia
+MEM0131,Aureliusz Mikłaszewski,Aureliusz,Mikłaszewski,48,M,Opposition,Medical Doctor,Medicine
+MEM0132,Andrzej Milczanowski,Andrzej,Milczanowski,49,M,Opposition,Lawyer,Legal
+MEM0133,Andrzej Miłkowski,Andrzej,Miłkowski,49,M,Opposition,Worker Steelworker,Worker
+MEM0134,Jacek Moskwa,Jacek,Moskwa,40,M,Opposition,Journalist,Press
+MEM0135,Jan Mujżel,Jan,Mujżel,65,M,Opposition,Academic Economics,Academia
+MEM0138,Róża Nowotna-Walcowa,Róża,Nowotna-Walcowa,66,F,Opposition,Medical Doctor,Medicine
+MEM0140,Jan Olszewski,Jan,Olszewski,58,M,Opposition,Lawyer,Legal
+MEM0141,Janusz Onyszkiewicz,Janusz,Onyszkiewicz,51,M,Opposition,Academic Mathematician,Academia
+MEM0146,Edmund Jan Osmańczych,Edmund Jan,Osmańczych,75,M,Opposition,Journalist,Press
+MEM0147,Janusz Pałubicki,Janusz,Pałubicki,41,M,Opposition,Academic Art History,Academia
+MEM0142,Walerian Pańko,Walerian,Pańko,47,M,Opposition,Academic Law,Academia
+MEM0143,Aleksander Paszyński,Aleksander,Paszyński,60,M,Opposition,Journalist,Press
+MEM0144,Krystyna Pawłowicz,Krystyna,Pawłowicz,36,F,Opposition,Academic Law,Academia
+MEM0145,Alojzy Pietrzyk,Alojzy,Pietrzyk,37,M,Opposition,Worker Miner,Worker
+MEM0148,Leszek Piotrowski,Leszek,Piotrowski,50,M,Opposition,Lawyer,Legal
+MEM0149,Zygmunt Polański,Zygmunt,Polański,59,M,Opposition,Academic Economics,Academia
+MEM0150,Piotr Polmański,Piotr,Polmański,34,M,Opposition,Worker Miner,Worker
+MEM0151,Jerzy Puciata,Jerzy,Puciata,55,M,Opposition,Artist,Other
+MEM0152,Edward Radziewicz,Edward,Radziewicz,41,M,Opposition,Worker Mechanic,Worker
+MEM0154,Anna Radziwiłł,Anna,Radziwiłł,52,F,Opposition,Academic Historian,Academia
+MEM0157,Janusz Reguła,Janusz,Reguła,24,M,Opposition,Medical Doctor,Medicine
+MEM0156,Jerzy Regulski,Jerzy,Regulski,64,M,Opposition,Academic Economist,Academia
+MEM0158,Ryszard Reiff,Ryszard,Reiff,65,M,Opposition,Journalist,Press
+MEM0160,Zbigniew Rokicki,Zbigniew,Rokicki,41,M,Opposition,Worker Farmer,Worker
+MEM0161,Jan Rokita,Jan,Rokita,29,M,Opposition,Lawyer,Legal
+MEM0162,Zbigniew Romaszewski,Zbigniew,Romaszewski,49,M,Opposition,Academic Physics,Academia
+MEM0163,Jan Rosner,Jan,Rosner,83,M,Opposition,Academic Economics,Academia
+MEM0164,Andrzej Rozmarynowicz,Andrzej,Rozmarynowicz,65,M,Opposition,Lawyer,Legal
+MEM0165,Henryk Rutkowski,Henryk,Rutkowski,59,M,Opposition,Academic Historian,Academia
+MEM0166,Zbigniew W. Rykowski,Zbigniew W.,Rykowski,32,M,Opposition,Academic Sociologist,Academia
+MEM0168,Henryk Samsonowicz,Henryk,Samsonowicz,59,M,Opposition,Academic Historian,Academia
+MEM0169,Janusz Sanocki,Janusz,Sanocki,34,M,Opposition,Worker,Worker
+MEM0171,Jarosław Sellin,Jarosław,Sellin,25,M,Opposition,Academic,Academia
+MEM0172,Władysław Sidorowicz,Władysław,Sidorowicz,54,M,Opposition,Medical Doctor,Medicine
+MEM0174,Jadwiga Skórzewska,Jadwiga,Skórzewska,46,F,Opposition,Lawyer,Legal
+MEM0197,Jarosław śleszyński,Jarosław,śleszyński,26,M,Opposition,Academic,Academia
+MEM0198,Józef ślisz,Józef,ślisz,54,M,Opposition,Worker Farmer,Worker
+MEM0176,Andrzej Sosnowski,Andrzej,Sosnowski,25,M,Opposition,Student,Other
+MEM0177,Grażyna Staniszewska,Grażyna,Staniszewska,39,F,Opposition,Academic,Academia
+MEM0178,Tomasz Stankiewicz,Tomasz,Stankiewicz,42,M,Opposition,Academic,Academia
+MEM0179,Adam Stanowski,Adam,Stanowski,61,M,Opposition,Academic,Academia
+MEM0180,Krystyna Starczewska,Krystyna,Starczewska,51,F,Opposition,Academic,Academia
+MEM0181,Stefan Starczewski,Stefan,Starczewski,53,M,Opposition,Academic,Academia
+MEM0182,Joanna Staręga-Piasek,Joanna,Staręga-Piasek,49,F,Opposition,Academic,Academia
+MEM0183,Antoni Stawikowski,Antoni,Stawikowski,55,M,Opposition,Academic,Academia
+MEM0185,Jerzy Stępien,Jerzy,Stępien,42,M,Opposition,Lawyer,Legal
+MEM0186,Henryk Jerzy Stępniak,Henryk Jerzy,Stępniak,38,M,Opposition,Farmer,Farmer
+MEM0187,Stanisław Stomma,Stanisław,Stomma,81,M,Opposition,Academic,Academia
+MEM0188,Adam Strzembosz,Adam,Strzembosz,58,M,Opposition,Lawyer,Legal
+MEM0190,Klemens Szaniawski,Klemens,Szaniawski,63,M,Opposition,Academic,Academia
+MEM0191,Andrzej Szczeklik,Andrzej,Szczeklik,50,M,Opposition,Medical Doctor,Medicine
+MEM0193,Jarosław Józef Szczepański,Jarosław Józef,Szczepański,38,M,Opposition,Academic,Academia
+MEM0192,Jan Józef Szczepański,Jan Józef,Szczepański,70,M,Opposition,Journalist,Press
+MEM0194,Edward Szwajkiewicz,Edward,Szwajkiewicz,34,M,Opposition,Worker Electrician,Worker
+MEM0195,Jacek Szymanderski,Jacek,Szymanderski,43,M,Opposition,Academic,Academia
+MEM0200,Henryk Tachasiuk,Henryk,Tachasiuk,26,M,Opposition,Worker,Worker
+MEM0201,Jacek Taylor,Jacek,Taylor,49,M,Opposition,Lawyer,Legal
+MEM0202,Antoni Tokarczuk,Antoni,Tokarczuk,37,M,Opposition,Academic,Academia
+MEM0204,Andrzej Topiński,Andrzej,Topiński,43,M,Opposition,Academic,Academia
+MEM0205,Witold Trzeciakowski,Witold,Trzeciakowski,62,M,Opposition,Academic,Academia
+MEM0206,Jerzy Turowicz,Jerzy,Turowicz,86,M,Opposition,Journalist,Press
+MEM0207,Jerzy Umiastowski,Jerzy,Umiastowski,56,M,Opposition,Medical Doctor,Medicine
+MEM0208,Henryk Urban,Henryk,Urban,37,M,Opposition,Worker,Worker
+MEM0209,Lech Wałęsa,Lech,Wałęsa,45,M,Opposition,Worker,Worker
+MEM0210,Zofia Wasikowska,Zofia,Wasikowska,78,F,Opposition,Lawyer,Legal
+MEM0212,Stanisław Węglarz,Stanisław,Węglarz,40,M,Opposition,Worker Miner,Worker
+MEM0213,Andrzej Wieczorek,Andrzej,Wieczorek,40,M,Opposition,Journalist,Press
+MEM0214,Andrzej Wielowieyski,Andrzej,Wielowieyski,61,M,Opposition,Lawyer,Legal
+MEM0215,Zbigniew Wierzbicki,Zbigniew,Wierzbicki,69,M,Opposition,Academic,Academia
+MEM0216,Michał Wilczyński,Michał,Wilczyński,40,M,Opposition,Academic,Academia
+MEM0217,Edmund Wnuk-Lipiński,Edmund,Wnuk-Lipiński,44,M,Opposition,Academic,Academia
+MEM0218,Ewa Wolak,Ewa,Wolak,55,F,Opposition,Medical Doctor,Medicine
+MEM0221,Irena Wóycicka,Irena,Wóycicka,38,F,Opposition,Journalist,Press
+MEM0220,Jacek Woźniakowski,Jacek,Woźniakowski,68,M,Opposition,Academic,Academia
+MEM0222,Wojciech Wróblewski,Wojciech,Wróblewski,31,M,Opposition,Academic,Academia
+MEM0223,Henryk Wujec,Henryk,Wujec,48,M,Opposition,Worker,Worker
+MEM0224,Jan Jakub Wygnański,Jan Jakub,Wygnański,24,M,Opposition,Academic,Academia
+MEM0225,Janina Zakrzewska,Janina,Zakrzewska,59,F,Opposition,Academic,Academia
+MEM0226,Jan Zalewski,Jan,Zalewski,58,M,Opposition,Journalist,Press
+MEM0227,Zbigniew Zawistowski,Zbigniew,Zawistowski,44,M,Opposition,Architect,Other
+MEM0228,Jerzy Zdrada,Jerzy,Zdrada,52,M,Opposition,Academic,Academia
+MEM0230,Tadeusz Zieliński,Tadeusz,Zieliński,62,M,Opposition,Lawyer,Legal
+MEM0231,Janusz Ziółkowski,Janusz,Ziółkowski,64,M,Opposition,Academic,Academia
+MEM0232,Andrzej Zoll,Andrzej,Zoll,46,M,Opposition,Academic,Academia
+MEM0258,Bronisław Dembowski,Bronisław,Dembowski,61,M,Church,Academic Philosophy,Academia
+MEM0259,Janusz Narzyński,Janusz,Narzyński,60,M,Church,Bishop,Other
+MEM0260,Alojzy Orszulik,Alojzy,Orszulik,60,M,Church,Clergy,Other
+MEMNA,B. Andryszczak,B.,Andryszczak,"NA",M,Expert,Lawyer,Legal
+MEM0568,Waldemar Chołodowski,Waldemar,Chołodowski,45,M,Expert,Journalist,Press
+MEM0567,Tomasz Dybowski,Tomasz,Dybowski,65,M,Expert,Academic Law,Academia
+MEM0565,Zbigniew Janowicz,Zbigniew,Janowicz,67,M,Expert,Academic Law,Academia
+MEM0293,Adam Lipowski,Adam,Lipowski,50,M,Expert,Academic Economist,Academia
+MEM0569,Maria Minkiewicz,Maria,Minkiewicz,"NA",F,Expert,Lawyer,Legal
+MEM0294,Andrzej Piszel,Andrzej,Piszel,40,M,Expert,Computer Scientist,Other
+MEM0570,Jan Rogala,Jan,Rogala,52,M,Expert,Journalist,Press
+MEM0571,Jacek Snopkiewicz,Jacek,Snopkiewicz,46,M,Expert,Journalist,Press
+MEM0572,Maciej Szumowski,Maciej,Szumowski,49,M,Expert,Journalist,Press
+MEM0573,Jarosław Szymkiewicz,Jarosław,Szymkiewicz,58,M,Expert,Theater Critic,Other
+MEM0233,Tomasz Adamczuk,Tomasz,Adamczuk,36,M,Government,Farmer,Farmer
+MEM0234,Norbert Aleksiewicz,Norbert,Aleksiewicz,40,M,Government,Farmer,Farmer
+MEM0352,Krzysztof Andrzejczyk,Krzysztof,Andrzejczyk,"NA",M,Government,"NA",Other
+MEM0353,Roman Andrzejewski,Roman,Andrzejewski,58,M,Government,Academic Ecology,Academia
+MEM0417,Adam Andrzejewski,Adam,Andrzejewski,74,M,Government,Academic Housing Policy,Academia
+MEM0521,Jerzy Bafia,Jerzy,Bafia,62,M,Government,Academic Law,Academia
+MEM0368,Marian Bąk,Marian,Bąk,38,M,Government,Worker Management,Worker
+MEM0436,Józef Bąk,Józef,Bąk,42,M,Government,Farmer,Farmer
+MEM0297,Władysław Baka,Władysław,Baka,52,M,Government,Academic Economics,Academia
+MEM0504,Łukasz Balcer,Łukasz,Balcer,53,M,Government,Politician Lawyer,Legal
+MEM0390,Marek Bartosik,Marek,Bartosik,47,M,Government,Academic Electrical Engineering,Academia
+MEM0543,Julian Bartosz,Julian,Bartosz,54,M,Government,Journalist,Press
+MEM0469,Jan Baszkiewicz,Jan,Baszkiewicz,59,M,Government,Academic History,Academia
+MEM0369,Artur Bęben,Artur,Bęben,59,M,Government,Academic Engineering,Academia
+MEM0391,Klemens Białecki,Klemens,Białecki,59,M,Government,Academic Business,Academia
+MEM0418,Jan Bielak,Jan,Bielak,72,M,Government,Civil Servant,Civil Servant
+MEM0544,Andrzej Bilik,Andrzej,Bilik,49,M,Government,Journalist,Press
+MEM0470,Jan Błuszkowski,Jan,Błuszkowski,48,M,Government,Academic Sociology,Academia
+MEM0471,Artur Bodnar,Artur,Bodnar,59,M,Government,Academic Political Science,Academia
+MEM0392,Marek Bogucki,Marek,Bogucki,39,M,Government,Civil Servant,Civil Servant
+MEM0354,Gustaw Bokszczarnin,Gustaw,Bokszczarnin,"NA",M,Government,"NA",Other
+MEM0545,Jan Brodzki,Jan,Brodzki,66,M,Government,Journalist,Press
+MEM0261,Jan Brol,Jan,Brol,55,M,Government,Lawyer,Legal
+MEM0505,Kazimierz Buchała,Kazimierz,Buchała,65,M,Government,Academic Law,Academia
+MEM0393,Eugeniusz Budny,Eugeniusz,Budny,53,M,Government,Academic Engineering,Academia
+MEM0489,Helena Chodkowska,Helena,Chodkowska,41,F,Government,Teacher,Other
+MEM0320,Zygmunt Chodnicki,Zygmunt,Chodnicki,52,M,Government,Civil Servant,Civil Servant
+MEM0506,Piotr Chojnacki,Piotr,Chojnacki,43,M,Government,Lawyer,Legal
+MEM0437,Ryszard Cholewa,Ryszard,Cholewa,41,M,Government,Academic Animal Science,Academia
+MEM0394,Zbigniew Cierpka,Zbigniew,Cierpka,52,M,Government,Teacher,Other
+MEM0370,Jan Ciesielski,Jan,Ciesielski,49,M,Government,Miner,Worker
+MEM0235,Stanisław Ciosek,Stanisław,Ciosek,49,M,Government,Politician,Civil Servant
+MEM0507,Andrzej Cubała,Andrzej,Cubała,45,M,Government,Lawyer,Legal
+MEM0450,Mirosław Cybulko,Mirosław,Cybulko,56,M,Government,Medical Doctor Surgeon,Medicine
+MEM0472,Kazimierz Cypryniak,Kazimierz,Cypryniak,54,M,Government,Politician,Civil Servant
+MEM0473,Zofia Czaja,Zofia,Czaja,54,F,Government,Politician,Civil Servant
+MEM0474,Zbigniew Czajkowski,Zbigniew,Czajkowski,66,M,Government,Journalist,Press
+MEM0395,Maria Czarnecka,Maria,Czarnecka,"NA",F,Government,"NA",Other
+MEM0451,Adam Czarnecki,Adam,Czarnecki,55,M,Government,Medical Doctor,Medicine
+MEM0539,Marek Czarnota,Marek,Czarnota,48,M,Government,"NA",Other
+MEM0508,Lucjan Czubiński,Lucjan,Czubiński,58,M,Government,Lawyer,Legal
+MEM0321,Kazimierz Daszewski,Kazimierz,Daszewski,"NA",M,Government,"NA",Other
+MEM0530,Waldemar Długołęcki,Waldemar,Długołęcki,"NA",M,Government,"NA",Other
+MEM0298,Stanisław Długosz,Stanisław,Długosz,63,M,Government,Economist,Economist
+MEM0546,Andrzej Dobrzyński,Andrzej,Dobrzyński,59,M,Government,Journalist,Press
+MEM0371,Stanisław Drozdowski,Stanisław,Drozdowski,53,M,Government,Manager,Other
+MEM0396,Jerzy Filipiak,Jerzy,Filipiak,46,M,Government,Engineer,Worker
+MEM0397,Jacek Fisiak,Jacek,Fisiak,52,M,Government,Academic English Philology,Academia
+MEM0373,Gerard Gabryś,Gerard,Gabryś,55,M,Government,Politician,Civil Servant
+MEM0540,Jerzy Garlej,Jerzy,Garlej,48,M,Government,Policeman,Other
+MEM0438,Karol Gawłowski,Karol,Gawłowski,66,M,Government,Politician (Farmer),Civil Servant
+MEM0475,Andrzej Gdula,Andrzej,Gdula,46,M,Government,Politician,Civil Servant
+MEM0476,Stanisław Gebethner,Stanisław,Gebethner,54,M,Government,Academic Political Science,Academia
+MEM0355,Bolesław Gendek,Bolesław,Gendek,"NA",M,Government,"NA",Other
+MEM0290,Waldemar Gieryszewski,Waldemar,Gieryszewski,35,M,Government,"NA",Other
+MEM0236,Aleksander Gieysztor,Aleksander,Gieysztor,72,M,Government,Academic History,Academia
+MEM0334,Leszek Gilejko,Leszek,Gilejko,57,M,Government,Academic Sociology,Academia
+MEM0439,Edward Gnat,Edward,Gnat,48,M,Government,Politician (Farmer),Civil Servant
+MEM0356,Andrzej Gniazdowski,Andrzej,Gniazdowski,"NA",M,Government,Academic Philosophy,Academia
+MEM0440,Leonard Godzinowski,Leonard,Godzinowski,"NA",M,Government,"NA",Other
+MEM0262,Witold Góralski,Witold,Góralski,49,M,Government,Academic Law,Academia
+MEM0299,Ryszard Gorycki,Ryszard,Gorycki,45,M,Government,Agricultural Engineer,Worker
+MEM0322,Krzysztof Gozdek,Krzysztof,Gozdek,49,M,Government,Civil Servant,Civil Servant
+MEM0398,Roman Grabowski,Roman,Grabowski,55,M,Government,"NA",Other
+MEM0263,Ludwik Gracel,Ludwik,Gracel,"NA",M,Government,"NA",Other
+MEM0531,Maciej Graniecki,Maciej,Graniecki,37,M,Government,Politician,Civil Servant
+MEM0509,Ryszard Grodzicki,Ryszard,Grodzicki,41,M,Government,Academic Political Science,Academia
+MEM0300,Jerzy Gruchalski,Jerzy,Gruchalski,52,M,Government,Politician,Civil Servant
+MEM0399,Zofia Grzebisz-Nowicka,Zofia,Grzebisz-Nowicka,50,F,Government,Politician,Civil Servant
+MEM0441,Kazimierz Grzesiak,Kazimierz,Grzesiak,53,M,Government,Politician,Civil Servant
+MEM0452,Wojciech Guglas,Wojciech,Guglas,49,M,Government,Doctor,Medicine
+MEM0477,Mariusz Gulczyński,Mariusz,Gulczyński,60,M,Government,Academic Political Science,Academia
+MEM0372,Marian Gustek,Marian,Gustek,60,M,Government,Government Official,Civil Servant
+MEM0237,Wiesław Gwiżdż,Wiesław,Gwiżdż,54,M,Government,Teacher,Other
+MEM0357,Bożena Hager-Małecka,Bożena,Hager-Małecka,67,F,Government,Academic Medicine,Academia
+MEM0374,Bogusław Helski,Bogusław,Helski,"NA",M,Government,"NA",Other
+MEM0238,Marek Hołdakowski,Marek,Hołdakowski,50,M,Government,Economist,Economist
+MEM0547,Artur Howzan,Artur,Howzan,46,M,Government,Journalist,Press
+MEM0358,Andrzej Hrynkiewicz,Andrzej,Hrynkiewicz,63,M,Government,Academic Physics,Academia
+MEM0453,Janusz Indulski,Janusz,Indulski,58,M,Government,Academic Medicine,Academia
+MEM0442,Kazimierz Iwaniec,Kazimierz,Iwaniec,52,M,Government,Economist,Economist
+MEM0548,Bogdan Jachacz,Bogdan,Jachacz,47,M,Government,Journalist,Press
+MEM0478,Jan Jachymek,Jan,Jachymek,49,M,Government,Academic History,Academia
+MEM0323,Zofia Jacukowicz,Zofia,Jacukowicz,58,F,Government,Economist,Economist
+MEM0264,Stanisław Jagiełło,Stanisław,Jagiełło,"NA",M,Government,"NA",Other
+MEM0291,Zbigniew Jagodziński,Zbigniew,Jagodziński,57,M,Government,Government Official,Civil Servant
+MEM0419,Ryszard Jajszczyk,Ryszard,Jajszczyk,51,M,Government,Economist,Economist
+MEM0265,Mieczysław Jakubowski,Mieczysław,Jakubowski,55,M,Government,Economist,Economist
+MEM0541,Jerzy Janicki,Jerzy,Janicki,58,M,Government,Engineer,Worker
+MEM0510,Zenon Jankowski,Zenon,Jankowski,52,M,Government,Jurist,Legal
+MEM0420,Zbigniew Janowski,Zbigniew,Janowski,33,M,Government,Politician,Civil Servant
+MEM0239,Jan Janowski,Jan,Janowski,60,M,Government,Academic Metallurgy,Academia
+MEM0266,Janusz Jarliński,Janusz,Jarliński,"NA",M,Government,Miner,Worker
+MEM0511,Marcin Jełowicki,Marcin,Jełowicki,57,M,Government,Lawyer,Legal
+MEM0335,Tomasz Jeziorański,Tomasz,Jeziorański,"NA",M,Government,Journalist,Press
+MEM0359,Jan Juda,Jan,Juda,70,M,Government,Academic Environmental Engineering,Academia
+MEM0375,Mieczysław Kaczmarczyk,Mieczysław,Kaczmarczyk,54,M,Government,Engineer,Worker
+MEM0301,Jan Kaczmarek,Jan,Kaczmarek,69,M,Government,Academic Engineering,Academia
+MEM0324,Zbigniew Kaczmarek,Zbigniew,Kaczmarek,"NA",M,Government,"NA",Other
+MEM0303,Józef Kaleta,Józef,Kaleta,63,M,Government,Academic Economics,Academia
+MEM0346,Wiesław Kalinowski,Wiesław,Kalinowski,36,M,Government,Economist,Economist
+MEM0283,Janusz Kaliński,Janusz,Kaliński,"NA",M,Government,"NA",Other
+MEM0549,Zygmunt Kałużyński,Zygmunt,Kałużyński,70,M,Government,Journalist,Press
+MEM0376,Andrzej Kapłanek,Andrzej,Kapłanek,48,M,Government,Engineer,Worker
+MEM0336,Władysław Kawecki,Władysław,Kawecki,70,M,Government,Academic Chemistry,Academia
+MEM0421,Bolesław Kierski,Bolesław,Kierski,"NA",M,Government,"NA",Other
+MEM0240,Czesław Kiszczak,Czesław,Kiszczak,63,M,Government,Military Officer,Other
+MEM0400,Jan Klamut,Jan,Klamut,52,M,Government,Academic Physicist,Academia
+MEM0550,Józef Kliś,Józef,Kliś,42,M,Government,Journalist,Press
+MEM0377,Zbigniew Klonowski,Zbigniew,Klonowski,56,M,Government,Miner,Worker
+MEM0401,Jan Kluczyński,Jan,Kluczyński,52,M,Government,Academic Economics,Academia
+MEM0325,Zbigniew Kochan,Zbigniew,Kochan,"NA",M,Government,"NA",Other
+MEM0378,Wacław Kociela,Wacław,Kociela,57,M,Government,Engineer,Worker
+MEM0302,Grzegorz Kołodko,Grzegorz,Kołodko,40,M,Government,Academic Economics,Academia
+MEM0304,Jan Kołodziejczak,Jan,Kołodziejczak,57,M,Government,"NA",Other
+MEM0326,Paweł Kołodziejczyk,Paweł,Kołodziejczyk,"NA",M,Government,"NA",Other
+MEM0351,Jerzy Kołodziejski,Jerzy,Kołodziejski,55,M,Government,Academic Architecture,Academia
+MEM0402,Stanisław Koperski,Stanisław,Koperski,"NA",M,Government,"NA",Other
+MEM0379,Ryszard Korzeniowski,Ryszard,Korzeniowski,"NA",M,Government,"NA",Other
+MEM0241,Jan Kostrzewski,Jan,Kostrzewski,73,M,Government,Academic Medicine,Academia
+MEM0551,Józef Kowalczyk,Józef,Kowalczyk,37,M,Government,Press Attache,Press
+MEM0242,Mikołaj Kozakiewicz,Mikołaj,Kozakiewicz,65,M,Government,Academic Sociology,Academia
+MEM0243,Bogdan Królewski,Bogdan,Królewski,44,M,Government,Politician,Civil Servant
+MEM0403,Czesław Królikowski,Czesław,Królikowski,63,M,Government,Academic Electrical Engineering,Academia
+MEM0327,Zdzisław Krużel,Zdzisław,Krużel,49,M,Government,Civil Servant,Civil Servant
+MEM0490,Jan Krzemiński,Jan,Krzemiński,31,M,Government,Party Official,Other
+MEM0267,Jacek Krzyżanowski,Jacek,Krzyżanowski,"NA",M,Government,"NA",Other
+MEM0479,Heironim Kubiak,Heironim,Kubiak,54,M,Government,Academic Sociology,Academia
+MEM0328,Czesław Kulczycki,Czesław,Kulczycki,"NA",M,Government,"NA",Other
+MEM0360,Wacław Kulczyński,Wacław,Kulczyński,53,M,Government,Civil Servant,Civil Servant
+MEM0284,Franciszek Kulikowski,Franciszek,Kulikowski,"NA",M,Government,"NA",Other
+MEM0244,Aleksander Kwaśniewski,Aleksander,Kwaśniewski,34,M,Government,Politician,Civil Servant
+MEM0361,Jerzy Kwiatkowski,Jerzy,Kwiatkowski,53,M,Government,Civil Servant,Civil Servant
+MEM0454,Anna Kwietniewska,Anna,Kwietniewska,49,F,Government,Medical Doctor,Medicine
+MEM0533,Tomasz Langer,Tomasz,Langer,49,M,Government,Academic Law,Academia
+MEM0455,Maciej Latalski,Maciej,Latalski,52,M,Government,Academic Medicine,Academia
+MEM0491,Włodzimierz Ławniczak,Włodzimierz,Ławniczak,29,M,Government,Journalist,Press
+MEM0553,Mieczysław Leśniak,Mieczysław,Leśniak,41,M,Government,Academic History,Academia
+MEM0534,Janusz Łętowski,Janusz,Łętowski,49,M,Government,Academic Law,Academia
+MEM0305,Wincenty Lewandowski,Wincenty,Lewandowski,51,M,Government,Journalist,Press
+MEM0337,Marian Litwinowicz,Marian,Litwinowicz,64,M,Government,Civil Servant,Civil Servant
+MEM0552,Jerzy Łotys,Jerzy,Łotys,"NA",M,Government,"NA",Other
+MEM0554,Włodzimierz Łoziński,Włodzimierz,Łoziński,56,M,Government,Journalist,Press
+MEM0362,Włodzimierz Lubański,Włodzimierz,Lubański,50,M,Government,Mechanic,Worker
+MEM0268,Maciej Lubczyński,Maciej,Lubczyński,49,M,Government,Academic Mechanical Engineering,Academia
+MEM0404,Aleksander Łuczak,Aleksander,Łuczak,45,M,Government,Academic History,Academia
+MEM0422,Bogdan Łukasiewicz,Bogdan,Łukasiewicz,39,M,Government,Farmer,Farmer
+MEM0555,Ryszard Łukasiewicz,Ryszard,Łukasiewicz,45,M,Government,Journalist,Press
+MEM0269,Stanisław Majewski,Stanisław,Majewski,49,M,Government,Civil Servant,Civil Servant
+MEM0405,Wit Majewski,Wit,Majewski,45,M,Government,Academic Political Science,Academia
+MEM0443,Janusz Maksymiuk,Janusz,Maksymiuk,42,M,Government,Farmer,Farmer
+MEM0492,Krzysztof Maksymiuk,Krzysztof,Maksymiuk,33,M,Government,Politician,Civil Servant
+MEM0494,Kazimierz Małecki,Kazimierz,Małecki,36,M,Government,Lawyer,Legal
+MEM0306,Maciej Manicki,Maciej,Manicki,34,M,Government,Worker Shipyards,Worker
+MEM0363,Michał Markowicz,Michał,Markowicz,61,M,Government,Politician,Civil Servant
+MEM0406,Jerzy Marlewski,Jerzy,Marlewski,44,M,Government,Teacher,Other
+MEM0308,Wacław Martyniuk,Wacław,Martyniuk,39,M,Government,Union Official,Other
+MEM0270,Walery Masewicz,Walery,Masewicz,62,M,Government,Academic Law,Academia
+MEM0493,Aneta Matczak,Aneta,Matczak,"NA",F,Government,High School Student,Other
+MEM0279,Maria Matey-Tyrowicz,Maria,Matey-Tyrowicz,57,F,Government,Adademic Law,Other
+MEM0245,Harald Matuszewski,Harald,Matuszewski,46,M,Government,Union Official,Other
+MEM0423,Lucjan Mieczkowski,Lucjan,Mieczkowski,57,M,Government,Architect,Other
+MEM0457,Alicja Milewska,Alicja,Milewska,"NA",F,Government,"NA",Other
+MEM0246,Leszek Miller,Leszek,Miller,42,M,Government,Politician,Civil Servant
+MEM0247,Alfred Miodowicz,Alfred,Miodowicz,59,M,Government,Politician,Civil Servant
+MEM0338,Wojciech Misiąg,Wojciech,Misiąg,37,M,Government,Academic Economics,Academia
+MEM0512,Bronisław Miszczyk,Bronisław,Miszczyk,58,M,Government,Lawyer,Legal
+MEM0444,Wiesław Młynarczyk,Wiesław,Młynarczyk,52,M,Government,Economist,Economist
+MEM0248,Kazimierz Morawski,Kazimierz,Morawski,66,M,Government,Academic Economics,Academia
+MEM0380,Rajmund Moric,Rajmund,Moric,44,M,Government,Miner,Worker
+MEM0522,Maria Moskal,Maria,Moskal,38,M,Government,Veterinarian,Medicine
+MEM0424,Tadeusz Mrzygłód,Tadeusz,Mrzygłód,42,M,Government,Civil Servant,Civil Servant
+MEM0523,Józef Musioł,Józef,Musioł,56,M,Government,Lawyer,Legal
+MEM0339,Kazimierz Mżyk,Kazimierz,Mżyk,"NA",M,Government,"NA",Other
+MEM0381,Andrzej Naczyński,Andrzej,Naczyński,50,M,Government,Engineer,Worker
+MEM0271,Lesław Nawacki,Lesław,Nawacki,40,M,Government,Civil Servant,Civil Servant
+MEM0340,Tadeusz Nestorowicz,Tadeusz,Nestorowicz,60,M,Government,Economist,Economist
+MEM0407,Roman Ney,Roman,Ney,57,M,Government,Academic Geology,Academia
+MEM0495,Piotr Niczyporuk,Piotr,Niczyporuk,17,M,Government,"NA",Other
+MEM0408,Jerzy Niemiec,Jerzy,Niemiec,56,M,Government,Academic Pedagogy,Academia
+MEM0425,Ryszard Niwiński,Ryszard,Niwiński,"NA",M,Government,"NA",Other
+MEM0456,Alina Nowacka-Waliszka,Alina,Nowacka-Waliszka,"NA",F,Government,Pharmacist,Medicine
+MEM0426,Roman Nowicki,Roman,Nowicki,52,M,Government,Civil Servant,Civil Servant
+MEM0458,Barbara Nowikow,Barbara,Nowikow,"NA",F,Government,"NA",Other
+MEM0496,Julian Nuckowski,Julian,Nuckowski,33,M,Government,Scoutmaster,Other
+MEM0272,Kazimierz Obsadny,Kazimierz,Obsadny,40,M,Government,Trade Unionist,Other
+MEM0309,Józef Okuniewski,Józef,Okuniewski,68,M,Government,Academic Economics,Academia
+MEM0310,Andrzej Olechowski,Andrzej,Olechowski,41,M,Government,Economist,Economist
+MEM0311,Kazimierz Olesiak,Kazimierz,Olesiak,51,M,Government,Civil Servant,Civil Servant
+MEM0427,Jerzy Olszowski,Jerzy,Olszowski,"NA",M,Government,Engineer,Worker
+MEM0280,Jerzy Oniszczuk,Jerzy,Oniszczuk,"NA",M,Government,"NA",Other
+MEM0556,Marek Opaśnik,Marek,Opaśnik,"NA",M,Government,"NA",Other
+MEM0459,Janusz Opolski,Janusz,Opolski,42,M,Government,Medical Doctor,Medicine
+MEM0524,Janina Orłowska,Janina,Orłowska,"NA",F,Government,Civil Servant,Civil Servant
+MEM0481,Kazimierz Orzechowski,Kazimierz,Orzechowski,65,M,Government,Academic History,Academia
+MEM0307,Jerzy Ozdowski,Jerzy,Ozdowski,63,M,Government,Academic Economics,Academia
+MEM0348,Jan Padlewski,Jan,Padlewski,50,M,Government,Civil Servant,Civil Servant
+MEM0513,Lech Paprzycki,Lech,Paprzycki,41,M,Government,Judge,Legal
+MEM0285,Antoni Paris,Antoni,Paris,"NA",M,Government,"NA",Other
+MEM0273,Janusz Pawłowski,Janusz,Pawłowski,56,M,Government,"NA",Other
+MEM0382,Marian Peterko,Marian,Peterko,"NA",M,Government,"NA",Other
+MEM0497,Ładysław Piasecki,Ładysław,Piasecki,27,M,Government,"NA",Other
+MEM0409,Józef Pielachowski,Józef,Pielachowski,48,M,Government,Academic Pedagogy,Academia
+MEM0498,Eugeniusz Pietrasik,Eugeniusz,Pietrasik,41,M,Government,Sports activist,Other
+MEM0557,Roman Pillardy,Roman,Pillardy,48,M,Government,Journalist,Press
+MEM0281,Włodzimierz Piotrowski,Włodzimierz,Piotrowski,57,M,Government,Academic Law,Academia
+MEM0428,Wiktor Piwkowski,Wiktor,Piwkowski,49,M,Government,Civil Servant,Civil Servant
+MEM0514,Stanisław Podemski,Stanisław,Podemski,59,M,Government,Journalist,Press
+MEM0347,Leon Podkaminer,Leon,Podkaminer,43,M,Government,Economist,Economist
+MEM0515,Emilia Pogonowska-Jucha,Emilia,Pogonowska-Jucha,49,F,Government,Judge,Legal
+MEM0499,Andrzej Polok,Andrzej,Polok,33,M,Government,Auto Worker,Worker
+MEM0558,Krzysztof Protakiewicz,Krzysztof,Protakiewicz,50,M,Government,"NA",Other
+MEM0249,Anna Przecławska,Anna,Przecławska,59,F,Government,Academic Pedagogy,Academia
+MEM0445,Henryk Przygodzki,Henryk,Przygodzki,53,M,Government,Farmer,Farmer
+MEM0383,Edward Puszczewicz,Edward,Puszczewicz,45,M,Government,Mining Engineer,Worker
+MEM0250,Tadeusz Rączkiewicz,Tadeusz,Rączkiewicz,34,M,Government,Trade union activist,Other
+MEM0429,Lech Radke,Lech,Radke,"NA",M,Government,"NA",Other
+MEM0312,Antoni Rajkiewicz,Antoni,Rajkiewicz,66,M,Government,Academic Social Policy,Academia
+MEM0384,Henryk Rembierz,Henryk,Rembierz,39,M,Government,Mining Engineer,Worker
+MEM0482,Janusz Reykowski,Janusz,Reykowski,59,M,Government,Academic Psychology,Academia
+MEM0364,Marek Roman,Marek,Roman,57,M,Government,Academic Environmental Engineering,Academia
+MEM0286,Wacław Rukat,Wacław,Rukat,51,M,Government,Civil Servant,Civil Servant
+MEM0385,Bogumił Rupala,Bogumił,Rupala,61,M,Government,Lawyer,Legal
+MEM0430,Stefan Rutkowski,Stefan,Rutkowski,"NA",M,Government,"NA",Other
+MEM0251,Jan Rychlewski,Jan,Rychlewski,54,M,Government,Academic Engineering,Academia
+MEM0410,Barbara Rychlik,Barbara,Rychlik,54,F,Government,Teacher,Other
+MEM0287,Włodzimierz Ryms,Włodzimierz,Ryms,43,M,Government,Judge,Legal
+MEM0329,Edward Rybarczyk,Edward,Rybarczyk,"NA",M,Government,"NA",Other
+MEM0542,Jerzy Sabiniewicz,Jerzy,Sabiniewicz,34,M,Government,"NA",Other
+MEM0313,Zdzisław Sadowski,Zdzisław,Sadowski,63,M,Government,Academic Economics,Academia
+MEM0274,Walerian Sanetra,Walerian,Sanetra,45,M,Government,Academic Law,Academia
+MEM0349,Janusz Sawicki,Janusz,Sawicki,39,M,Government,Civil Servant,Civil Servant
+MEM0525,Kazimierz Secomski,Kazimierz,Secomski,78,M,Government,Academic Economics,Academia
+MEM0460,Ryszard Seidel,Ryszard,Seidel,"NA",M,Government,"NA",Other
+MEM0314,Ireniusz Sekuła,Ireniusz,Sekuła,46,M,Government,Politician,Civil Servant
+MEM0411,Józef Senkała,Józef,Senkała,"NA",M,Government,"NA",Other
+MEM0275,Władysław Serafin,Władysław,Serafin,38,M,Government,Farmer,Farmer
+MEM0431,Mieczysław Serwiński,Mieczysław,Serwiński,70,M,Government,Academic Chemist,Academia
+MEM0446,Kazimierz Siarkewicz,Kazimierz,Siarkewicz,61,M,Government,Academic Law,Academia
+MEM0252,Władysław Siła-Nowicki,Władysław,Siła-Nowicki,75,M,Government,Lawyer,Legal
+MEM0365,Stanisław Sitnicki,Stanisław,Sitnicki,41,M,Government,Academic Economics,Academia
+MEM0330,Ryszard Skolasiński,Ryszard,Skolasiński,49,M,Government,"NA",Other
+MEM0449,Stanisław śliwiński,Stanisław,śliwiński,51,M,Government,Civil Servant,Civil Servant
+MEM0253,Zbigniew Sobotka,Zbigniew,Sobotka,46,M,Government,Worker Steel Mill,Worker
+MEM0526,Wojciech Sokolewicz,Wojciech,Sokolewicz,57,M,Government,Academic Law,Academia
+MEM0447,Grażyna Sołtyk,Grażyna,Sołtyk,47,F,Government,Farmer,Farmer
+MEM0516,Romuald Soroko,Romuald,Soroko,"NA",M,Government,Lawyer,Legal
+MEM0254,Romuald Sosnowski,Romuald,Sosnowski,59,M,Government,Economist,Economist
+MEM0448,Adam Stadnik,Adam,Stadnik,43,M,Government,Farmer,Farmer
+MEM0288,Wiesław Stankiewicz,Wiesław,Stankiewicz,"NA",M,Government,"NA",Other
+MEM0517,Hipolit Starzak,Hipolit,Starzak,49,M,Government,Police Officer,Other
+MEM0412,Robert Stelmaszczyk,Robert,Stelmaszczyk,23,M,Government,Student Electrical Engineering,Worker
+MEM0386,Władysław Stępien,Władysław,Stępien,42,M,Government,Miner,Worker
+MEM0535,Stanisław Stolz,Stanisław,Stolz,58,M,Government,Civil Servant,Civil Servant
+MEM0413,Jerzy Surman,Jerzy,Surman,55,M,Government,Teacher,Other
+MEM0292,Janina Suzdorf,Janina,Suzdorf,"NA",F,Government,Lawyer,Legal
+MEM0518,Jerzy świątkiewicz,Jerzy,świątkiewicz,63,M,Government,Lawyer,Legal
+MEM0317,Marcin święcicki,Marcin,święcicki,41,M,Government,Economist,Economist
+MEM0332,Stefan świerczek,Stefan,świerczek,"NA",M,Government,"NA",Other
+MEM0415,Janusz Syrokomski,Janusz,Syrokomski,51,M,Government,"NA",Other
+MEM0500,Franciszek Szalkiewicz,Franciszek,Szalkiewicz,"NA",M,Government,"NA",Other
+MEM0341,Marek Szambelan,Marek,Szambelan,"NA",M,Government,"NA",Other
+MEM0501,Roman Szarek,Roman,Szarek,49,M,Government,Politician,Civil Servant
+MEM0414,Czesław Szczegielniak,Czesław,Szczegielniak,"NA",M,Government,Academic Hydrology,Academia
+MEM0342,Krzysztof Szewczak,Krzysztof,Szewczak,47,M,Government,Politician,Civil Servant
+MEM0527,Mieczysław Szostek,Mieczysław,Szostek,55,M,Government,Medical Doctor,Medicine
+MEM0502,Bogumił Szreder,Bogumił,Szreder,32,M,Government,Farmer,Farmer
+MEM0528,Jan Szreniawski,Jan,Szreniawski,57,M,Government,Academic Law,Academia
+MEM0331,Jerzy Szreter,Jerzy,Szreter,43,M,Government,Economist,Economist
+MEM0315,Karol Szwarc,Karol,Szwarc,52,M,Government,Journalist,Press
+MEM0316,Władysław Szymański,Władysław,Szymański,47,M,Government,Academic Economist,Academia
+MEM0483,Karol Szyndzielorz,Karol,Szyndzielorz,52,M,Government,Journalist,Press
+MEM0559,Sławomir Tabkowski,Sławomir,Tabkowski,49,M,Government,Journalist,Press
+MEM0560,Krzysztof Teodor Toeplitz,Krzysztof Teodor,Toeplitz,55,M,Government,Journalist,Press
+MEM0461,Antoni Trylski,Antoni,Trylski,49,M,Government,Farmer,Farmer
+MEM0519,Janusz Trzciński,Janusz,Trzciński,46,M,Government,Academic Law,Academia
+MEM0343,Zdzisław Tuszyński,Zdzisław,Tuszyński,50,M,Government,Worker,Worker
+MEM0432,Wacław Tuszyński,Wacław,Tuszyński,56,M,Government,Engineer Ceramics,Worker
+MEM0433,Czesław Uhma,Czesław,Uhma,"NA",M,Government,"NA",Other
+MEM0561,Jerzy Urban,Jerzy,Urban,55,M,Government,Journalist,Press
+MEM0484,Jerzy Uziebło,Jerzy,Uziebło,46,M,Government,Civil Servant,Civil Servant
+MEM0520,Józef Waksmundzki,Józef,Waksmundzki,45,M,Government,Lawyer,Legal
+MEM0462,Jan Waleczek,Jan,Waleczek,56,M,Government,Journalist,Press
+MEM0276,Anatol Wasiljew,Anatol,Wasiljew,"NA",M,Government,"NA",Other
+MEM0529,Alfred Wawrzyniak,Alfred,Wawrzyniak,55,M,Government,Journalist,Press
+MEM0463,Leszek Wdowiak,Leszek,Wdowiak,40,M,Government,Medical Doctor,Medicine
+MEM0366,Feliks Węgrzyn,Feliks,Węgrzyn,"NA",M,Government,"NA",Other
+MEM0485,Jerzy Wiatr,Jerzy,Wiatr,57,M,Government,Academic Sociology,Academia
+MEM0503,Sławomir Wiatr,Sławomir,Wiatr,36,M,Government,Academic Political Science,Academia
+MEM0344,Andrzej Wielańczyk,Andrzej,Wielańczyk,"NA",M,Government,"NA",Other
+MEM0536,Miłosz Wilkanowicz,Miłosz,Wilkanowicz,"NA",M,Government,Civil Servant,Civil Servant
+MEM0318,Mieczysław Wilczek,Mieczysław,Wilczek,57,M,Government,Engineer Chemical,Worker
+MEM0486,Piotr Winczorek,Piotr,Winczorek,45,M,Government,Academic Law,Academia
+MEM0255,Stanisław Wiśniewski,Stanisław,Wiśniewski,54,M,Government,Worker Lithography,Worker
+MEM0319,Henryk Witkowski,Henryk,Witkowski,"NA",M,Government,Worker Mechanic,Worker
+MEM0464,Alicja Włodarz,Alicja,Włodarz,"NA",F,Government,Medical Doctor,Medicine
+MEM0416,Marian Wojciechowski,Marian,Wojciechowski,61,M,Government,Academic History,Academia
+MEM0465,Zdzisław Wójcik,Zdzisław,Wójcik,57,M,Government,Medical Doctor,Medicine
+MEM0562,Józef Wójcik,Józef,Wójcik,59,M,Government,Journalist,Press
+MEM0468,Andrzej Wojtczak,Andrzej,Wojtczak,55,M,Government,Medical Doctor,Medicine
+MEM0350,Grzegorz Wójtowicz,Grzegorz,Wójtowicz,41,M,Government,Economist,Economist
+MEM0277,Jan Wołek,Jan,Wołek,"NA",M,Government,Worker Farmer,Worker
+MEM0434,Barbara Wolnicka-Szałek,Barbara,Wolnicka-Szałek,55,F,Government,Civil Servant,Civil Servant
+MEM0289,Stanisław Wyganowski,Stanisław,Wyganowski,"NA",M,Government,Worker Farmer,Worker
+MEM0333,Sławomir Wymysłowski,Sławomir,Wymysłowski,31,M,Government,Academic Management,Academia
+MEM0435,Marian Wysocki,Marian,Wysocki,51,M,Government,Economist,Economist
+MEM0256,Jan Zaciura,Jan,Zaciura,55,M,Government,Teacher,Other
+MEM0537,Stanisław Zajfert,Stanisław,Zajfert,59,M,Government,Civil Servant,Civil Servant
+MEM0538,Barbara Zawadzka,Barbara,Zawadzka,60,F,Government,Academic Law,Academia
+MEM0487,Sylwester Zawadzki,Sylwester,Zawadzki,67,M,Government,Academic Law,Academia
+MEM0387,Ryszard Zbrzyźny,Ryszard,Zbrzyźny,"NA",M,Government,Worker Miner,Worker
+MEM0563,Zbigniew Zemler,Zbigniew,Zemler,"NA",M,Government,"NA",Other
+MEM0257,Edward Zgłobicki,Edward,Zgłobicki,55,M,Government,Teacher,Other
+MEM0388,Kazimierz Ziaja,Kazimierz,Ziaja,58,M,Government,Worker Mining Engineer,Worker
+MEM0466,Janina Zielińska,Janina,Zielińska,"NA",F,Government,Farmer,Farmer
+MEM0389,Jerzy Zimoch,Jerzy,Zimoch,"NA",M,Government,Worker Miner,Worker
+MEM0467,Jacek Żochowski,Jacek,Żochowski,47,M,Government,Medical Doctor,Medicine
+MEM0345,Wiesław Żółtkowski,Wiesław,Żółtkowski,"NA",M,Government,Economist,Economist
+MEM0282,Andrzej Zowczak,Andrzej,Zowczak,"NA",M,Government,"NA",Other
+MEM0367,Waldemar Żukowski,Waldemar,Żukowski,53,M,Government,Academic Biology,Academia
+MEM0278,Witold Nawrocki,Witold,Nawrocki,39,M,Observer,International Labor Organization,Other

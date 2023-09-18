@@ -6,10 +6,6 @@
 #' @import ggiraph
 #' @export
 run_network_app <- function() {
-  library(PolandRoundTable)
-  library(tidyverse)
-  library(shinyWidgets)
-  library(ggiraph)
 
   member_meta_info <- member_meta_info %>%
     mutate(

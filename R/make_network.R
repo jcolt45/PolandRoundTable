@@ -2,6 +2,7 @@
 #' This function should be updated to take a dataset piped in, and to calculate
 #' edgeweight in the newer way.
 #'
+#' @param affils_by_date Data frame of affiliations with start and end dates
 #' @param start A start of date range, in YYYY-MM-DD string format.
 #' @param end An end of date range, in YYYY-MM-DD string format.
 #' @return A tibble with pairs of organizations and their number of shared members in that range.
@@ -16,7 +17,7 @@ get_edgelist_orgs <- function(start, end = NULL) {
   start <- lubridate::ymd(start)
   end <- lubridate::ymd(end)
 
-  affil_mat <- affiliation_dates %>%
+  affil_mat <- affils_by_date %>%
     filter(Start.Date <= end &
              End.Date >= start) %>%
     select(Member.ID, Org.ID) %>%

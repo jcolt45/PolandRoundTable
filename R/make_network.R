@@ -41,17 +41,17 @@ get_edgelist_orgs <- function(affils_by_date, start, end = NULL) {
 
    edgelist <- affil_mat %>%
      as_tibble() %>%
-     mutate(weight = 1) %>%
-     filter(
-       weight > 0
-     ) %>%
+     # filter(
+     #   weight > 0
+     # ) %>%
      mutate(
        from = orgs
      ) %>%
      tidyr::pivot_longer(-from,
                   names_to = "to",
                   values_to = "num_members") %>%
-     filter(num_members > 0)
+     filter(num_members > 0) %>%
+     mutate(weight = 1)
 
     return(edgelist)
 

@@ -145,11 +145,19 @@ run_network_app_flipped <- function() {
 
                    # How to compute edge weights
                    selectInput('edge_type',
-                               'One edge per organization, or bonus points for umbrella groups?',
-                               choices = c("Subgroup + Umbrella group" = "group_labs",
-                                           "Organization ID" = "org_id"
+                               'Weight options:',
+                               choices = c("Total Connections" = "tot_con",
+                                           "Ratio" = "ratio",
+                                           "Mix" = "mix"
                                )
                    ),
+
+                   # Make events "linger" for more than a month
+                   sliderInput('event_length',
+                               'How many months after are Events be considered to last?',
+                               value = 1,
+                               min = 1, max = 120,
+                               sep = ""),
 
                    # Treat all connections as persistent
                    selectInput('lifelong',

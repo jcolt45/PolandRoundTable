@@ -8,7 +8,7 @@
 #' @return A tibble with pairs of organizations and their number of shared members in that range.
 #' @import dplyr readr
 #' @export
-get_edgelist_orgs <- function(start, end = NULL) {
+get_edgelist_orgs <- function(affils_by_date, start, end = NULL) {
 
   if (is.null(end)) {
     end <- start

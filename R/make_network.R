@@ -41,6 +41,7 @@ get_edgelist_orgs <- function(start, end = NULL) {
 
    edgelist <- affil_mat %>%
      as_tibble() %>%
+     mutate(weight = 1) %>%
      filter(
        weight > 0
      ) %>%
@@ -50,8 +51,7 @@ get_edgelist_orgs <- function(start, end = NULL) {
      tidyr::pivot_longer(-from,
                   names_to = "to",
                   values_to = "num_members") %>%
-     filter(num_members > 0) %>%
-     mutate(weight = 1)
+     filter(num_members > 0)
 
     return(edgelist)
 

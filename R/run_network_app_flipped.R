@@ -69,6 +69,7 @@ run_network_app_flipped <- function() {
     ) %>%
     get_opts_list(Member.ID, labels = "Name")
 
+
   shinyApp(
     ui = tagList(
       navbarPage(
@@ -219,14 +220,13 @@ run_network_app_flipped <- function() {
                                 'Different colors for groups of:',
                                 choices = c(
                                   "None" = "None",
-                                  "Umbrella" = "Umbrella",
                                   "Subgroup" = "Subgroup",
                                   "Category" = "Category")
                    ),
 
                    pickerInput('node_shape_specific',
                                'Highlight individual organizations:',
-                               choices = node_name_choices,
+                               choices = org_umbrella_name_choices,
                                options = list(`actions-box` = TRUE),
                                multiple = TRUE
                    ),

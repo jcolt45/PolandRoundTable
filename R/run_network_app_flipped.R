@@ -522,7 +522,7 @@ run_network_app_flipped <- function() {
       nodes_list <- reactive({
         dat_limited() %>%
           distinct(Org.ID) %>%
-          arrange(Name)
+          arrange(Org.ID)
       })
 #FL
       # node_name_choices <- reactive({

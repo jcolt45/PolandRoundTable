@@ -4,7 +4,6 @@
 #'
 #' @param start A start of date range, in YYYY-MM-DD string format.
 #' @param end An end of date range, in YYYY-MM-DD string format.
-#'
 #' @return A tibble with pairs of organizations and their number of shared members in that range.
 #' @import dplyr readr
 #' @export

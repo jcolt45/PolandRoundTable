@@ -63,7 +63,7 @@ run_network_app_flipped <- function() {
     dplyr::left_join(member_meta_info) %>%
     dplyr::left_join(organization_meta_info)
 
-  edge_name_choices <- member_meta_info %>%
+  node_name_choices <- member_meta_info %>%
     mutate(
       Name = paste0(Last.Name, ", ", First.Middle.Name)
     ) %>%
@@ -411,7 +411,7 @@ run_network_app_flipped <- function() {
 
                    pickerInput('person_lines',
                                'Choose individuals:',
-                               choices = node_name_choices,
+                               choices = mem_name_choices,
                                options = list(`actions-box` = TRUE),
                                multiple = TRUE
                    ),
@@ -522,7 +522,7 @@ run_network_app_flipped <- function() {
       #            nodes_list()$Name)
       # })
 
-      node_name_choices <- reactive({
+      org_umbrella_name_choices <- reactive({
         setNames(nodes_list()$Org.ID,
                  nodes_list()$Organization)
       })
@@ -561,6 +561,24 @@ run_network_app_flipped <- function() {
           pull(Member.ID) %>%
           intersect(nodes_list()$Member.ID)
       })
+#fl
+      # node_highlighted <- reactive({
+      #   c(input$node_shape_specific,
+      #     org_members(),
+      #     input$my_network_selected)
+      # })
+      #
+      # # now store your current selection in the reactive value
+      # observeEvent(node_highlighted(), {
+      #   current_selection(node_highlighted())
+      # })
+      #
+      # #now if you are updating your menu
+      # observeEvent(node_name_choices(), {
+      #   updatePickerInput(session, inputId = "node_shape_specific",
+      #                     choices = node_name_choices(),
+      #                     selected = current_selection())
+      # })
 
       node_highlighted <- reactive({
         c(input$node_shape_specific,
@@ -574,9 +592,9 @@ run_network_app_flipped <- function() {
       })
 
       #now if you are updating your menu
-      observeEvent(node_name_choices(), {
+      observeEvent(org_umbrella_name_choices(), {
         updatePickerInput(session, inputId = "node_shape_specific",
-                          choices = node_name_choices(),
+                          choices = org_umbrella_name_choices(),
                           selected = current_selection())
       })
 

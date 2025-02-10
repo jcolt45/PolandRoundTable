@@ -63,7 +63,7 @@ run_network_app_flipped <- function() {
     dplyr::left_join(member_meta_info) %>%
     dplyr::left_join(organization_meta_info)
 
-  edge_name_choices <- member_meta_info %>%
+  mem_name_choices <- member_meta_info %>%
     mutate(
       Name = paste0(Last.Name, ", ", First.Middle.Name)
     ) %>%
@@ -411,7 +411,7 @@ run_network_app_flipped <- function() {
 
                    pickerInput('person_lines',
                                'Choose individuals:',
-                               choices = mem_name_choices,
+                               choices = edge_name_choices,
                                options = list(`actions-box` = TRUE),
                                multiple = TRUE
                    ),

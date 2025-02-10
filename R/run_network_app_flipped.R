@@ -563,12 +563,12 @@ run_network_app_flipped <- function() {
       # in server.R create reactiveVal
       current_selection <- reactiveVal(NULL)
 
-      org_members <- reactive({
-        dat_limited() %>%
-          filter(Umbrella.Name %in% input$node_shape_org) %>%
-          pull(Member.ID) %>%
-          intersect(nodes_list()$Member.ID)
-      })
+      # org_members <- reactive({
+      #   dat_limited() %>%
+      #     filter(Umbrella.Name %in% input$node_shape_org) %>%
+      #     pull(Member.ID) %>%
+      #     intersect(nodes_list()$Member.ID)
+      # })
 #fl
       # node_highlighted <- reactive({
       #   c(input$node_shape_specific,
@@ -590,7 +590,7 @@ run_network_app_flipped <- function() {
 
       node_highlighted <- reactive({
         c(input$node_shape_specific,
-          org_members(),
+          #org_members(),
           input$my_network_selected)
       })
 

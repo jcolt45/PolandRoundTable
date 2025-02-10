@@ -690,7 +690,7 @@ run_network_app_flipped <- function() {
             mem <- input$node_color_specific[i]
             here <- my_node_layout()$name == mem
             cols[here] <- these_cols[i]
-            vals[here] <- my_node_layout()$Full.Name[here]
+            vals[here] <- my_node_layout()$Organization.Name[here]
           }
         } else {
 

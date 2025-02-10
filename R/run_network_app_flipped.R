@@ -811,13 +811,13 @@ run_network_app_flipped <- function() {
                        alpha = input$edge_transparency,
                        color = edge_colors(),
                        linewidth = edge_weights()) +
-          geom_segment_interactive(data = my_edgelist_locs(),
-                                   aes(x = x_from, y = y_from,
-                                       xend = x_to, yend = y_to,
-                                       tooltip = edge_orgs),
-                                   alpha = 0,
-                                   color = "black",
-                                   linewidth = edge_weights()*10) +
+          # geom_segment_interactive(data = my_edgelist_locs(),
+          #                          aes(x = x_from, y = y_from,
+          #                              xend = x_to, yend = y_to,
+          #                              tooltip = edge_orgs),
+          #                          alpha = 0,
+          #                          color = "black",
+          #                          linewidth = edge_weights()*10) +
           geom_point_interactive(aes(x = x, y = y,
                                      tooltip = Full.Name,
                                      color = names(node_colors()),

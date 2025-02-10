@@ -1,5 +1,5 @@
 #' Make an edgelist of organizations with member overlap in given date range
-#' This function should be updated to take a datset piped in, and to calcluate
+#' This function should be updated to take a dataset piped in, and to calculate
 #' edgeweight in the newer way.
 #'
 #' @param start A start of date range, in YYYY-MM-DD string format.

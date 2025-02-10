@@ -59,11 +59,11 @@ run_network_app_flipped <- function() {
   edge_labels <- "Full.Name"
 
   full_data <- affiliation_dates %>%
-    select(Member.ID, Org.ID, Start.Date, End.Date) %>%
+    select(Org.ID, Member.ID, Start.Date, End.Date) %>%
     dplyr::left_join(member_meta_info) %>%
     dplyr::left_join(organization_meta_info)
 
-  node_name_choices <- member_meta_info %>%
+  edge_name_choices <- member_meta_info %>%
     mutate(
       Name = paste0(Last.Name, ", ", First.Middle.Name)
     ) %>%
@@ -80,13 +80,43 @@ run_network_app_flipped <- function() {
                    ## Go button
                    actionButton("setup", "Done with Setup", class = "btn-primary"),
 
-                   h3("Choose which individuals will be shown in the network."),
+                   h3("Choose which Organizations to include in the network."),
+
+                   h4("These choices are combined; for example, if you select
+                        a category and a specific org, that specific org will be
+                        included whether or not it is in the category."),
+
+                   pickerInput('node_include_cat',
+                               'Categories of organization to include:',
+                               choices = org_cat_choices,
+                               options = list(`actions-box` = TRUE),
+                               multiple = TRUE,
+                               selected = org_cat_choices
+                   ),
+
+                   pickerInput('node_include_type',
+                               'Types of organizations to include:',
+                               choices = org_type_choices,
+                               options = list(`actions-box` = TRUE,
+                                              liveSearch = TRUE),
+                               multiple = TRUE
+                   ),
+
+                   pickerInput('node_include_specific',
+                               'Specific organization to include:',
+                               choices = org_name_choices,
+                               options = list(`actions-box` = TRUE,
+                                              liveSearch = TRUE),
+                               multiple = TRUE
+                   ),
+
+                   h3("Choose which individuals will be used to create edge connections."),
 
                    h4("These choices are combined; for example, if you select
                         a profession and a specific person, that specific person will be
                         included whether or not they have that profession."),
 
-                   pickerInput('node_include_rt',
+                   pickerInput('edge_include_rt',
                                'Round Table affiliations to include:',
                                choices = mem_rt_choices,
                                options = list(`actions-box` = TRUE),
@@ -95,46 +125,16 @@ run_network_app_flipped <- function() {
                    ),
 
 
-                   pickerInput('node_include_job',
+                   pickerInput('edge_include_job',
                                'Professions to include:',
                                choices = mem_job_choices,
                                options = list(`actions-box` = TRUE),
                                multiple = TRUE
                    ),
 
-                   pickerInput('node_include_specific',
-                               'Specific individuals to include:',
-                               choices = node_name_choices,
-                               options = list(`actions-box` = TRUE,
-                                              liveSearch = TRUE),
-                               multiple = TRUE
-                   ),
-
-                   h3("Choose which organizations will be used to create edge connections."),
-
-                   h4("These choices are combined; for example, if you select
-                        a category and a specific org, that specific org will be
-                        included whether or not it is in the category."),
-
-                   pickerInput('edge_include_cat',
-                               'Categories of organization to include:',
-                               choices = org_cat_choices,
-                               options = list(`actions-box` = TRUE),
-                               multiple = TRUE,
-                               selected = org_cat_choices
-                   ),
-
-                   pickerInput('edge_include_type',
-                               'Types of organizations to include:',
-                               choices = org_type_choices,
-                               options = list(`actions-box` = TRUE,
-                                              liveSearch = TRUE),
-                               multiple = TRUE
-                   ),
-
                    pickerInput('edge_include_specific',
-                               'Specific organization to include:',
-                               choices = org_name_choices,
+                               'Specific individuals to include:',
+                               choices = edge_name_choices,
                                options = list(`actions-box` = TRUE,
                                               liveSearch = TRUE),
                                multiple = TRUE
@@ -149,13 +149,6 @@ run_network_app_flipped <- function() {
                                            "Organization ID" = "org_id"
                                )
                    ),
-
-                   # Make events "linger" for more than a month
-                   sliderInput('event_length',
-                               'How many months after are Events be considered to last?',
-                               value = 1,
-                               min = 1, max = 120,
-                               sep = ""),
 
                    # Treat all connections as persistent
                    selectInput('lifelong',
@@ -226,24 +219,24 @@ run_network_app_flipped <- function() {
                                 'Different colors for groups of:',
                                 choices = c(
                                   "None" = "None",
-                                  "Round Table Affiliation" = "RT.Affiliation",
-                                  "Profession" = "Profession.Sector",
-                                  "Gender" = "Gender")
+                                  "Umbrella" = "Umbrella",
+                                  "Subgroup" = "Subgroup",
+                                  "Category" = "Category")
                    ),
 
                    pickerInput('node_shape_specific',
-                               'Highlight individuals:',
+                               'Highlight individual organizations:',
                                choices = node_name_choices,
                                options = list(`actions-box` = TRUE),
                                multiple = TRUE
                    ),
 
-                   pickerInput('node_shape_org',
-                               'Highlight members of an organization:',
-                               choices = org_umbrella_name_choices,
-                               options = list(`actions-box` = TRUE),
-                               multiple = TRUE
-                   ),
+                   # pickerInput('node_shape_org',
+                   #             'Highlight members of an organization:',
+                   #             choices = org_umbrella_name_choices,
+                   #             options = list(`actions-box` = TRUE),
+                   #             multiple = TRUE
+                   # ),
 
                    # Shape groups
                    # radioButtons('node_shape_by_group',
@@ -471,22 +464,22 @@ run_network_app_flipped <- function() {
 
       #### Setup Options ####
 
-      ## edge_include_cat -> Category
-      ## edge_include_type -> Type
-      ## edge_include_specific -> Name
-      ## node_include_rt -> RT.Affiliation
-      ## node_include_job -> Profession.Sector
-      ## node_include_specific -> Member.ID
+      ## node_include_cat -> Category
+      ## node_include_type -> Type
+      ## node_include_specific -> Name
+      ## edge_include_rt -> RT.Affiliation
+      ## edge_include_job -> Profession.Sector
+      ## edge_include_specific -> Member.ID
 
       dat <- eventReactive(input$setup, {
 
         full_data %>%
-          filter(Category %in% input$edge_include_cat |
-                   Type %in% input$edge_include_type |
-                   Organization.Name %in% input$edge_include_specific) %>%
-          filter(RT.Affiliation %in% input$node_include_rt |
-                   Profession.Sector %in% input$node_include_job |
-                   Member.ID %in% input$node_include_specific) %>%
+          filter(Category %in% input$node_include_cat |
+                   Type %in% input$node_include_type |
+                   Organization.Name %in% input$node_include_specific) %>%
+          filter(RT.Affiliation %in% input$edge_include_rt |
+                   Profession.Sector %in% input$edge_include_job |
+                   Member.ID %in% input$edge_include_specific) %>%
           adj_affil_list(input$lifelong,
                          input$event_length)
       })
@@ -508,19 +501,30 @@ run_network_app_flipped <- function() {
           filter(Start.Date <= last_date(),
                  End.Date >= first_date())
       })
+#FL
+      # nodes_list <- reactive({
+      #   dat_limited() %>%
+      #     distinct(Member.ID, Full.Name, Last.Name, First.Middle.Name) %>%
+      #     mutate(
+      #       Name = paste0(Last.Name, ", ", First.Middle.Name)
+      #     ) %>%
+      #     arrange(Name)
+      # })
 
       nodes_list <- reactive({
         dat_limited() %>%
-          distinct(Member.ID, Full.Name, Last.Name, First.Middle.Name) %>%
-          mutate(
-            Name = paste0(Last.Name, ", ", First.Middle.Name)
-          ) %>%
+          distinct(Org.ID) %>%
           arrange(Name)
       })
+#FL
+      # node_name_choices <- reactive({
+      #   setNames(nodes_list()$Member.ID,
+      #            nodes_list()$Name)
+      # })
 
       node_name_choices <- reactive({
-        setNames(nodes_list()$Member.ID,
-                 nodes_list()$Name)
+        setNames(nodes_list()$Org.ID,
+                 nodes_list()$Organization)
       })
 
       # selected_highlight <- NULL
@@ -584,25 +588,29 @@ run_network_app_flipped <- function() {
         #### Make Graph ####
         ## reactive: first_date
         ## reactive: last_date
-        ## input: edge_type = group_labs or org_id
+        ## input: none
 
-        if (input$edge_type == "group_labs") {
+        # if (input$edge_type == "group_labs") {
+        #
+        #   el <- dat_limited() %>%
+        #     arrange(Umbrella, Subgroup) %>%
+        #     get_edgelist_members(on_cols = c("Umbrella", "Subgroup"),
+        #                          start = first_date(),
+        #                          end = last_date())
+        #
+        # } else if (input$edge_type == "org_id") {
+        #
+        #   el <- dat_limited() %>%
+        #     arrange(Org.ID) %>%
+        #     get_edgelist_members(on_cols = list("Org.ID"),
+        #                          start = first_date(),
+        #                          end = last_date())
+        #
+        # }
 
-          el <- dat_limited() %>%
-            arrange(Umbrella, Subgroup) %>%
-            get_edgelist_members(on_cols = c("Umbrella", "Subgroup"),
-                                 start = first_date(),
-                                 end = last_date())
-
-        } else if (input$edge_type == "org_id") {
-
-          el <- dat_limited() %>%
-            arrange(Org.ID) %>%
-            get_edgelist_members(on_cols = list("Org.ID"),
-                                 start = first_date(),
-                                 end = last_date())
-
-        }
+        el <- dat_limited() %>%
+          get_edgelist_orgs(start = first_date(),
+                               end = last_date())
 
         el %>%
           mutate(
@@ -624,7 +632,7 @@ run_network_app_flipped <- function() {
                       weight_col = "weight",
                       prev_layout = prev_layout,
                       algorithm = input$network_layout) %>%
-          left_join(member_meta_info, by = c("name" = "Member.ID")) %>%
+          left_join(organization_meta_info, by = c("name" = "Org.ID")) %>%
           mutate(
             None = "1",  # so that if "None" is selected, things don't change
           )
@@ -993,3 +1001,4 @@ run_network_app_flipped <- function() {
   ) #shinyapp
 
 } #function
+

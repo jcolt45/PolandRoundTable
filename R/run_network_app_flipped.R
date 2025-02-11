@@ -229,8 +229,8 @@ run_network_app_flipped <- function() {
                                 choices = c(
                                   "None" = "None",
                                   "Type" = "Type",
-                                  "Umbrella" = "Umbrella",
-                                  "Subgroup" = "Subgroup",
+                                  #"Umbrella" = "Umbrella",
+                                  #"Subgroup" = "Subgroup",
                                   #"Ubrella+Sub" = "USUB",
                                   "Category" = "Category")
                    ),

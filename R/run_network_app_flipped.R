@@ -228,7 +228,10 @@ run_network_app_flipped <- function() {
                                 'Different colors for groups of:',
                                 choices = c(
                                   "None" = "None",
+                                  "Type" = "Type",
+                                  "Umbrella" = "Umbrella",
                                   "Subgroup" = "Subgroup",
+                                  #"Ubrella+Sub" = "USUB",
                                   "Category" = "Category")
                    ),
 
@@ -768,11 +771,11 @@ run_network_app_flipped <- function() {
 
         colors <- rep("black", nrow(my_edgelist_locs()))
 
-        if (input$edge_color_cross == "Yes") {
-
-          colors[(my_edgelist_locs()$`RT.Affiliation_from` != my_edgelist_locs()$`RT.Affiliation_to`)] = "purple"
-
-        }
+        # if (input$edge_color_cross == "Yes") {
+        #
+        #   colors[(my_edgelist_locs()$`RT.Affiliation_from` != my_edgelist_locs()$`RT.Affiliation_to`)] = "purple"
+        #
+        # }
 
         colors
 
@@ -818,14 +821,14 @@ run_network_app_flipped <- function() {
           #                          alpha = 0,
           #                          color = "black",
           #                          linewidth = edge_weights()*10) +
-          # geom_point_interactive(aes(x = x, y = y,
-          #                            tooltip = Full.Name,
-          #                            color = names(node_colors()),
-          #                            data_id = name),
-          #                        #color = node_colors(),
-          #                        #shape = node_shapes(),
-          #                        size = input$node_size/10
-          # ) +
+          geom_point_interactive(aes(x = x, y = y,
+                                     tooltip = Full.Name,
+                                     color = names(node_colors()),
+                                     data_id = name),
+                                 #color = node_colors(),
+                                 #shape = node_shapes(),
+                                 size = input$node_size/10
+          ) +
           ggstar::geom_star(data = my_node_layout() %>%
                               filter(name %in% node_highlighted()),
                             aes(x = x, y = y),

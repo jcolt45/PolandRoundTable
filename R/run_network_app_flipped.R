@@ -822,7 +822,7 @@ run_network_app_flipped <- function() {
           #                          color = "black",
           #                          linewidth = edge_weights()*10) +
           geom_point_interactive(aes(x = x, y = y,
-                                     tooltip = Full.Name,
+                                     tooltip = Umbrella.Name,
                                      color = names(node_colors()),
                                      data_id = name),
                                  #color = node_colors(),

@@ -8,7 +8,10 @@
 #' @return A tibble with pairs of organizations and their number of shared members in that range.
 #' @import dplyr readr
 #' @export
-get_edgelist_orgs <- function(affils_by_date, start, end = NULL) {
+get_edgelist_orgs <- function(affils_by_date,
+                              start,
+                              end = NULL,
+                              min_cons = 1) {
 
   if (is.null(end)) {
     end <- start
@@ -50,7 +53,7 @@ get_edgelist_orgs <- function(affils_by_date, start, end = NULL) {
      tidyr::pivot_longer(-from,
                   names_to = "to",
                   values_to = "num_members") %>%
-     filter(num_members > 0) %>%
+     filter(num_members >= min_cons) %>%
      mutate(weight = 1)
 
     return(edgelist)

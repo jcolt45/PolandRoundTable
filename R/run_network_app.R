@@ -877,26 +877,28 @@ run_network_app <- function() {
       # })
       #
 
-      metric_df <- reactive({
-
+      all_metrics_df <- reactive({
         if (input$edge_type == "group_labs") {
 
           dat <- get_all_metrics(affiliation_dates,
-                                 on_cols = c("Umbrella", "Subgroup")) %>%
-            filter(Member.ID %in% input$person_lines,
-                   Start.Date <= last_date_2(),
-                   End.Date >= first_date_2()) %>%
-            left_join(member_meta_info)
-
-        } else if (input$edge_type == "org_id") {
-
+                                 on_cols = c("Umbrella", "Subgroup"))
+        }  else if (input$edge_type == "org_id") {
           dat <- get_all_metrics(affiliation_dates,
-                                 on_cols = list("Org.ID")) %>%
+                                 on_cols = list("Org.ID"))
+        }
+        dat
+      }) %>%
+        bindEvent(input$setup)
+
+
+      metric_df <- reactive({
+
+        dat <- all_metrics_df %>%
           filter(Member.ID %in% input$person_lines,
                  Start.Date <= last_date_2(),
                  End.Date >= first_date_2()) %>%
           left_join(member_meta_info)
-        }
+
 
         dat$Selected.Metric = dat[[input$metric]]
 

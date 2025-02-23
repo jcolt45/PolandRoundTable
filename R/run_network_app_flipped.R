@@ -940,9 +940,24 @@ run_network_app_flipped <- function() {
       # })
       #
 
+      get_edgelist_orgs(input$weight_by,
+                        start = first_date(),
+                        end = last_date(),
+                        min_cons = input$min_edges)
+
+      all_metrics_df <- reactive({
+
+        dat <- get_all_metrics_orgs(affiliation_dates,
+                                    input$weight_by,
+                                    min_cons = input$min_edges)
+
+        dat
+      }) %>%
+        bindEvent(input$setup)
+
       metric_df <- reactive({
 
-        dat <- all_metrics_by_month %>%
+        dat <- all_metrics_df() %>%
           filter(Org.ID %in% input$org_lines,
                  Start.Date <= last_date_2(),
                  End.Date >= first_date_2()) #%>%

@@ -893,7 +893,7 @@ run_network_app <- function() {
 
       metric_df <- reactive({
 
-        dat <- all_metrics_df %>%
+        dat <- all_metrics_df() %>%
           filter(Member.ID %in% input$person_lines,
                  Start.Date <= last_date_2(),
                  End.Date >= first_date_2()) %>%

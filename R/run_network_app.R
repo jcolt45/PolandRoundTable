@@ -882,9 +882,7 @@ run_network_app <- function() {
         if (input$edge_type == "group_labs") {
 
           dat <- get_all_metrics(affiliation_dates,
-                                 on_cols = c("Umbrella", "Subgroup"),
-                                 start = first_date(),
-                                 end = last_date()) %>%
+                                 on_cols = c("Umbrella", "Subgroup")) %>%
             filter(Member.ID %in% input$person_lines,
                    Start.Date <= last_date_2(),
                    End.Date >= first_date_2()) %>%
@@ -893,9 +891,7 @@ run_network_app <- function() {
         } else if (input$edge_type == "org_id") {
 
           dat <- get_all_metrics(affiliation_dates,
-                                 on_cols = list("Org.ID"),
-                                 start = first_date(),
-                                 end = last_date()) %>%
+                                 on_cols = list("Org.ID")) %>%
           filter(Member.ID %in% input$person_lines,
                  Start.Date <= last_date_2(),
                  End.Date >= first_date_2()) %>%

@@ -432,11 +432,19 @@ run_network_app_flipped <- function() {
                                min = 1945, max = 1989,
                                sep = ""),
 
-                   h3("Choose which individuals to include"),
+                   # h3("Choose which individuals to include"),
+                   #
+                   # pickerInput('person_lines',
+                   #             'Choose individuals:',
+                   #             choices = edge_name_choices,
+                   #             options = list(`actions-box` = TRUE),
+                   #             multiple = TRUE
+                   # ),
+                   h3("Choose which organizations to include"),
 
-                   pickerInput('person_lines',
-                               'Choose individuals:',
-                               choices = edge_name_choices,
+                   pickerInput('org_lines',
+                               'Choose orgs:',
+                               choices = org_choices,
                                options = list(`actions-box` = TRUE),
                                multiple = TRUE
                    ),
@@ -935,10 +943,10 @@ run_network_app_flipped <- function() {
       metric_df <- reactive({
 
         dat <- all_metrics_by_month %>%
-          filter(Member.ID %in% input$person_lines,
+          filter(Org.ID %in% input$org_lines,
                  Start.Date <= last_date_2(),
-                 End.Date >= first_date_2()) %>%
-          left_join(member_meta_info)
+                 End.Date >= first_date_2()) #%>%
+          #left_join(member_meta_info)
 
         dat$Selected.Metric = dat[[input$metric]]
 

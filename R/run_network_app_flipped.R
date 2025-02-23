@@ -215,10 +215,20 @@ run_network_app_flipped <- function() {
                    #             min = 1945, max = 1989,
                    #             sep = ""),
                    h3("Edge Creation Options"),
+
                    sliderInput('min_edges',
                                "Minimum Connections for an Edge",
                                value = 1,
-                               min = 1, max = 20),
+                               min = 1, max = 15),
+
+                   radioButtons('weight_by',
+                                'Weight edges by:',
+                                choices = c("None" ="None",
+                                            "Total Connections" = "Total",
+                                            "Ratio Of Gov/Opp" = "Ratio")
+                   ),
+
+
                    h3("Change Node Appearance"),
 
                    # Highlight a node by color
@@ -642,7 +652,8 @@ run_network_app_flipped <- function() {
         # }
 
         el <- dat_limited() %>%
-          get_edgelist_orgs(start = first_date(),
+          get_edgelist_orgs(input$weight_by,
+                            start = first_date(),
                             end = last_date(),
                             min_cons = input$min_edges)
 

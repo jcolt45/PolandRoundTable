@@ -1,3 +1,44 @@
+#' @param affils_by_date Data frame of affiliations with start and end dates
+#' @param start A start of date range, in YYYY-MM-DD string format.
+#' @param end An end of date range, in YYYY-MM-DD string format.
+#' @return
+#' @import dplyr readr
+#' @export
+get_cons_by_afil <- function(affils_by_date,
+                             affil_by,
+                             start,
+                             end = NULL) {
+  affil_mat <- affils_by_date %>%
+    filter(Start.Date <= end &
+             End.Date >= start) %>%
+    filter(RT.Affiliation == affil_by) %>%
+    select(Member.ID, Org.ID) %>%
+    distinct() %>%
+    mutate(
+      match = 1
+    ) %>%
+    tidyr::pivot_wider(names_from = Org.ID,
+                       values_from = match,
+                       values_fill = 0) %>%
+    select(-Member.ID) %>%
+    as.matrix() %>%
+    crossprod()
+
+  orgs <- rownames(affil_mat)
+
+  affil_count <- affil_mat %>%
+    as_tibble() %>%
+    mutate(
+      from = orgs
+    ) %>%
+    tidyr::pivot_longer(-from,
+                        names_to = "to",
+                        values_to = affil_by)
+  return(affil_count)
+}
+
+
+
 #' Make an edgelist of organizations with member overlap in given date range
 #' This function should be updated to take a dataset piped in, and to calculate
 #' edgeweight in the newer way.
@@ -9,6 +50,7 @@
 #' @import dplyr readr
 #' @export
 get_edgelist_orgs <- function(affils_by_date,
+                              weight_by,
                               start,
                               end = NULL,
                               min_cons = 1) {
@@ -42,22 +84,39 @@ get_edgelist_orgs <- function(affils_by_date,
    }
 
 
-   edgelist <- affil_mat %>%
+   edgelist_tot <- affil_mat %>%
      as_tibble() %>%
-     # filter(
-     #   weight > 0
-     # ) %>%
      mutate(
        from = orgs
      ) %>%
      tidyr::pivot_longer(-from,
                   names_to = "to",
-                  values_to = "num_members") %>%
+                  values_to = "num_members")
+
+   gov_count <- get_cons_by_afil(affils_by_date, "Government", start, end)
+   opp_count <- get_cons_by_afil(affils_by_date, "Opposition", start, end)
+   church_count <- get_cons_by_afil(affils_by_date, "Church", start, end)
+   expert_count <- get_cons_by_afil(affils_by_date, "Expert", start, end)
+
+   edgelist <- merge(edgelist_tot, gov_count, by = c("to", "from"))
+   edgelist <- merge(edgelist, opp_count, by = c("to", "from"))
+   edgelist <- merge(edgelist, church_count, by = c("to", "from"))
+   edgelist <- merge(edgelist, expert_count, by = c("to", "from"))
+
+   edgelist <- edgelist %>%
      filter(num_members >= min_cons) %>%
+     #filter(to != from) %>%
      mutate(weight = 1)
 
-    return(edgelist)
-
+   if (weight_by == "Total"){
+     edgelist <- edgelist %>%
+       mutate(weight = num_members)
+   }
+   if (weight_by == "Ratio"){
+     edgelist <- edgelist %>%
+       mutate(weight = Government / Opposition)
+   }
+   return(edgelist)
 }
 
 

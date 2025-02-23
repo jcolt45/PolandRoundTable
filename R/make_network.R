@@ -116,7 +116,7 @@ get_edgelist_orgs <- function(affils_by_date,
    }
    if (weight_by == "Ratio"){
      edgelist <- edgelist %>%
-       mutate(weight = Government / Opposition)
+       mutate(weight = Government / Opposition + Government)
    }
    return(edgelist)
 }

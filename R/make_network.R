@@ -98,10 +98,12 @@ get_edgelist_orgs <- function(affils_by_date,
    church_count <- get_cons_by_afil(affils_by_date, "Church", start, end)
    expert_count <- get_cons_by_afil(affils_by_date, "Expert", start, end)
 
-   edgelist <- merge(edgelist_tot, gov_count, by = c("to", "from"))
-   edgelist <- merge(edgelist, opp_count, by = c("to", "from"))
-   edgelist <- merge(edgelist, church_count, by = c("to", "from"))
-   edgelist <- merge(edgelist, expert_count, by = c("to", "from"))
+   edgelist <- left_join(edgelist_tot, gov_count, by = c("to", "from"))
+   edgelist <- left_join(edgelist, opp_count, by = c("to", "from"))
+   edgelist <- left_join(edgelist, church_count, by = c("to", "from"))
+   edgelist <- left_join(edgelist, expert_count, by = c("to", "from"))
+
+   edgelist[is.na(edgelist)] <- 0
 
    edgelist <- edgelist %>%
      filter(num_members >= min_cons) %>%

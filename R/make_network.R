@@ -116,7 +116,11 @@ get_edgelist_orgs <- function(affils_by_date,
    }
    if (weight_by == "Ratio"){
      edgelist <- edgelist %>%
-       mutate(weight = Government / Opposition + Government)
+       mutate(weight = case_when(
+         Government+Opposition > 0 ~ Government/Government+Opposition,
+         Church+Expert > 0 ~ 1,
+         Government+Opposition == 0 ~ 0
+       ))
    }
    return(edgelist)
 }

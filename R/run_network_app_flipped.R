@@ -657,10 +657,11 @@ run_network_app_flipped <- function() {
                             end = last_date(),
                             min_cons = input$min_edges)
         print(el)
-        # el %>%
-        #   mutate(
-        #     weight = log(weight + 1, base = max(weight))/10
-        #   ) # scale edge weights to have better visuals
+        el %>%
+          mutate(
+            weight = log(weight + 1, base = max(weight))/10
+          ) # scale edge weights to have better visuals
+        print(el)
 
       }) %>%
         bindEvent(input$make_network)

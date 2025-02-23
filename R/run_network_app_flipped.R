@@ -656,7 +656,7 @@ run_network_app_flipped <- function() {
                             start = first_date(),
                             end = last_date(),
                             min_cons = input$min_edges)
-
+        print(el)
         el %>%
           mutate(
             weight = log(weight + 1, base = max(weight))/10

@@ -102,11 +102,11 @@ get_one_metrics_step_org <- function(affils_by_date,
   }
 
   if (is.null(start)) {
-    start <- min(affils_by_date$Start.Date)
+    start <- min(affils_by_date$Start.Date, na.rm = TRUE)
   }
 
   if (is.null(end)) {
-    end <- max(affils_by_date$Start.Date)
+    end <- max(affils_by_date$Start.Date, na.rm = TRUE)
   }
 
 

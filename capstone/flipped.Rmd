@@ -1,0 +1,48 @@
+---
+title: "flipped"
+format: 
+  html:
+    embed-resources: true
+    code-tools: true
+    code-fold: true
+    toc: true
+    number-sections: false
+editor: source
+execute: 
+  error: true
+  echo: true
+  message: false
+  warning: false
+---
+
+```{r}
+library(dplyr)
+library(purrr)
+library(lubridate)
+library(progress)
+devtools::load_all("../")
+```
+
+```{r}
+affiliation_dates
+```
+
+
+```{r}
+#edgelist for orgs
+start <- min(affiliation_dates$Start.Date, na.rm = TRUE)
+end <- max(affiliation_dates$Start.Date, na.rm = TRUE)
+edgelist_orgs <- get_edgelist_orgs(affiliation_dates, "None", start, end, 1)
+```
+
+```{r}
+write.csv(edgelist_orgs,"./edgelist-orgs.csv", row.names = FALSE)
+```
+
+
+```{r}
+metrics <- get_all_metrics_orgs(affiliation_dates, "None", 1)
+```
+
+
+

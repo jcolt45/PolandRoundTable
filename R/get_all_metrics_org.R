@@ -117,7 +117,7 @@ get_one_metrics_step_org <- function(affils_by_date,
                                    start = start,
                                    end = end,
                                    min_cons = 1)
-
+  print(edgelist)
   if (is.null(edgelist)) {
     res <- rep(NA, length(orgs))
     names(res) <- orgs

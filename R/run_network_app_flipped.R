@@ -948,7 +948,6 @@ run_network_app_flipped <- function() {
         dat <- get_all_metrics_orgs(affiliation_dates,
                                     input$weight_by,
                                     min_cons = input$min_edges)
-        print(dat)
 
         dat
       }) %>%
@@ -957,11 +956,12 @@ run_network_app_flipped <- function() {
       metric_df <- reactive({
 
         dat <- all_metrics_df() %>%
-          filter(Org.ID %in% input$org_lines,
+          filter(from %in% input$org_lines,
                  Start.Date <= last_date_2(),
-                 End.Date >= first_date_2()) #%>%
+                 End.Date >= first_date_2()) %>%
+          left_join(organization_meta_info, by = c("from", "Org.ID")) #%>%
           #left_join(member_meta_info)
-        print(dat)
+
         dat$Selected.Metric = dat[[input$metric]]
 
         dat
@@ -1000,7 +1000,7 @@ run_network_app_flipped <- function() {
       output$metric_df <- renderDataTable({
         metric_df() %>%
           dplyr::filter(!is.na(Selected.Metric)) %>%
-          select(Full.Name, input$metric, Start.Date, End.Date)
+          select(Org.ID, Organization.Name, input$metric, Start.Date, End.Date)
       }) %>%
         bindEvent(input$make_line_plot)
 
@@ -1017,7 +1017,7 @@ run_network_app_flipped <- function() {
 
           p <- metric_df() %>%
             plot_metric(metric_col = Selected.Metric,
-                        group_col = Full.Name) +
+                        group_col = Org.ID) +
             geom_line(linewidth = input$line_size)
 
           if (input$color_lines_by_group != "None") {

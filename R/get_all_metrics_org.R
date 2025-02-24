@@ -95,7 +95,7 @@ get_one_metrics_step_org <- function(affils_by_date,
                                  orgs = NULL,
                                  start = NULL,
                                  end = NULL) {
-
+  print("HERE")
   if(is.null(orgs)) {
     orgs <- unique(affils_by_date$Org.ID)
   }
@@ -116,7 +116,7 @@ get_one_metrics_step_org <- function(affils_by_date,
                                    weight_by,
                                    start = start,
                                    end = end,
-                                   min_cons = 1)
+                                   min_cons)
   print(edgelist)
   if (is.null(edgelist)) {
     res <- rep(NA, length(orgs))

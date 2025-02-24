@@ -954,7 +954,7 @@ run_network_app_flipped <- function() {
       metric_df <- reactive({
 
         dat <- all_metrics_df() %>%
-          filter(from %in% input$org_lines,
+          filter(Org.ID %in% input$org_lines,
                  Start.Date <= last_date_2(),
                  End.Date >= first_date_2()) %>%
           left_join(organization_meta_info, by = "Org.ID")

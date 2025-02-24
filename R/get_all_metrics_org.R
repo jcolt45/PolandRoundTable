@@ -25,7 +25,6 @@ get_all_metrics_orgs <- function(affils_by_date,
                             start = NULL,
                             end = NULL,
                             timesteps = "months") {
-  print(timesteps)
   if(is.null(orgs)) {
     orgs <- unique(affils_by_date$Org.ID)
   }
@@ -66,8 +65,8 @@ get_all_metrics_orgs <- function(affils_by_date,
                                                weight_by,
                                                min_cons,
                                                orgs,
-                                               start,
-                                               end))
+                                               start = .x,
+                                               end = .y))
 
   return(res)
 

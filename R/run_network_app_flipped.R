@@ -69,6 +69,9 @@ run_network_app_flipped <- function() {
     ) %>%
     get_opts_list(Member.ID, labels = "Name")
 
+  node_name_choices <- organization_meta_info %>%
+    get_opts_list(Org.ID, labels = "Organization.Name")
+
 
   shinyApp(
     ui = tagList(
@@ -444,7 +447,7 @@ run_network_app_flipped <- function() {
 
                    pickerInput('org_lines',
                                'Choose orgs:',
-                               choices = org_choices,
+                               choices = node_name_choices,
                                options = list(`actions-box` = TRUE),
                                multiple = TRUE
                    ),

@@ -77,9 +77,9 @@ get_all_metrics_orgs <- function(affils_by_date,
 #'
 #' @param affils_by_date The data frame containing edge connections.  Format must match
 #' built-in datasets `affiliation_dates`
-#' @param on_cols Which columns to use to compute edges
-#' @param weight_col Weight column
-#' @param members A character vector of member IDs.
+#' @param weight_by Which columns to use to compute edges
+#' @param min_cons Weight column
+#' @param orgs A character vector of org IDs.
 #' @param start A start of date range, in DD-MM-YYYY string format.  Defaults to beginning of dates in data.
 #' @param end An end of date range, in DD-MM-YYYY string format. Defaults to end of dates in data.
 #' @param timesteps A string ("days", "months", "years") for the level of aggregation

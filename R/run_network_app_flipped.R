@@ -953,13 +953,12 @@ run_network_app_flipped <- function() {
 
       metric_df <- reactive({
 
-        dat <- all_metrics_df() #%>%
-          #filter(from %in% input$org_lines,
-                 #Start.Date <= last_date_2(),
-                 #End.Date >= first_date_2()) %>%
-          #left_join(organization_meta_info, by = c("from", "Org.ID")) #%>%
-          #left_join(member_meta_info)
-        print(dat)
+        dat <- all_metrics_df() %>%
+          filter(from %in% input$org_lines,
+                 Start.Date <= last_date_2(),
+                 End.Date >= first_date_2()) %>%
+          left_join(organization_meta_info, by = "Org.ID")
+
         dat$Selected.Metric = dat[[input$metric]]
 
         dat
@@ -1020,7 +1019,7 @@ run_network_app_flipped <- function() {
 
           if (input$color_lines_by_group != "None") {
             p <- p + aes_string(color = input$color_lines_by_group,
-                                linetype = Full.Name)
+                                linetype = Org.ID)
           }
 
         }

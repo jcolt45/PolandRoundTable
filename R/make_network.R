@@ -24,7 +24,13 @@ get_cons_by_afil <- function(affils_by_date,
     as.matrix() %>%
     crossprod()
 
+
   orgs <- rownames(affil_mat)
+
+
+  if (length(orgs) == 0) {
+    return(tibble())
+  }
 
   affil_count <- affil_mat %>%
     as_tibble() %>%
@@ -34,6 +40,7 @@ get_cons_by_afil <- function(affils_by_date,
     tidyr::pivot_longer(-from,
                         names_to = "to",
                         values_to = affil_by)
+
   return(affil_count)
 }
 
@@ -84,7 +91,7 @@ get_edgelist_orgs <- function(affils_by_date,
    }
 
 
-   edgelist_tot <- affil_mat %>%
+   edgelist <- affil_mat %>%
      as_tibble() %>%
      mutate(
        from = orgs
@@ -93,15 +100,36 @@ get_edgelist_orgs <- function(affils_by_date,
                   names_to = "to",
                   values_to = "num_members")
 
-   gov_count <- get_cons_by_afil(affils_by_date, "Government", start, end)
-   opp_count <- get_cons_by_afil(affils_by_date, "Opposition", start, end)
-   church_count <- get_cons_by_afil(affils_by_date, "Church", start, end)
-   expert_count <- get_cons_by_afil(affils_by_date, "Expert", start, end)
 
-   edgelist <- left_join(edgelist_tot, gov_count, by = c("to", "from"))
-   edgelist <- left_join(edgelist, opp_count, by = c("to", "from"))
-   edgelist <- left_join(edgelist, church_count, by = c("to", "from"))
-   edgelist <- left_join(edgelist, expert_count, by = c("to", "from"))
+
+   gov_count <- get_cons_by_afil(affils_by_date, "Government", start, end)
+   if (nrow(gov_count) != 0){
+     edgelist <- left_join(edgelist, gov_count, by = c("to", "from"))
+   } else {
+     edgelist <- edgelist %>%
+       mutate(Government = 0)
+   }
+   opp_count <- get_cons_by_afil(affils_by_date, "Opposition", start, end)
+   if (nrow(opp_count) != 0){
+     edgelist <- left_join(edgelist, opp_count, by = c("to", "from"))
+   }else {
+     edgelist <- edgelist %>%
+       mutate(Opposition = 0)
+   }
+   church_count <- get_cons_by_afil(affils_by_date, "Church", start, end)
+   if (nrow(church_count) != 0){
+     edgelist <- left_join(edgelist, church_count, by = c("to", "from"))
+   }else {
+     edgelist <- edgelist %>%
+       mutate(Church = 0)
+   }
+   expert_count <- get_cons_by_afil(affils_by_date, "Expert", start, end)
+   if (nrow(expert_count) != 0){
+     edgelist <- left_join(edgelist, expert_count, by = c("to", "from"))
+   }else {
+     edgelist <- edgelist %>%
+       mutate(Expert = 0)
+   }
 
    edgelist[is.na(edgelist)] <- 0
 

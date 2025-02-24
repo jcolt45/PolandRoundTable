@@ -95,7 +95,6 @@ get_one_metrics_step_org <- function(affils_by_date,
                                  orgs = NULL,
                                  start = NULL,
                                  end = NULL) {
-  print("HERE")
   if(is.null(orgs)) {
     orgs <- unique(affils_by_date$Org.ID)
   }

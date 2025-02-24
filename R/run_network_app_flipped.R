@@ -940,11 +940,6 @@ run_network_app_flipped <- function() {
       # })
       #
 
-      get_edgelist_orgs(input$weight_by,
-                        start = first_date(),
-                        end = last_date(),
-                        min_cons = input$min_edges)
-
       all_metrics_df <- reactive({
 
         dat <- get_all_metrics_orgs(affiliation_dates,

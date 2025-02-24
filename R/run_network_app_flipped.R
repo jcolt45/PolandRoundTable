@@ -945,6 +945,7 @@ run_network_app_flipped <- function() {
         dat <- get_all_metrics_orgs(affiliation_dates,
                                     input$weight_by,
                                     min_cons = input$min_edges)
+        print(dat)
 
         dat
       }) %>%
@@ -957,7 +958,7 @@ run_network_app_flipped <- function() {
                  Start.Date <= last_date_2(),
                  End.Date >= first_date_2()) #%>%
           #left_join(member_meta_info)
-
+        print(dat)
         dat$Selected.Metric = dat[[input$metric]]
 
         dat

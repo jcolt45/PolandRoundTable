@@ -66,8 +66,8 @@ get_all_metrics_orgs <- function(affils_by_date,
                                                weight_by,
                                                min_cons,
                                                orgs,
-                                               start = .x,
-                                               end = .y))
+                                               start,
+                                               end))
 
   return(res)
 

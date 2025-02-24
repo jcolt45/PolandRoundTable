@@ -83,7 +83,7 @@ get_edgelist_orgs <- function(affils_by_date,
      return(NULL)
    }
 
-   print(orgs)
+
    edgelist_tot <- affil_mat %>%
      as_tibble() %>%
      mutate(
@@ -122,7 +122,7 @@ get_edgelist_orgs <- function(affils_by_date,
          Government+Opposition == 0 ~ 0
        ))
    }
-   print(edgelist)
+
    return(edgelist)
 }
 

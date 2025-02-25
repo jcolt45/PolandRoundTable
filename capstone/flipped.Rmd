@@ -44,5 +44,12 @@ write.csv(edgelist_orgs,"./edgelist-orgs.csv", row.names = FALSE)
 metrics <- get_all_metrics_orgs(affiliation_dates, "None", 1)
 ```
 
+```{r}
+write.csv(metrics,"./all_metrics_by_month_orgs.csv", row.names = FALSE)
+```
 
+```{r}
+data <- read.csv("all_metrics_by_month_orgs.csv")
+save(data, file = "all_metrics_by_month_orgs.rda")
+```
 

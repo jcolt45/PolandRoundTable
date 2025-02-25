@@ -328,6 +328,14 @@ run_network_app <- function() {
 
                    h3("Choose metrics"),
 
+                   radioButtons('compute',
+                                'Compute:',
+                                choices = c(
+                                  "Static" = "static",
+                                  "On Fly" = "compute"
+                                )
+                   ),
+
                    h4("CENTRALITY (or 'betweenness') is a measure of how important
                     the individual is to the connectedness of the network; in
                     essence, it measures how many other pairs of nodes are connected
@@ -892,12 +900,19 @@ run_network_app <- function() {
 
 
       metric_df <- reactive({
-
-        dat <- all_metrics_df() %>%
-          filter(Member.ID %in% input$person_lines,
-                 Start.Date <= last_date_2(),
-                 End.Date >= first_date_2()) %>%
-          left_join(member_meta_info)
+        if (input$compute == "compute"){
+          dat <- all_metrics_df() %>%
+            filter(Member.ID %in% input$person_lines,
+                   Start.Date <= last_date_2(),
+                   End.Date >= first_date_2()) %>%
+            left_join(member_meta_info)
+        } else {
+          dat <- all_metrics_by_month %>%
+            filter(Member.ID %in% input$person_lines,
+                   Start.Date <= last_date_2(),
+                   End.Date >= first_date_2()) %>%
+            left_join(member_meta_info)
+        }
 
 
         dat$Selected.Metric = dat[[input$metric]]

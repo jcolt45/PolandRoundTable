@@ -1,0 +1,12 @@
+install.packages("remotes")
+
+remotes::install_github("jcolt45/PolandRoundTable")
+
+library(PolandRoundTable)
+
+Individuals as Nodes:
+run_network_app()
+
+Orgs as Nodes:
+run_network_app_flipped()
+

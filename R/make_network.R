@@ -132,7 +132,7 @@ get_edgelist_orgs <- function(affils_by_date,
        mutate(Expert = 0)
    }
 
-   edgelist[is.na(edgelist)] <- 0
+   # edgelist[is.na(edgelist)] <- 0
 
    edgelist <- edgelist %>%
      filter(num_members >= min_cons) %>%
@@ -140,9 +140,17 @@ get_edgelist_orgs <- function(affils_by_date,
      mutate(weight = 1) %>%
      left_join(totals, by = c("from" = "Org.ID"))
 
+   edgelist[is.na(edgelist)] <- 0
+
    if (weight_by == "Total"){
      edgelist <- edgelist %>%
        mutate(weight = num_members)
+   } else if (weight_by == "PropMems"){
+     edgelist <- edgelist %>%
+       mutate(weight = case_when(
+         num_members == 0 | Total == 0 ~ 1,
+         TRUE ~ num_members / Total
+       ))
    } else if (weight_by == "Ratio"){
      edgelist <- edgelist %>%
        mutate(weight = case_when(
@@ -151,7 +159,7 @@ get_edgelist_orgs <- function(affils_by_date,
          Government+Opposition == 0 ~ 0
        ))
    }
-
+   print(edgelist)
    return(edgelist)
 }
 

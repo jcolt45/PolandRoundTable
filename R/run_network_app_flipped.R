@@ -228,6 +228,7 @@ run_network_app_flipped <- function() {
                                 'Weight edges by:',
                                 choices = c("None" ="None",
                                             "Total Connections" = "Total",
+                                            "Proportion of Members" = "PropMems",
                                             "Ratio Of Gov/Opp" = "Ratio")
                    ),
 

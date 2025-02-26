@@ -53,3 +53,28 @@ data <- read.csv("all_metrics_by_month_orgs.csv")
 save(data, file = "all_metrics_by_month_orgs.rda")
 ```
 
+
+
+
+
+```{r}
+affiliation_dates %>%
+  distinct(Org.ID, Member.ID, RT.Affiliation) %>%
+  group_by(Org.ID, RT.Affiliation) %>%
+  summarize(count = n()) %>%
+  pivot_wider(names_from = "RT.Affiliation", values_from = "count", values_fill = 0) %>%
+  group_by(Org.ID) %>%
+  summarize(across(.cols = c("Opposition", "Church", "Government", "Expert"), sum)) %>%
+  mutate(Total = Opposition + Church + Government + Expert)
+```
+
+
+
+```{r}
+affiliation_dates %>%
+  distinct(Org.ID, Member.ID, RT.Affiliation) %>%
+  group_by(Org.ID) %>%
+  summarize(count = n())
+```
+
+

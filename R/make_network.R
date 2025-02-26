@@ -39,7 +39,7 @@ get_cons_by_afil <- function(affils_by_date,
     ) %>%
     tidyr::pivot_longer(-from,
                         names_to = "to",
-                        values_to = affil_by)
+                        values_to = paste0(affil_by, "_Cons"))
 
   return(affil_count)
 }
@@ -57,7 +57,7 @@ get_cons_by_afil <- function(affils_by_date,
 #' @import dplyr readr
 #' @export
 get_edgelist_orgs <- function(affils_by_date,
-                              weight_by,
+                              #weight_by,
                               start,
                               end = NULL,
                               min_cons = 1) {
@@ -138,18 +138,18 @@ get_edgelist_orgs <- function(affils_by_date,
      #filter(to != from) %>%
      mutate(weight = 1)
 
-   if (weight_by == "Total"){
-     edgelist <- edgelist %>%
-       mutate(weight = num_members)
-   }
-   if (weight_by == "Ratio"){
-     edgelist <- edgelist %>%
-       mutate(weight = case_when(
-         Government+Opposition > 0 ~ Government/Government+Opposition,
-         Church+Expert > 0 ~ 1,
-         Government+Opposition == 0 ~ 0
-       ))
-   }
+   # if (weight_by == "Total"){
+   #   edgelist <- edgelist %>%
+   #     mutate(weight = num_members)
+   # }
+   # if (weight_by == "Ratio"){
+   #   edgelist <- edgelist %>%
+   #     mutate(weight = case_when(
+   #       Government+Opposition > 0 ~ Government/Government+Opposition,
+   #       Church+Expert > 0 ~ 1,
+   #       Government+Opposition == 0 ~ 0
+   #     ))
+   # }
 
    return(edgelist)
 }

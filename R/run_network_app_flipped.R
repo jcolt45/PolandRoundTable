@@ -246,10 +246,8 @@ run_network_app_flipped <- function() {
                                 choices = c(
                                   "None" = "None",
                                   "Type" = "Type",
-                                  #"Umbrella" = "Umbrella",
-                                  #"Subgroup" = "Subgroup",
-                                  #"Ubrella+Sub" = "USUB",
-                                  "Category" = "Category")
+                                  "Category" = "Category",
+                                  "Affiliation" = "Affil")
                    ),
 
                    pickerInput('node_shape_specific',
@@ -650,9 +648,26 @@ run_network_app_flipped <- function() {
           pivot_wider(names_from = "RT.Affiliation", values_from = "count", values_fill = 0) %>%
           group_by(Org.ID) %>%
           summarize(across(.cols = c("Opposition", "Church", "Government", "Expert"), sum)) %>%
-          mutate(Total = Opposition + Church + Government + Expert)
+          mutate(Total = Opposition + Church + Government + Expert)%>%
+          mutate(Affil = case_when(
+            Opposition > Government ~ "Opposition",
+            Government > Opposition ~ "Government",
+            Opposition == 0 & Government == 0 ~ "None",
+            Opposition == Government ~ "Neutral"
+          ))
       }) %>%
         bindEvent(input$make_network)
+
+      # org_affil <- reactive({
+      #   org_totals() %>%
+      #     mutate(Affil = case_when(
+      #       Opposition > Government ~ "Opposition",
+      #       Government > Opposition ~ "Government",
+      #       Opposition == 0 & Government == 0 ~ "None",
+      #       Opposition == Government ~ "Neutral"
+      #     ))
+      # }) %>%
+      #   bindEvent(input$make_network)
 
 
       my_edgelist <- reactive({
@@ -662,25 +677,11 @@ run_network_app_flipped <- function() {
         ## reactive: last_date
 
         el <- dat_limited() %>%
-          get_edgelist_orgs(#input$weight_by,
+          get_edgelist_orgs(input$weight_by,
+                            org_totals(),
                             start = first_date(),
                             end = last_date(),
                             min_cons = input$min_edges)
-        el <- el %>%
-          left_join(org_totals(), by = c("from" = "Org.ID"))
-
-        ##weight options
-        if (input$weight_by == "Total"){
-          el <- el %>%
-            mutate(weight = num_members)
-        } else if (input$weight_by == "Ratio"){
-          el <- el %>%
-            mutate(weight = case_when(
-              Government+Opposition > 0 ~ Government/Government+Opposition,
-              Church+Expert > 0 ~ 1,
-              Government+Opposition == 0 ~ 0
-            ))
-        }
 
         el %>%
           mutate(
@@ -980,6 +981,7 @@ run_network_app_flipped <- function() {
 
         dat <- get_all_metrics_orgs(affiliation_dates,
                                     input$weight_by,
+                                    org_totals(),
                                     min_cons = input$min_edges)
 
         dat

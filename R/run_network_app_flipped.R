@@ -642,7 +642,17 @@ run_network_app_flipped <- function() {
                           selected = current_selection())
       })
 
-
+      org_totals <- reactive({
+        dat_limited() %>%
+          distinct(Org.ID, Member.ID, RT.Affiliation) %>%
+          group_by(Org.ID, RT.Affiliation) %>%
+          summarize(count = n()) %>%
+          pivot_wider(names_from = "RT.Affiliation", values_from = "count", values_fill = 0) %>%
+          group_by(Org.ID) %>%
+          summarize(across(.cols = c("Opposition", "Church", "Government", "Expert"), sum)) %>%
+          mutate(Total = Opposition + Church + Government + Expert)
+      }) %>%
+        bindEvent(input$make_network)
 
 
       my_edgelist <- reactive({
@@ -656,6 +666,9 @@ run_network_app_flipped <- function() {
                             start = first_date(),
                             end = last_date(),
                             min_cons = input$min_edges)
+        el <- el %>%
+          left_join(org_totals(), by = c("from" = "Org.ID"))
+
         ##weight options
         if (input$weight_by == "Total"){
           el <- el %>%
@@ -674,18 +687,6 @@ run_network_app_flipped <- function() {
             weight = log(weight + 1, base = max(weight))/10
           ) # scale edge weights to have better visuals
 
-      }) %>%
-        bindEvent(input$make_network)
-
-      org_totals <- reactive({
-        dat_limited() %>%
-          distinct(Org.ID, Member.ID, RT.Affiliation) %>%
-          group_by(Org.ID, RT.Affiliation) %>%
-          summarize(count = n()) %>%
-          pivot_wider(names_from = "RT.Affiliation", values_from = "count", values_fill = 0) %>%
-          group_by(Org.ID) %>%
-          summarize(across(.cols = c("Opposition", "Church", "Government", "Expert"), sum)) %>%
-          mutate(Total = Opposition + Church + Government + Expert)
       }) %>%
         bindEvent(input$make_network)
 

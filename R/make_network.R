@@ -108,31 +108,31 @@ get_edgelist_orgs <- function(affils_by_date,
      edgelist <- left_join(edgelist, gov_count, by = c("to", "from"))
    } else {
      edgelist <- edgelist %>%
-       mutate(Government = 0)
+       mutate(Government_Cons = 0)
    }
    opp_count <- get_cons_by_afil(affils_by_date, "Opposition", start, end)
    if (nrow(opp_count) != 0){
      edgelist <- left_join(edgelist, opp_count, by = c("to", "from"))
    }else {
      edgelist <- edgelist %>%
-       mutate(Opposition = 0)
+       mutate(Opposition_Cons = 0)
    }
    church_count <- get_cons_by_afil(affils_by_date, "Church", start, end)
    if (nrow(church_count) != 0){
      edgelist <- left_join(edgelist, church_count, by = c("to", "from"))
    }else {
      edgelist <- edgelist %>%
-       mutate(Church = 0)
+       mutate(Church_Cons = 0)
    }
    expert_count <- get_cons_by_afil(affils_by_date, "Expert", start, end)
    if (nrow(expert_count) != 0){
      edgelist <- left_join(edgelist, expert_count, by = c("to", "from"))
    }else {
      edgelist <- edgelist %>%
-       mutate(Expert = 0)
+       mutate(Expert_Cons = 0)
    }
 
-   # edgelist[is.na(edgelist)] <- 0
+   edgelist[is.na(edgelist)] <- 0
 
    edgelist <- edgelist %>%
      filter(num_members >= min_cons) %>%
@@ -140,7 +140,6 @@ get_edgelist_orgs <- function(affils_by_date,
      mutate(weight = 1) %>%
      left_join(totals, by = c("from" = "Org.ID"))
 
-   edgelist[is.na(edgelist)] <- 0
 
    if (weight_by == "Total"){
      edgelist <- edgelist %>%
@@ -155,7 +154,7 @@ get_edgelist_orgs <- function(affils_by_date,
      edgelist <- edgelist %>%
        mutate(weight = 1 + abs(Government + Opposition))
    }
-   print(edgelist)
+
    return(edgelist)
 }
 

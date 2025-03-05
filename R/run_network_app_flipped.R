@@ -642,14 +642,16 @@ run_network_app_flipped <- function() {
       })
 
       org_totals <- reactive({
-        dat_limited() %>%
+        el <- dat_limited() %>%
           distinct(Org.ID, Member.ID, RT.Affiliation) %>%
           group_by(Org.ID, RT.Affiliation) %>%
           summarize(count = n()) %>%
           pivot_wider(names_from = "RT.Affiliation", values_from = "count", values_fill = 0) %>%
           group_by(Org.ID) %>%
           summarize(across(.cols = c("Opposition", "Church", "Government", "Expert"), sum)) %>%
-          mutate(Total = Opposition + Church + Government + Expert)%>%
+          mutate(Total = Opposition + Church + Government + Expert)
+        el[is.na(el)] <- 0
+        el %>%
           mutate(Affil = case_when(
             Opposition > Government ~ "Opposition",
             Government > Opposition ~ "Government",

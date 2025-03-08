@@ -1,4 +1,7 @@
+#' Helper Function for get_edgelist_orgs to get total member connections by affiliations
+#'
 #' @param affils_by_date Data frame of affiliations with start and end dates
+#' @param affil_by which affiliation to get stats for
 #' @param start A start of date range, in YYYY-MM-DD string format.
 #' @param end An end of date range, in YYYY-MM-DD string format.
 #' @return
@@ -51,8 +54,11 @@ get_cons_by_afil <- function(affils_by_date,
 #' edgeweight in the newer way.
 #'
 #' @param affils_by_date Data frame of affiliations with start and end dates
+#' @param weight_by options for computing edgeweights
+#' @param totals data with total member stats for each org
 #' @param start A start of date range, in YYYY-MM-DD string format.
 #' @param end An end of date range, in YYYY-MM-DD string format.
+#' @param min_cons minimum connections needed to keep an edge
 #' @return A tibble with pairs of organizations and their number of shared members in that range.
 #' @import dplyr readr
 #' @export

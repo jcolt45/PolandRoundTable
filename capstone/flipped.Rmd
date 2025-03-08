@@ -49,10 +49,19 @@ write.csv(metrics,"./all_metrics_by_month_orgs.csv", row.names = FALSE)
 ```
 
 ```{r}
-data <- read.csv("all_metrics_by_month_orgs.csv")
-save(data, file = "all_metrics_by_month_orgs.rda")
+all_metrics_by_month_orgs <- read.csv("all_metrics_by_month_orgs.csv")
+#save(all_metrics_by_month_orgs, file = "all_metrics_by_month_orgs.rda")
 ```
 
+```{r}
+sapply(all_metrics_by_month_orgs, class)
+```
+
+
+```{r}
+all_metrics_by_month_orgs$Start.Date = as.Date(all_metrics_by_month_orgs$Start.Date)
+all_metrics_by_month_orgs$End.Date = as.Date(all_metrics_by_month_orgs$End.Date)
+```
 
 
 

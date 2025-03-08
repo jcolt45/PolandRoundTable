@@ -246,7 +246,6 @@ run_network_app_flipped <- function() {
                                 'Different colors for groups of:',
                                 choices = c(
                                   "None" = "None",
-                                  "Type" = "Type",
                                   "Category" = "Category",
                                   "Affiliation" = "Affil")
                    ),
@@ -312,13 +311,13 @@ run_network_app_flipped <- function() {
                                value = 0.3,
                                min = 0, max = 1),
 
-                   # Color groups
-                   radioButtons('edge_color_cross',
-                                'Different colors for cross-connections?',
-                                choices = c(
-                                  "No",
-                                  "Yes")
-                   ),
+                   # # Color groups
+                   # radioButtons('edge_color_cross',
+                   #              'Different colors for cross-connections?',
+                   #              choices = c(
+                   #                "No",
+                   #                "Yes")
+                   # ),
 
                    # Weight
                    radioButtons('edge_size_weight',
@@ -442,14 +441,6 @@ run_network_app_flipped <- function() {
                                min = 1945, max = 1989,
                                sep = ""),
 
-                   # h3("Choose which individuals to include"),
-                   #
-                   # pickerInput('person_lines',
-                   #             'Choose individuals:',
-                   #             choices = edge_name_choices,
-                   #             options = list(`actions-box` = TRUE),
-                   #             multiple = TRUE
-                   # ),
                    h3("Choose which organizations to include"),
 
                    pickerInput('org_lines',
@@ -466,22 +457,12 @@ run_network_app_flipped <- function() {
                                 'Color by:',
                                 choices = c(
                                   "None" = "None",
-                                  "Round Table Affiliation" = "RT.Affiliation",
-                                  "Profession" = "Profession.Sector",
-                                  "Gender" = "Gender")
+                                  "Category" = "Category",
+                                  "Affiliation" = "Affil")
                    ),
 
                    h3("Group by categories?"),
 
-                   # Color groups
-                   radioButtons('group_lines',
-                                'One line for each:',
-                                choices = c(
-                                  "None" = "None",
-                                  "Round Table Affiliation" = "RT.Affiliation",
-                                  "Profession" = "Profession.Sector",
-                                  "Gender" = "Gender")
-                   ),
 
                    h3("Line Appearance"),
 
@@ -950,36 +931,6 @@ run_network_app_flipped <- function() {
 
       last_date_2 <- reactive(get_date(input$year_end_2, input$month_end_2, input$day_end_2))
 
-      # nodes_list_2 <- reactive({
-      #   dat_limited_2() %>%
-      #     distinct(Member.ID, Full.Name, Last.Name, First.Middle.Name) %>%
-      #     mutate(
-      #       Name = paste0(Last.Name, ", ", First.Middle.Name)
-      #     ) %>%
-      #     arrange(Name)
-      # })
-      #
-      # node_name_choices_2 <- reactive({
-      #   setNames(nodes_list_2()$Member.ID,
-      #            nodes_list_2()$Name)
-      # })
-      #
-      # # in server.R create reactiveVal
-      # current_selection_2 <- reactiveVal(NULL)
-      #
-      # # now store your current selection in the reactive value
-      # observeEvent(input$person_lines, {
-      #   current_selection_2(input$person_lines)
-      # })
-      #
-      # #now if you are updating your menu
-      # observeEvent(node_name_choices_2(), {
-      #   updatePickerInput(session, inputId = "person_lines",
-      #                     choices = node_name_choices_2(),
-      #                     selected = current_selection_2())
-      # })
-      #
-
       all_metrics_df <- reactive({
 
         dat <- get_all_metrics_orgs(affiliation_dates,
@@ -1012,36 +963,9 @@ run_network_app_flipped <- function() {
 
         dat
 
-
-        #### maybe one day: compute on the fly
-        # } else if (input$custom == "custom") {
-        #
-        #   if (input$edge_type == "group_labs") {
-        #
-        #       dat() %>%
-        #         arrange(Umbrella, Subgroup) %>%
-        #         get_betweenness_members(on_cols = list("Umbrella",
-        #                                             c("Umbrella", "Subgroup")),
-        #                                 members = input$person_lines,
-        #                                 start = first_date_2(),
-        #                                 end = last_date_2()) %>%
-        #       left_join(member_meta_info)
-        #
-        #     } else if (input$edge_type == "org_id") {
-        #
-        #       dat() %>%
-        #         arrange(Org.ID) %>%
-        #         get_betweenness_members(on_cols = list("Org.ID"),
-        #                              start = first_date_2(),
-        #                              members = input$person_lines,
-        #                              end = last_date_2()) %>%
-        #         left_join(member_meta_info)
-        #
-        #     }
-        #}
-
       }) %>%
         bindEvent(input$make_line_plot)
+
 
       output$metric_df <- renderDataTable({
         metric_df() %>%
@@ -1050,28 +974,20 @@ run_network_app_flipped <- function() {
       }) %>%
         bindEvent(input$make_line_plot)
 
+
       output$my_line_plot <- renderPlot({
 
-        if (input$group_lines != "None") {
+        p <- metric_df() %>%
+          plot_metric(metric_col = Selected.Metric,
+                      group_col = Org.ID) +
+          geom_line(linewidth = input$line_size)
 
-          p <- metric_df() %>%
-            plot_metric(metric_col = Selected.Metric,
-                        group_col = !!sym(input$group_lines)) +
-            geom_line(linewidth = input$line_size)
-
-        } else {
-
-          p <- metric_df() %>%
-            plot_metric(metric_col = Selected.Metric,
-                        group_col = Org.ID) +
-            geom_line(linewidth = input$line_size)
-
-          if (input$color_lines_by_group != "None") {
-            p <- p + aes_string(color = input$color_lines_by_group,
-                                linetype = Org.ID)
-          }
-
+        if (input$color_lines_by_group != "None") {
+          p <- p + aes_string(color = input$color_lines_by_group,
+                              linetype = Org.ID)
         }
+
+
 
         pretty_names <- c(
           "Centrality" = "Betweenness centrality",

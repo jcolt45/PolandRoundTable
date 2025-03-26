@@ -705,7 +705,7 @@ run_network_app_flipped <- function() {
           left_join(org_totals(), by = c("name" = "Org.ID")) %>%
           left_join(org_mem_stats(), by = c("name" = "Org.ID")) %>%
           mutate(node_title = paste0(Organization.Name,
-                                    "\nTotal: ", Total, ", Conetions: ", num_members,
+                                    "\nTotal: ", Total, ", Connections: ", num_members,
                                     "\nO: ", Opposition_Cons, ", G: ", Government_Cons,
                                     "\nE: ", Expert_Cons, ", C: ", Church_Cons)) %>%
           mutate(
@@ -749,7 +749,7 @@ run_network_app_flipped <- function() {
             factor() %>%
             as.integer()
 
-          if (input$node_color_by_group == "RT.Affiliation") {
+          if (input$node_color_by_group == "Affil") {
             cols <- type_cat_cols[vals]
           } else if (input$node_color_by_group == "None") {
 

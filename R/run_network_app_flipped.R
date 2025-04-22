@@ -219,6 +219,12 @@ run_network_app_flipped <- function() {
                    #             sep = ""),
                    h3("Edge Creation Options"),
 
+                   radioButtons('umb_orgs',
+                                'Separate Subgroups?',
+                                choices = c("Yes" ="sub",
+                                            "No" = "umb")
+                   ),
+
                    sliderInput('min_edges',
                                "Minimum Connections for an Edge",
                                value = 1,
@@ -229,7 +235,8 @@ run_network_app_flipped <- function() {
                                 choices = c("None" ="None",
                                             "Total Connections" = "Total",
                                             "Proportion of Members" = "PropMems",
-                                            "Ratio Of Gov/Opp" = "Ratio")
+                                            "Ratio Of Gov/Opp" = "Ratio"),
+                                selected = "PropMems"
                    ),
 
 
@@ -247,7 +254,8 @@ run_network_app_flipped <- function() {
                                 choices = c(
                                   "None" = "None",
                                   "Category" = "Category",
-                                  "Affiliation" = "Affil")
+                                  "Affiliation" = "Affil"),
+                                selected = "Affil"
                    ),
 
                    pickerInput('node_shape_specific',
@@ -536,9 +544,16 @@ run_network_app_flipped <- function() {
       # })
 
       nodes_list <- reactive({
-        dat_limited() %>%
-          distinct(Org.ID) %>%
-          arrange(Org.ID)
+        if (input$umb_orgs == "umb"){
+          el <- dat_limited() %>%
+            distinct(Umbrella) %>%
+            arrange(Umbrella)
+        } else {
+          el <- dat_limited() %>%
+            distinct(Org.ID) %>%
+            arrange(Org.ID)
+        }
+        el
       })
 #FL
       # node_name_choices <- reactive({
@@ -642,6 +657,26 @@ run_network_app_flipped <- function() {
       }) %>%
         bindEvent(input$make_network)
 
+      umb_totals <- reactive({
+        el <- dat_limited() %>%
+          distinct(Umbrella, Member.ID, RT.Affiliation) %>%
+          group_by(Umbrella, RT.Affiliation) %>%
+          summarize(count = n()) %>%
+          pivot_wider(names_from = "RT.Affiliation", values_from = "count", values_fill = 0) %>%
+          group_by(Umbrella) %>%
+          summarize(across(.cols = c("Opposition", "Church", "Government", "Expert"), sum)) %>%
+          mutate(Total = Opposition + Church + Government + Expert)
+        el[is.na(el)] <- 0
+        el %>%
+          mutate(Affil = case_when(
+            Opposition > Government ~ "Opposition",
+            Government > Opposition ~ "Government",
+            Opposition == 0 & Government == 0 ~ "None",
+            Opposition == Government ~ "Neutral"
+          ))
+      }) %>%
+        bindEvent(input$make_network)
+
       # org_affil <- reactive({
       #   org_totals() %>%
       #     mutate(Affil = case_when(
@@ -659,13 +694,21 @@ run_network_app_flipped <- function() {
         #### Make Graph ####
         ## reactive: first_date
         ## reactive: last_date
-
-        el <- dat_limited() %>%
-          get_edgelist_orgs(input$weight_by,
-                            org_totals(),
-                            start = first_date(),
-                            end = last_date(),
-                            min_cons = input$min_edges)
+        if (input$umb_orgs == "umb"){
+          el <- dat_limited() %>%
+            get_edgelist_umb(input$weight_by,
+                              umb_totals(),
+                              start = first_date(),
+                              end = last_date(),
+                              min_cons = input$min_edges)
+        } else {
+          el <- dat_limited() %>%
+            get_edgelist_orgs(input$weight_by,
+                             org_totals(),
+                             start = first_date(),
+                             end = last_date(),
+                             min_cons = input$min_edges)
+        }
 
         el %>%
           mutate(
@@ -683,38 +726,76 @@ run_network_app_flipped <- function() {
       }) %>%
         bindEvent(input$make_network)
 
+      umb_mem_stats <- reactive({
+        my_edgelist() %>%
+          filter(to == from) %>%
+          mutate(Umbrella = to) %>%
+          select(Umbrella, num_members, Government_Cons, Opposition_Cons, Church_Cons, Expert_Cons)
+      }) %>%
+        bindEvent(input$make_network)
+
       nodes_list_ext <- reactive({
-        nodes_list() %>%
-          left_join(org_mem_stats(), by = "Org.ID")
+        if (input$umb_orgs == "umb"){
+          el <- nodes_list() %>%
+            left_join(umb_mem_stats(), by = "Umbrella")
+        } else {
+          el <- nodes_list() %>%
+            left_join(org_mem_stats(), by = "Org.ID")
+        }
+        el
       })%>%
         bindEvent(input$make_network)
+
+      umbrella_meta_info <- reactive({
+        organization_meta_info %>%
+          distinct(Umbrella, Umbrella.Name)
+      })
+
+
 
       #### Calculate layout ####
       prev_layout <- NULL
 
       my_node_layout <- reactive({
         set.seed(1989)
-        get_layout_df(my_edgelist() %>%
-                        select(from, to, weight),
-                      node_meta = nodes_list_ext(),
-                      node_var = node_var,
-                      weight_col = "weight",
-                      prev_layout = prev_layout,
-                      algorithm = input$network_layout) %>%
-          left_join(organization_meta_info, by = c("name" = "Org.ID")) %>%
-          left_join(org_totals(), by = c("name" = "Org.ID")) %>%
-          left_join(org_mem_stats(), by = c("name" = "Org.ID")) %>%
-          mutate(node_title = paste0(Organization.Name,
-                                    "\nTotal: ", Total, ", Connections: ", num_members,
-                                    "\nO: ", Opposition_Cons, ", G: ", Government_Cons,
-                                    "\nE: ", Expert_Cons, ", C: ", Church_Cons)) %>%
-          mutate(
-            None = "1",  # so that if "None" is selected, things don't change
-          )
-      })
-
-      observeEvent(my_node_layout(), {
-        prev_layout <- isolate(my_node_layout())
+        if (input$umb_orgs == "umb"){
+          el <- get_layout_df(my_edgelist() %>%
+                                select(from, to, weight),
+                              node_meta = nodes_list_ext(),
+                              node_var = node_var,
+                              weight_col = "weight",
+                              prev_layout = prev_layout,
+                              algorithm = input$network_layout) %>%
+            left_join(umbrella_meta_info(), by = c("name" = "Umbrella")) %>%
+            left_join(umb_totals(), by = c("name" = "Umbrella")) %>%
+            left_join(umb_mem_stats(), by = c("name" = "Umbrella")) %>%
+            mutate(node_title = paste0(Umbrella.Name,
+                                       "\nTotal: ", Total, ", Connections: ", num_members,
+                                       "\nO: ", Opposition_Cons, ", G: ", Government_Cons,
+                                       "\nE: ", Expert_Cons, ", C: ", Church_Cons)) %>%
+            mutate(
+              None = "1",  # so that if "None" is selected, things don't change
+            )
+        } else {
+          el <- get_layout_df(my_edgelist() %>%
+                          select(from, to, weight),
+                        node_meta = nodes_list_ext(),
+                        node_var = node_var,
+                        weight_col = "weight",
+                        prev_layout = prev_layout,
+                        algorithm = input$network_layout) %>%
+            left_join(organization_meta_info, by = c("name" = "Org.ID")) %>%
+            left_join(org_totals(), by = c("name" = "Org.ID")) %>%
+            left_join(org_mem_stats(), by = c("name" = "Org.ID")) %>%
+            mutate(node_title = paste0(Organization.Name,
+                                       "\nTotal: ", Total, ", Connections: ", num_members,
+                                       "\nO: ", Opposition_Cons, ", G: ", Government_Cons,
+                                       "\nE: ", Expert_Cons, ", C: ", Church_Cons)) %>%
+            mutate(
+              None = "1",  # so that if "None" is selected, things don't change
+            )
+        }
+        el
       })
 
 

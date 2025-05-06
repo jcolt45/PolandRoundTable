@@ -222,11 +222,12 @@ run_network_app_flipped <- function() {
                    radioButtons('umb_orgs',
                                 'Separate Subgroups?',
                                 choices = c("Yes" ="sub",
-                                            "No" = "umb")
+                                            "No" = "umb",
+                                            "Custom" = "c")
                    ),
 
                    sliderInput('min_edges',
-                               "Minimum Connections for an Edge",
+                               "Minimum Connections for an Edge:",
                                value = 1,
                                min = 1, max = 15),
 
@@ -241,6 +242,11 @@ run_network_app_flipped <- function() {
 
 
                    h3("Change Node Appearance"),
+
+                   sliderInput('min_size',
+                               "Minimum Number of Members to keep an Node:",
+                               value = 1,
+                               min = 1, max = 15),
 
                    # Highlight a node by color
                    #uiOutput("node_color_specific"),
@@ -553,6 +559,16 @@ run_network_app_flipped <- function() {
             distinct(Org.ID) %>%
             arrange(Org.ID)
         }
+        if(input$min_size > 1){
+          drop_orgs <- dat_limited() %>%
+            group_by(Org.ID) %>%
+            summarise(mems = n()) %>%
+            filter(mems >= input$min_size) %>%
+            pull(Org.ID)
+
+          el <- el %>%
+            filter(!(Org.ID %in% drop_orgs))
+        }
         el
       })
 #FL
@@ -701,13 +717,56 @@ run_network_app_flipped <- function() {
                               start = first_date(),
                               end = last_date(),
                               min_cons = input$min_edges)
-        } else {
+        } else if (input$umb_orgs == "sub") {
           el <- dat_limited() %>%
             get_edgelist_orgs(input$weight_by,
                              org_totals(),
                              start = first_date(),
                              end = last_date(),
                              min_cons = input$min_edges)
+        } else { #custom
+          mass_orgs = dat_limited() %>%
+            filter(Category == "Mass Organization") %>%
+            pull(Umbrella) %>%
+            unique()
+
+          general <- dat_limited() %>%
+            filter(Umbrella %in% mass_orgs) %>%
+            group_by(Member.ID, Umbrella) %>%
+            mutate(
+              has_sub = any(!is.na(Subgroup)),
+              member_type = case_when(
+                is.na(Subgroup) & !has_sub ~ "General Member",
+                TRUE ~ "In Sub"
+              )
+            ) %>%
+            distinct(Member.ID, Umbrella, member_type)
+
+          dat2 <- dat_limited() %>%
+            left_join(general, by = c("Member.ID", "Umbrella")) %>%
+            mutate(Subgroup = ifelse(member_type == "General Member", "General Member", Subgroup)) %>%
+            filter(!(is.na(Subgroup) & Category == "Mass Organization")) %>%
+            select(-member_type)
+
+          el <- dat2 %>%
+            get_edgelist_orgs(input$weight_by,
+                              org_totals(),
+                              start = first_date(),
+                              end = last_date(),
+                              min_cons = input$min_edges,
+                              custom = TRUE)
+        }
+
+        if (input$min_size > 1){
+          drop_orgs <- dat_limited() %>%
+            group_by(Org.ID) %>%
+            summarise(mems = n()) %>%
+            filter(mems >= input$min_size) %>%
+            pull(Org.ID)
+
+          el <- el %>%
+            filter(!(from %in% drop_orgs)) %>%
+            filter(!(to %in% drop_orgs))
         }
 
         el %>%
@@ -742,6 +801,18 @@ run_network_app_flipped <- function() {
           el <- nodes_list() %>%
             left_join(org_mem_stats(), by = "Org.ID")
         }
+
+        if(input$min_size > 1){
+          drop_orgs <- dat_limited() %>%
+            group_by(Org.ID) %>%
+            summarise(mems = n()) %>%
+            filter(mems >= input$min_size) %>%
+            pull(Org.ID)
+
+          el <- el %>%
+            filter(!(Org.ID %in% drop_orgs))
+        }
+
         el
       })%>%
         bindEvent(input$make_network)
@@ -999,9 +1070,9 @@ run_network_app_flipped <- function() {
       output$selected_node_info <- renderDataTable({
 
         dat_limited() %>%
-          filter(Member.ID %in% node_highlighted()) %>%
-          arrange(Last.Name) %>%
-          select(Full.Name, RT.Affiliation, Organization.Name, Start.Date, End.Date)
+          filter(Org.ID %in% node_highlighted()) %>%
+          arrange(Organization.Name) %>%
+          select(Organization.Name, Full.Name, RT.Affiliation, Start.Date, End.Date)
 
       })
 

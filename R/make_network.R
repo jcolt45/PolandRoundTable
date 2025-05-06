@@ -107,6 +107,7 @@ get_cons_by_afil_umb <- function(affils_by_date,
 #' @param start A start of date range, in YYYY-MM-DD string format.
 #' @param end An end of date range, in YYYY-MM-DD string format.
 #' @param min_cons minimum connections needed to keep an edge
+#' @param custom T/F for if we are using Custom Mass Org option
 #' @return A tibble with pairs of organizations and their number of shared members in that range.
 #' @import dplyr readr
 #' @export
@@ -115,7 +116,8 @@ get_edgelist_orgs <- function(affils_by_date,
                               totals,
                               start,
                               end = NULL,
-                              min_cons = 1) {
+                              min_cons = 1,
+                              custom = FALSE) {
 
   if (is.null(end)) {
     end <- start
@@ -154,6 +156,47 @@ get_edgelist_orgs <- function(affils_by_date,
      tidyr::pivot_longer(-from,
                   names_to = "to",
                   values_to = "num_members")
+
+   if (custom == TRUE){
+     mass_orgs = affils_by_date %>%
+       filter(Start.Date <= end &
+                End.Date >= start) %>%
+       filter(Category == "Mass Organization") %>%
+       pull(Umbrella) %>%
+       unique()
+
+     mass_orgs_ids = affils_by_date %>%
+       filter(Start.Date <= end &
+                End.Date >= start) %>%
+       filter(is.na(Subgroup) & Category == "Mass Organization") %>%
+       select(Umbrella, Org.ID) %>%
+       distinct()
+
+     subgroup_cons <- affils_by_date %>%
+       filter(Start.Date <= end &
+                End.Date >= start) %>%
+       filter(Umbrella %in% mass_orgs) %>%
+       filter(!is.na(Subgroup)) %>%
+       group_by(Org.ID, Umbrella) %>%
+       summarise(num_members = n()) %>%
+       ungroup()
+
+     from_mass <- mass_orgs_ids %>%
+       rename(from = Org.ID) %>%
+       left_join(subgroup_cons, by = "Umbrella") %>%
+       rename(to = Org.ID) %>%
+       select(from, to, num_members)
+
+     to_mass <- mass_orgs_ids %>%
+       rename(to = Org.ID) %>%
+       left_join(subgroup_cons, by = "Umbrella") %>%
+       rename(from = Org.ID) %>%
+       select(from, to, num_members)
+
+     custom <- rbind(from_mass, to_mass)
+
+     edgelist <- rbind(edgelist, custom)
+   }
 
 
 
@@ -329,6 +372,8 @@ get_edgelist_umb <- function(affils_by_date,
 }
 
 
+
+# ------------------INDIVIDUALS-------------------------------
 
 #' Make an edgelist of members with organizational overlap in given date range
 #'

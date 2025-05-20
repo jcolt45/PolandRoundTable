@@ -117,7 +117,8 @@ get_edgelist_orgs <- function(affils_by_date,
                               start,
                               end = NULL,
                               min_cons = 1,
-                              custom = FALSE) {
+                              custom = FALSE,
+                              mass_weights = "No") {
 
   if (is.null(end)) {
     end <- start
@@ -172,7 +173,7 @@ get_edgelist_orgs <- function(affils_by_date,
        select(Umbrella, Org.ID) %>%
        distinct()
 
-     subgroup_cons <- affils_by_date %>%
+     subgroups <- affils_by_date %>%
        filter(Start.Date <= end &
                 End.Date >= start) %>%
        filter(Umbrella %in% mass_orgs) %>%
@@ -181,21 +182,26 @@ get_edgelist_orgs <- function(affils_by_date,
        summarise(num_members = n()) %>%
        ungroup()
 
+     subgroup_cons <- subgroups %>%
+       rename(from = Org.ID) %>%
+       left_join(subgroups, by = "Umbrella") %>%
+       rename(to = Org.ID) %>%
+       rename(num_members = num_members.x) %>%
+       select(to, from, num_members)
+
      from_mass <- mass_orgs_ids %>%
        rename(from = Org.ID) %>%
-       left_join(subgroup_cons, by = "Umbrella") %>%
+       left_join(subgroups, by = "Umbrella") %>%
        rename(to = Org.ID) %>%
        select(from, to, num_members)
 
      to_mass <- mass_orgs_ids %>%
        rename(to = Org.ID) %>%
-       left_join(subgroup_cons, by = "Umbrella") %>%
+       left_join(subgroups, by = "Umbrella") %>%
        rename(from = Org.ID) %>%
        select(from, to, num_members)
 
-     custom <- rbind(from_mass, to_mass)
-
-     edgelist <- rbind(edgelist, custom)
+     custom_cons <- rbind(rbind(from_mass, to_mass), subgroup_cons)
    }
 
 
@@ -203,30 +209,58 @@ get_edgelist_orgs <- function(affils_by_date,
    gov_count <- get_cons_by_afil_orgs(affils_by_date, "Government", start, end)
    if (nrow(gov_count) != 0){
      edgelist <- left_join(edgelist, gov_count, by = c("to", "from"))
+     if (custom == TRUE){
+       custom_cons <- left_join(custom_cons, gov_count, by = c("to", "from"))
+     }
    } else {
      edgelist <- edgelist %>%
        mutate(Government_Cons = 0)
+     if (custom == TRUE){
+       custom_cons <- custom_cons %>%
+         mutate(Government_Cons = 0)
+     }
    }
    opp_count <- get_cons_by_afil_orgs(affils_by_date, "Opposition", start, end)
    if (nrow(opp_count) != 0){
      edgelist <- left_join(edgelist, opp_count, by = c("to", "from"))
+     if (custom == TRUE){
+       custom_cons <- left_join(custom_cons, opp_count, by = c("to", "from"))
+     }
    }else {
      edgelist <- edgelist %>%
        mutate(Opposition_Cons = 0)
+     if (custom == TRUE){
+       custom_cons <- custom_cons %>%
+         mutate(Opposition_Cons = 0)
+     }
    }
    church_count <- get_cons_by_afil_orgs(affils_by_date, "Church", start, end)
    if (nrow(church_count) != 0){
      edgelist <- left_join(edgelist, church_count, by = c("to", "from"))
+     if (custom == TRUE){
+       custom_cons <- left_join(custom_cons, church_count, by = c("to", "from"))
+     }
    }else {
      edgelist <- edgelist %>%
        mutate(Church_Cons = 0)
+     if (custom == TRUE){
+       custom_cons <- custom_cons %>%
+         mutate(Church_Cons = 0)
+     }
    }
    expert_count <- get_cons_by_afil_orgs(affils_by_date, "Expert", start, end)
    if (nrow(expert_count) != 0){
      edgelist <- left_join(edgelist, expert_count, by = c("to", "from"))
+     if (custom == TRUE){
+      custom_cons <- left_join(custom_cons, expert_count, by = c("to", "from"))
+     }
    }else {
      edgelist <- edgelist %>%
        mutate(Expert_Cons = 0)
+     if (custom == TRUE){
+       custom_cons <- custom_cons %>%
+         mutate(Expert_Cons = 0)
+     }
    }
 
    edgelist[is.na(edgelist)] <- 0
@@ -236,6 +270,20 @@ get_edgelist_orgs <- function(affils_by_date,
      #filter(to != from) %>%
      mutate(weight = 1) %>%
      left_join(totals, by = c("from" = "Org.ID"))
+
+   if (custom == TRUE){
+     custom_cons[is.na(custom_cons)] <- 0
+
+     custom_cons <- custom_cons %>%
+       filter(num_members >= min_cons) %>%
+       #filter(to != from) %>%
+       mutate(weight = 1) %>%
+       left_join(totals, by = c("from" = "Org.ID"))
+
+     if (mass_weights == "no"){
+       edgelist <- rbind(edgelist, custom_cons)
+     }
+   }
 
 
    if (weight_by == "Total"){
@@ -249,7 +297,13 @@ get_edgelist_orgs <- function(affils_by_date,
        ))
    } else if (weight_by == "Ratio"){
      edgelist <- edgelist %>%
-       mutate(weight = 1 + abs(Government + Opposition))
+       mutate(weight = case_when(
+         Government + Opposition == 0 ~ 0.01,
+         TRUE ~ 0.01 + (1 - (abs(Government/(Government + Opposition) - 0.5) * 2))))
+   }
+
+   if (custom == TRUE & mass_weights == "yes"){
+     edgelist <- rbind(edgelist, custom_cons)
    }
 
    return(edgelist)
@@ -364,8 +418,12 @@ get_edgelist_umb <- function(affils_by_date,
         TRUE ~ num_members / Total
       ))
   } else if (weight_by == "Ratio"){
+    # edgelist <- edgelist %>%
+    #   mutate(weight = 1 + abs(Government + Opposition))
     edgelist <- edgelist %>%
-      mutate(weight = 1 + abs(Government + Opposition))
+      mutate(weight = case_when(
+        Government + Opposition == 0 ~ 0.01,
+        TRUE ~ 0.01 + (1 - (abs(Government/(Government + Opposition) - 0.5) * 2))))
   }
 
   return(edgelist)

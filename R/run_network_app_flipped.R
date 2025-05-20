@@ -217,19 +217,39 @@ run_network_app_flipped <- function() {
                    #             value = 1979,
                    #             min = 1945, max = 1989,
                    #             sep = ""),
-                   h3("Edge Creation Options"),
+                   h3("Node Creation Options"),
 
                    radioButtons('umb_orgs',
-                                'Separate Subgroups?',
-                                choices = c("Yes" ="sub",
-                                            "No" = "umb",
-                                            "Custom" = "c")
+                                'Node Creation Options:',
+                                choices = c("Umbrella" ="umb",
+                                            "Separate Subgroups" = "sub",
+                                            "Sub w/ Artificial Mass Org Connections" = "c")
                    ),
+
+
+                   sliderInput('min_size',
+                               "Minimum Number of Members to keep a Node:",
+                               value = 1,
+                               min = 1, max = 15),
+
+                   sliderInput('min_cons',
+                               "Minimum Number of Connections to keep a Node:",
+                               value = 0,
+                               min = 0, max = 15),
+
+                   h3("Edge Creation Options"),
+
 
                    sliderInput('min_edges',
                                "Minimum Connections for an Edge:",
                                value = 1,
                                min = 1, max = 15),
+
+                   radioButtons('scale_weights',
+                                'Scale Edge Weights for Better Visuals?',
+                                choices = c("Yes" = TRUE,
+                                            "No" = FALSE)
+                   ),
 
                    radioButtons('weight_by',
                                 'Weight edges by:',
@@ -240,13 +260,14 @@ run_network_app_flipped <- function() {
                                 selected = "PropMems"
                    ),
 
+                   radioButtons('mass_weights',
+                                'Force Weights of Artficial Connections to 1?',
+                                choices = c("Yes" ="yes",
+                                            "No" = "no")
+                   ),
+
 
                    h3("Change Node Appearance"),
-
-                   sliderInput('min_size',
-                               "Minimum Number of Members to keep an Node:",
-                               value = 1,
-                               min = 1, max = 15),
 
                    # Highlight a node by color
                    #uiOutput("node_color_specific"),
@@ -559,16 +580,6 @@ run_network_app_flipped <- function() {
             distinct(Org.ID) %>%
             arrange(Org.ID)
         }
-        if(input$min_size > 1){
-          drop_orgs <- dat_limited() %>%
-            group_by(Org.ID) %>%
-            summarise(mems = n()) %>%
-            filter(mems >= input$min_size) %>%
-            pull(Org.ID)
-
-          el <- el %>%
-            filter(!(Org.ID %in% drop_orgs))
-        }
         el
       })
 #FL
@@ -717,6 +728,7 @@ run_network_app_flipped <- function() {
                               start = first_date(),
                               end = last_date(),
                               min_cons = input$min_edges)
+
         } else if (input$umb_orgs == "sub") {
           el <- dat_limited() %>%
             get_edgelist_orgs(input$weight_by,
@@ -754,65 +766,60 @@ run_network_app_flipped <- function() {
                               start = first_date(),
                               end = last_date(),
                               min_cons = input$min_edges,
-                              custom = TRUE)
+                              custom = TRUE,
+                              mass_weights = input$mass_weights)
         }
 
         if (input$min_size > 1){
-          drop_orgs <- dat_limited() %>%
-            group_by(Org.ID) %>%
-            summarise(mems = n()) %>%
-            filter(mems >= input$min_size) %>%
-            pull(Org.ID)
+          if (input$umb_orgs == "umb"){
+            drop_size <- umb_totals() %>%
+              filter(Total >= input$min_size) %>%
+              pull(Umbrella)
+          } else {
+            drop_size <- org_totals() %>%
+              filter(Total >= input$min_size) %>%
+              pull(Org.ID)
+          }
 
           el <- el %>%
-            filter(!(from %in% drop_orgs)) %>%
-            filter(!(to %in% drop_orgs))
+            filter(from %in% drop_size) %>%
+            filter(to %in% drop_size)
         }
 
-        el %>%
-          mutate(
-            weight = log(weight + 1, base = max(weight))/10
-          ) # scale edge weights to have better visuals
+        if (input$min_cons > 0){
+          drop_cons <- el %>%
+            filter(from != to) %>%
+            group_by(from) %>%
+            summarise(count = n()) %>%
+            filter(count >= input$min_cons) %>%
+            pull(from)
 
+          el <- el %>%
+            filter(from %in% drop_cons) %>%
+            filter(to %in% drop_cons)
+        }
+
+        if (input$scale_weights == TRUE){
+          el <- el %>%
+            mutate(
+              weight = log(weight + 1, base = max(weight))/10
+            ) # scale edge weights to have better visuals
+        }
+        #print(el)
+        #print(unique(el$weight))
+        el
       }) %>%
         bindEvent(input$make_network)
 
-      org_mem_stats <- reactive({
-        my_edgelist() %>%
-          filter(to == from) %>%
-          mutate(Org.ID = to) %>%
-          select(Org.ID, num_members, Government_Cons, Opposition_Cons, Church_Cons, Expert_Cons)
-      }) %>%
-        bindEvent(input$make_network)
-
-      umb_mem_stats <- reactive({
-        my_edgelist() %>%
-          filter(to == from) %>%
-          mutate(Umbrella = to) %>%
-          select(Umbrella, num_members, Government_Cons, Opposition_Cons, Church_Cons, Expert_Cons)
-      }) %>%
-        bindEvent(input$make_network)
 
       nodes_list_ext <- reactive({
         if (input$umb_orgs == "umb"){
           el <- nodes_list() %>%
-            left_join(umb_mem_stats(), by = "Umbrella")
+            left_join(umb_totals(), by = "Umbrella")
         } else {
           el <- nodes_list() %>%
-            left_join(org_mem_stats(), by = "Org.ID")
+            left_join(org_totals(), by = "Org.ID")
         }
-
-        if(input$min_size > 1){
-          drop_orgs <- dat_limited() %>%
-            group_by(Org.ID) %>%
-            summarise(mems = n()) %>%
-            filter(mems >= input$min_size) %>%
-            pull(Org.ID)
-
-          el <- el %>%
-            filter(!(Org.ID %in% drop_orgs))
-        }
-
         el
       })%>%
         bindEvent(input$make_network)
@@ -839,11 +846,10 @@ run_network_app_flipped <- function() {
                               algorithm = input$network_layout) %>%
             left_join(umbrella_meta_info(), by = c("name" = "Umbrella")) %>%
             left_join(umb_totals(), by = c("name" = "Umbrella")) %>%
-            left_join(umb_mem_stats(), by = c("name" = "Umbrella")) %>%
             mutate(node_title = paste0(Umbrella.Name,
-                                       "\nTotal: ", Total, ", Connections: ", num_members,
-                                       "\nO: ", Opposition_Cons, ", G: ", Government_Cons,
-                                       "\nE: ", Expert_Cons, ", C: ", Church_Cons)) %>%
+                                       "\nTotal: ", Total,
+                                       "\nO: ", Opposition, ", G: ", Government,
+                                       "\nE: ", Expert, ", C: ", Church)) %>%
             mutate(
               None = "1",  # so that if "None" is selected, things don't change
             )
@@ -857,15 +863,17 @@ run_network_app_flipped <- function() {
                         algorithm = input$network_layout) %>%
             left_join(organization_meta_info, by = c("name" = "Org.ID")) %>%
             left_join(org_totals(), by = c("name" = "Org.ID")) %>%
-            left_join(org_mem_stats(), by = c("name" = "Org.ID")) %>%
             mutate(node_title = paste0(Organization.Name,
-                                       "\nTotal: ", Total, ", Connections: ", num_members,
-                                       "\nO: ", Opposition_Cons, ", G: ", Government_Cons,
-                                       "\nE: ", Expert_Cons, ", C: ", Church_Cons)) %>%
+                                       "\nTotal: ", Total,
+                                       "\nO: ", Opposition, ", G: ", Government,
+                                       "\nE: ", Expert, ", C: ", Church)) %>%
             mutate(
               None = "1",  # so that if "None" is selected, things don't change
             )
         }
+        print("my_node_layout")
+        print(el %>%
+                select(name, Total))
         el
       })
 
@@ -951,12 +959,19 @@ run_network_app_flipped <- function() {
 
       my_edgelist_locs <- reactive({
 
-        my_edgelist() %>%
+        el <- my_edgelist() %>%
           left_join(my_node_layout() %>% rename_all(~paste0(.x,"_from")),
                     by = c("from" = "name_from")) %>%
           left_join(my_node_layout() %>% rename_all(~paste0(.x,"_to")),
-                    by = c("to" = "name_to"))
+                    by = c("to" = "name_to")) %>%
+          mutate(edge_title = paste0("Between: ", from, " ", to,
+                                     "\nTotal: ", num_members,
+                                     "\nO: ", Opposition_Cons, ", G: ", Government_Cons,
+                                     "\nE: ", Expert_Cons, ", C: ", Church_Cons))
 
+        print("my_edgelist_locs")
+        print(el)
+        el
       })
 
 
@@ -1012,13 +1027,13 @@ run_network_app_flipped <- function() {
                        alpha = input$edge_transparency,
                        color = edge_colors(),
                        linewidth = edge_weights()) +
-          # geom_segment_interactive(data = my_edgelist_locs(),
-          #                          aes(x = x_from, y = y_from,
-          #                              xend = x_to, yend = y_to,
-          #                              tooltip = edge_orgs),
-          #                          alpha = 0,
-          #                          color = "black",
-          #                          linewidth = edge_weights()*10) +
+          geom_segment_interactive(data = my_edgelist_locs(),
+                                   aes(x = x_from, y = y_from,
+                                       xend = x_to, yend = y_to,
+                                       tooltip = edge_title),
+                                   alpha = 0,
+                                   color = "black",
+                                   linewidth = edge_weights()*10) +
           geom_point_interactive(aes(x = x, y = y,
                                      tooltip = node_title,
                                      color = names(node_colors()),
@@ -1101,14 +1116,14 @@ run_network_app_flipped <- function() {
                    Start.Date <= last_date_2(),
                    End.Date >= first_date_2()) %>%
             left_join(organization_meta_info, by = "Org.ID")%>%
-            left_join(org_mem_stats(), by = "Org.ID")
+            left_join(org_totals(), by = "Org.ID")
         } else {
           dat <- all_metrics_by_month_orgs %>%
             filter(Org.ID %in% input$org_lines,
                    Start.Date <= last_date_2(),
                    End.Date >= first_date_2()) %>%
             left_join(organization_meta_info, by = "Org.ID")%>%
-            left_join(org_mem_stats(), by = "Org.ID")
+            left_join(org_totals(), by = "Org.ID")
         }
 
         dat$Selected.Metric = dat[[input$metric]]

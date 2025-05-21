@@ -245,11 +245,6 @@ run_network_app_flipped <- function() {
                                value = 1,
                                min = 1, max = 15),
 
-                   radioButtons('scale_weights',
-                                'Scale Edge Weights for Better Visuals?',
-                                choices = c("Yes" = TRUE,
-                                            "No" = FALSE)
-                   ),
 
                    radioButtons('weight_by',
                                 'Weight edges by:',
@@ -799,14 +794,12 @@ run_network_app_flipped <- function() {
             filter(to %in% drop_cons)
         }
 
-        if (input$scale_weights == TRUE){
+        if (input$weight_by != "Ratio"){
           el <- el %>%
             mutate(
               weight = log(weight + 1, base = max(weight))/10
             ) # scale edge weights to have better visuals
         }
-        #print(el)
-        #print(unique(el$weight))
         el
       }) %>%
         bindEvent(input$make_network)
@@ -848,6 +841,7 @@ run_network_app_flipped <- function() {
             left_join(umb_totals(), by = c("name" = "Umbrella")) %>%
             mutate(node_title = paste0(Umbrella.Name,
                                        "\nTotal: ", Total,
+                                       "\nID: ", name,
                                        "\nO: ", Opposition, ", G: ", Government,
                                        "\nE: ", Expert, ", C: ", Church)) %>%
             mutate(
@@ -865,15 +859,13 @@ run_network_app_flipped <- function() {
             left_join(org_totals(), by = c("name" = "Org.ID")) %>%
             mutate(node_title = paste0(Organization.Name,
                                        "\nTotal: ", Total,
+                                       "\nID: ", name,
                                        "\nO: ", Opposition, ", G: ", Government,
                                        "\nE: ", Expert, ", C: ", Church)) %>%
             mutate(
               None = "1",  # so that if "None" is selected, things don't change
             )
         }
-        print("my_node_layout")
-        print(el %>%
-                select(name, Total))
         el
       })
 
@@ -968,9 +960,6 @@ run_network_app_flipped <- function() {
                                      "\nTotal: ", num_members,
                                      "\nO: ", Opposition_Cons, ", G: ", Government_Cons,
                                      "\nE: ", Expert_Cons, ", C: ", Church_Cons))
-
-        print("my_edgelist_locs")
-        print(el)
         el
       })
 

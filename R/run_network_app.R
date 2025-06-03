@@ -357,7 +357,9 @@ run_network_app <- function() {
                                   "Centrality" = "Centrality",
                                   "Normalized Centrality" = "Centrality.Normalized",
                                   "Degree" = "Degree",
-                                  "Normalized Degree" = "Degree.Normalized"#,
+                                  "Normalized Degree" = "Degree.Normalized",
+                                  "Cross Betweenness" = "CrossBetweenness",
+                                  "Normalized Cross Betweenness" = "Cross.Betweenness.Norm"#,
                                   #"Cross-Group Degree" = "Cross.Degree",
                                   #"Normalized Cross-Group Degree" = "Normalized.Cross.Degree",
                                 )
@@ -956,7 +958,9 @@ run_network_app <- function() {
           "Degree" = "Total degree",
           "Degree.Normalized" = "Degree (normalized each month)",
           "Cross.Degree" = "Cross-group degree (based on RT affiliation)",
-          "Normalized.Cross.Degree" = "Cross-group degree (normalized each month)"
+          "Normalized.Cross.Degree" = "Cross-group degree (normalized each month)",
+          "CrossBetweenness" = "Cross betweenness (across factions)",
+          "Cross.Betweenness.Norm" = "Normalized cross betweenness (using Louvain clusters)"
         )
 
         len_range <- difftime(last_date_2(), first_date_2())/30

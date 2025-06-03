@@ -400,22 +400,35 @@ run_network_app <- function() {
                                value = 1945,
                                min = 1945, max = 1989,
                                sep = ""),
-                   h3("End of Date Range"),
-                   selectInput('month_end_2',
-                               'Month',
-                               choices = 1:12
-                   ),
-                   selectInput('day_end_2',
-                               'Day',
-                               choices = 1:31
-                   ),
-                   sliderInput('year_end_2',
-                               'Year',
-                               value = 1989,
-                               min = 1945, max = 1989,
-                               sep = ""),
+                  h3("End of Date Range"),
+                  div(style="display: inline-block;vertical-align:top; width: 150px;",
+                      selectInput('month_end_2',
+                                  'Month',
+                                  choices = 1:12)
+                  ),
+                  div(style="display: inline-block;vertical-align:top; width: 150px;",
+                      selectInput('day_end_2',
+                                  'Day',
+                                  choices = 1:31)
+                  ),
+                  sliderInput('year_end_2',
+                              'Year',
+                              value = 1989,
+                              min = 1945, max = 1989,
+                              sep = ""),
 
                    h3("Choose which individuals to include"),
+
+                  # Search box to optionally select names (enter key will confirm)
+                  div(
+                    style = "display: flex; gap: 10px; align-items: flex-start;",
+                    textInput("member_search", "Search for an individual by name:"),
+                    div(
+                      style = "margin-top: 25px;",  # adjust as needed to align with input box
+                      actionButton("confirm_search", "Select", class = "btn-primary")
+                    )
+                    # actionButton("confirm_search", "Confirm", class = "btn-primary")
+                  ),
 
                    pickerInput('person_lines',
                                'Choose individuals:',
@@ -463,10 +476,26 @@ run_network_app <- function() {
                  ),
                  mainPanel(
                    plotOutput('my_line_plot', width = "700px", height = "700px"),
-                   dataTableOutput('metric_df')
+                   downloadButton("download_plot", "Download Plot (PNG)"),
+                   dataTableOutput("affiliation_table"),
+                   downloadButton("download_affiliation_table", "Download Affiliations CSV"),
+                   dataTableOutput('metric_df'),
+                   downloadButton("download_metric_df", "Download Metric CSV")
                  )
         ) #tabset
-      ) #tabpanel
+      ), #tabpanel
+    
+    # Pressing enter key will select entered member in search box
+    tags$script(HTML("
+      $(document).on('keypress', function(e) {
+        if (e.which == 13 && $('#member_search').is(':focus')) {
+          setTimeout(function() {
+            $('#confirm_search').click();
+          }, 150); // delay in ms allows input to register
+        }
+      });
+    "))
+
     ), #ui
     server = function(input, output, session) {
 
@@ -843,6 +872,67 @@ run_network_app <- function() {
       })
 
       ########### Panel 3: Line Plots ############
+      
+      
+      # To enable fuzzy matching when searching polish names
+      remove_accents <- function(x) {
+        iconv(x, from = "UTF-8", to = "ASCII//TRANSLIT")
+      }
+      
+      # Narrow member selection drop down menu by search field
+      # observeEvent(input$member_search, {
+      # observeEvent(input$confirm_search, {
+      #   req(input$member_search)
+      #   
+      #   search_term <- tolower(remove_accents(input$member_search))
+      #   
+      #   matched_ids <- member_meta_info %>%
+      #     mutate(
+      #       Name1 = paste0(Last.Name, ", ", First.Middle.Name),
+      #       Name2 = paste(First.Middle.Name, Last.Name),
+      #       Search1 = tolower(remove_accents(Name1)),
+      #       Search2 = tolower(remove_accents(Name2))
+      #     ) %>%
+      #     filter(
+      #       grepl(search_term, Search1) |
+      #         grepl(search_term, Search2)
+      #     ) %>%
+      #     pull(Member.ID)
+      #   
+      #   if (length(matched_ids) > 0) {
+      #     updatePickerInput(
+      #       session = session,
+      #       inputId = "person_lines",
+      #       selected = unique(c(input$person_lines, matched_ids))
+      #     )
+      #   }
+      # })
+      observeEvent(input$confirm_search, {
+        req(input$member_search)
+        
+        # Split search input into cleaned lowercase terms
+        search_terms <- strsplit(input$member_search, ",")[[1]] |>
+          trimws() |>
+          tolower() |>
+          remove_accents()
+        
+        matched_ids <- member_meta_info %>%
+          mutate(
+            FullName = tolower(remove_accents(paste(First.Middle.Name, Last.Name)))
+          ) %>%
+          filter(
+            Reduce(`|`, lapply(search_terms, function(term) grepl(term, FullName)))
+          ) %>%
+          pull(Member.ID)
+        
+        if (length(matched_ids) > 0) {
+          updatePickerInput(
+            session = session,
+            inputId = "person_lines",
+            selected = unique(c(input$person_lines, matched_ids))
+          )
+        }
+      })
 
       #### Get Selected Dates ####
       first_date_2 <- reactive(get_date(input$year_start_2, input$month_start_2, input$day_start_2))
@@ -880,7 +970,6 @@ run_network_app <- function() {
       #
 
       metric_df <- reactive({
-
         dat <- all_metrics_by_month %>%
           filter(Member.ID %in% input$person_lines,
                  Start.Date <= last_date_2(),
@@ -919,6 +1008,32 @@ run_network_app <- function() {
         #     }
         #}
 
+      # }) %>% bindEvent(input$make_line_plot)
+      })
+      
+      affiliation_df <- reactive({
+        # req(input$person_lines, first_date_2(), last_date_2())
+        affiliation_dates %>%
+          filter(
+            Member.ID %in% input$person_lines,
+            Start.Date <= last_date_2(),
+            End.Date >= first_date_2()
+          ) %>%
+          select(
+            Full.Name,
+            # RT.Affiliation,
+            Organization.Name,
+            # Umbrella,
+            # Subgroup,
+            # Category,
+            Start.Date,
+            End.Date
+          )
+      # }) %>% bindEvent(input$make_line_plot)
+      })
+      
+      output$affiliation_table <- renderDataTable({
+        affiliation_df()
       }) %>%
         bindEvent(input$make_line_plot)
 
@@ -926,10 +1041,11 @@ run_network_app <- function() {
         metric_df() %>%
           dplyr::filter(!is.na(Selected.Metric)) %>%
           select(Full.Name, input$metric, Start.Date, End.Date)
-      }) %>%
-        bindEvent(input$make_line_plot)
+      # }) %>% bindEvent(input$make_line_plot)
+      })
 
-      output$my_line_plot <- renderPlot({
+      # output$my_line_plot <- renderPlot({
+      generate_plot <- function() {
 
         if (input$group_lines != "None") {
 
@@ -949,7 +1065,6 @@ run_network_app <- function() {
             p <- p + aes_string(color = input$color_lines_by_group,
                                 linetype = Full.Name)
           }
-
         }
 
         pretty_names <- c(
@@ -989,8 +1104,57 @@ run_network_app <- function() {
           )
 
 
+      # }) %>% bindEvent(input$make_line_plot)
+      }
+      
+      output$affiliation_table <- renderDataTable({
+        affiliation_df()
+      })
+      
+      output$my_line_plot <- renderPlot({
+        generate_plot()
       }) %>% bindEvent(input$make_line_plot)
-
+      
+      ### Download handlers
+      # Plot download
+      output$download_plot <- downloadHandler(
+        filename = function() {
+          paste0(input$person_lines, "_", input$metric, "_", first_date_2(), "_", last_date_2(), ".png")
+        },
+        content = function(file) {
+          ggsave(
+            file,
+            plot = generate_plot(),
+            width = 10,
+            height = 6,
+            dpi = 300,
+            bg = "white"
+          )
+        }
+      )
+      
+      # CSV download: metric_df
+      output$download_metric_df <- downloadHandler(
+        filename = function() {
+          paste0(input$person_lines, "_", input$metric, "_", first_date_2(), "_", last_date_2(), ".csv")
+        },
+        content = function(file) {
+          metric_df() %>%
+            filter(!is.na(Selected.Metric)) %>%
+            select(Full.Name, input$metric, Start.Date, End.Date) %>%
+            write.csv(file, row.names = FALSE)
+        }
+      )
+      
+      # CSV download: affiliation_df
+      output$download_affiliation_table <- downloadHandler(
+        filename = function() {
+          paste0(input$person_lines, "_", input$metric, "_affiliations_", first_date_2(), "_", last_date_2(), ".csv")
+        },
+        content = function(file) {
+          write.csv(affiliation_df(), file, row.names = FALSE)
+        }
+      )
 
     } #server
   ) #shinyapp

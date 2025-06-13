@@ -419,23 +419,40 @@ run_network_app <- function() {
 
                    h3("Choose which individuals to include"),
 
-                  # Search box to optionally select names (enter key will confirm)
+                  # Search box with Select button
                   div(
                     style = "display: flex; gap: 10px; align-items: flex-start;",
-                    textInput("member_search", "Search for an individual by name:"),
                     div(
-                      style = "margin-top: 25px;",  # adjust as needed to align with input box
-                      actionButton("confirm_search", "Select", class = "btn-primary")
-                    )
-                    # actionButton("confirm_search", "Confirm", class = "btn-primary")
+                      style = "flex-grow: 1;",
+                      textInput("member_search", "Search for an individual by name:")
+                    ),
+                    actionButton("confirm_search",
+                                 "Select",
+                                 class = "btn-secondary",
+                                 style = "height: 38px; margin-top: 25px;")
                   ),
-
-                   pickerInput('person_lines',
-                               'Choose individuals:',
-                               choices = node_name_choices,
-                               options = list(`actions-box` = TRUE),
-                               multiple = TRUE
-                   ),
+                  
+                  # Dropdown with Clear button
+                  div(
+                    style = "display: flex; gap: 10px; align-items: flex-start;",
+                    div(
+                      style = "flex-grow: 1; min-width: 0;",
+                      pickerInput(
+                        'person_lines',
+                        'Selected individuals:',
+                        choices = node_name_choices,
+                        options = list(`actions-box` = TRUE),
+                        multiple = TRUE
+                      )
+                    ),
+                    actionButton(
+                      "clear_person_lines",
+                      "Clear",
+                      class = "btn-secondary",
+                      style = "height: 38px; white-space: nowrap; margin-top: 25px;"
+                    )
+                  ),
+                  
 
                    h3("Color by categories?"),
 
@@ -933,6 +950,13 @@ run_network_app <- function() {
           )
         }
       })
+
+
+      ## Clear selected members -- tied to clear button
+      observeEvent(input$clear_person_lines, {
+        updatePickerInput(session, "person_lines", selected = character(0))
+      })
+
 
       #### Get Selected Dates ####
       first_date_2 <- reactive(get_date(input$year_start_2, input$month_start_2, input$day_start_2))

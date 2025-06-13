@@ -452,7 +452,6 @@ run_network_app <- function() {
                       style = "height: 38px; white-space: nowrap; margin-top: 25px;"
                     )
                   ),
-                  
 
                    h3("Color by categories?"),
 
@@ -491,14 +490,35 @@ run_network_app <- function() {
 
 
                  ),
+                 
+                 # Plots, tables, and download buttons -- will be hidden if there isn't anything to display yet
                  mainPanel(
                    plotOutput('my_line_plot', width = "700px", height = "700px"),
-                   downloadButton("download_plot", "Download Plot (PNG)"),
-                   dataTableOutput("affiliation_table"),
-                   downloadButton("download_affiliation_table", "Download Affiliations CSV"),
-                   dataTableOutput('metric_df'),
-                   downloadButton("download_metric_df", "Download Metric CSV")
+                   conditionalPanel(
+                     # condition = "output.plot_ready",
+                     condition = "input.make_line_plot > 0",
+                     downloadButton("download_plot", "Download Plot (PNG)")
+                   ),
+                   
+                   # Affiliation table and download
+                   conditionalPanel(
+                     condition = "output.affiliation_df_ready",
+                     tagList(
+                       dataTableOutput("affiliation_table"),
+                       downloadButton("download_affiliation_table", "Download Affiliations CSV")
+                     )
+                   ),
+                   
+                   # Metric table and download
+                   conditionalPanel(
+                     condition = "output.metric_df_ready",
+                     tagList(
+                       dataTableOutput("metric_df"),
+                       downloadButton("download_metric_df", "Download Metric CSV")
+                     )
+                   )
                  )
+                 
         ) #tabset
       ), #tabpanel
     
@@ -895,6 +915,17 @@ run_network_app <- function() {
       remove_accents <- function(x) {
         iconv(x, from = "UTF-8", to = "ASCII//TRANSLIT")
       }
+
+      # To be used for saving plots and tables
+      get_filename <- function() {
+        names_vec <- metric_df()$Full.Name %>% unique() %>% na.omit()
+        names_ascii <- iconv(names_vec, from = "UTF-8", to = "ASCII//TRANSLIT")
+        names_safe <- names_ascii %>%
+          gsub("[^A-Za-z0-9]+", "_", .) %>%
+          paste(collapse = "_")
+        if (identical(names_safe, "")) names_safe <- "data"
+        paste0(names_safe, "_", input$metric, "_", first_date_2(), "_", last_date_2())
+      }
       
       # Narrow member selection drop down menu by search field
       # observeEvent(input$member_search, {
@@ -1134,21 +1165,40 @@ run_network_app <- function() {
       output$affiliation_table <- renderDataTable({
         affiliation_df()
       })
+
+      current_plot <- reactiveVal(NULL)
+      plot_filename_prefix <- reactiveVal("plot")
       
       output$my_line_plot <- renderPlot({
-        generate_plot()
+        plot_obj <- generate_plot()
+
+        # Save selected options to be used as a filename if plot is saved
+        prefix <- get_filename()
+        plot_filename_prefix(prefix)
+
+
+        # save the current plot so that it may be tied to download plot button
+        current_plot(plot_obj)
+        plot_obj
       }) %>% bindEvent(input$make_line_plot)
+
+      # Controls visibility of the plot + download button
+      output$plot_ready <- reactive({
+        nrow(metric_df() %>% dplyr::filter(!is.na(Selected.Metric))) > 0
+      })
+      outputOptions(output, "plot_ready", suspendWhenHidden = FALSE)
+
       
       ### Download handlers
       # Plot download
       output$download_plot <- downloadHandler(
         filename = function() {
-          paste0(input$person_lines, "_", input$metric, "_", first_date_2(), "_", last_date_2(), ".png")
+        paste0(plot_filename_prefix(), ".png")
         },
         content = function(file) {
           ggsave(
-            file,
-            plot = generate_plot(),
+            filename = file,
+            plot = current_plot(),
             width = 10,
             height = 6,
             dpi = 300,
@@ -1160,7 +1210,7 @@ run_network_app <- function() {
       # CSV download: metric_df
       output$download_metric_df <- downloadHandler(
         filename = function() {
-          paste0(input$person_lines, "_", input$metric, "_", first_date_2(), "_", last_date_2(), ".csv")
+          paste0(get_filename(), ".csv")
         },
         content = function(file) {
           metric_df() %>%
@@ -1173,12 +1223,23 @@ run_network_app <- function() {
       # CSV download: affiliation_df
       output$download_affiliation_table <- downloadHandler(
         filename = function() {
-          paste0(input$person_lines, "_", input$metric, "_affiliations_", first_date_2(), "_", last_date_2(), ".csv")
+          paste0(get_filename(), "_affiliations.csv")
         },
         content = function(file) {
           write.csv(affiliation_df(), file, row.names = FALSE)
         }
       )
+
+      # Show/hide download buttons and tables only when data is available
+      output$affiliation_df_ready <- reactive({
+        nrow(affiliation_df()) > 0
+      })
+      outputOptions(output, "affiliation_df_ready", suspendWhenHidden = FALSE)
+
+      output$metric_df_ready <- reactive({
+        nrow(metric_df() %>% dplyr::filter(!is.na(Selected.Metric))) > 0
+      })
+      outputOptions(output, "metric_df_ready", suspendWhenHidden = FALSE)
 
     } #server
   ) #shinyapp

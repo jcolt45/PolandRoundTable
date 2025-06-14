@@ -328,7 +328,7 @@ run_network_app <- function() {
 
                    h3("Choose metrics"),
 
-                   h4("CENTRALITY (or 'betweenness') is a measure of how important
+                   h4("BETWEENNESS (or centrality) is a measure of how important
                     the individual is to the connectedness of the network; in
                     essence, it measures how many other pairs of nodes are connected
                     through this individual."),
@@ -337,13 +337,22 @@ run_network_app <- function() {
                    h4("DEGREE refers to the total number of connections that an
                     individual has in the network"),
                    br(),
+                   
+                   h4("CROSS BETWEENNEESS is a custom measure which is similar to betweenness
+                      but instead is calculated using only Government-Opposition pairs."),
+                   br(),
+                   
+                   h4("CLUSTER-NORMALIZED CROSS BETWEENNEESS normalizes cross betweenness
+                      using the sizes of Louvain clusters being bridged; emphasizes uniqueness
+                      and scales down arbitrary score increases due to organization size."),
+                   br(),
 
                    # h4("CROSS-GROUP DEGREE refers to the total number of connections
                    #     that an individual has to those in different  Round Table
                    #     affiliations."),
                    # br(),
 
-                   h4("NORMALIZED (or 'relative') measures take the chosen metric
+                   h4("STANDARDIZED (or 'relative') measures take the chosen metric
                    and subtract the overall average across all individuals in the
                    network, then divide by the standard deviation.  This gives
                    a measure of the importance of the individual relative to the
@@ -354,12 +363,12 @@ run_network_app <- function() {
                    radioButtons('metric',
                                 'Metric:',
                                 choices = c(
-                                  "Centrality" = "Centrality",
-                                  "Normalized Centrality" = "Centrality.Normalized",
+                                  "Betweenness" = "Centrality",
+                                  "Standardized Betweenness" = "Centrality.Normalized",
                                   "Degree" = "Degree",
-                                  "Normalized Degree" = "Degree.Normalized",
+                                  "Standardized Degree" = "Degree.Normalized",
                                   "Cross Betweenness" = "CrossBetweenness",
-                                  "Normalized Cross Betweenness" = "Cross.Betweenness.Norm"#,
+                                  "Cluster-Normalized Cross Betweenness" = "Cross.Betweenness.Norm"#,
                                   #"Cross-Group Degree" = "Cross.Degree",
                                   #"Normalized Cross-Group Degree" = "Normalized.Cross.Degree",
                                 )
@@ -1130,7 +1139,7 @@ run_network_app <- function() {
           "Cross.Degree" = "Cross-group degree (based on RT affiliation)",
           "Normalized.Cross.Degree" = "Cross-group degree (normalized each month)",
           "CrossBetweenness" = "Cross betweenness (across factions)",
-          "Cross.Betweenness.Norm" = "Normalized cross betweenness (using Louvain clusters)"
+          "Cross.Betweenness.Norm" = "Cluster-normalized cross betweenness (using Louvain clusters)"
         )
 
         len_range <- difftime(last_date_2(), first_date_2())/30

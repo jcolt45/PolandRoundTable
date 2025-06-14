@@ -504,7 +504,6 @@ run_network_app <- function() {
                  mainPanel(
                    plotOutput('my_line_plot', width = "700px", height = "700px"),
                    conditionalPanel(
-                     # condition = "output.plot_ready",
                      condition = "input.make_line_plot > 0",
                      downloadButton("download_plot", "Download Plot (PNG)")
                    ),
@@ -512,19 +511,17 @@ run_network_app <- function() {
                    # Affiliation table and download
                    conditionalPanel(
                      condition = "output.affiliation_df_ready",
-                     tagList(
-                       dataTableOutput("affiliation_table"),
-                       downloadButton("download_affiliation_table", "Download Affiliations CSV")
-                     )
+                     h3("Institutional Affiliations"),
+                     dataTableOutput("affiliation_table"),
+                     downloadButton("download_affiliation_table", "Download Affiliations CSV")
                    ),
                    
                    # Metric table and download
                    conditionalPanel(
                      condition = "output.metric_df_ready",
-                     tagList(
-                       dataTableOutput("metric_df"),
-                       downloadButton("download_metric_df", "Download Metric CSV")
-                     )
+                     h3("Metric Values Over Time"),
+                     dataTableOutput("metric_df"),
+                     downloadButton("download_metric_df", "Download Metric CSV")
                    )
                  )
                  
@@ -1076,7 +1073,6 @@ run_network_app <- function() {
       })
       
       affiliation_df <- reactive({
-        # req(input$person_lines, first_date_2(), last_date_2())
         affiliation_dates %>%
           filter(
             Member.ID %in% input$person_lines,
@@ -1085,7 +1081,7 @@ run_network_app <- function() {
           ) %>%
           select(
             Full.Name,
-            # RT.Affiliation,
+            RT.Affiliation,
             Organization.Name,
             # Umbrella,
             # Subgroup,
@@ -1093,7 +1089,6 @@ run_network_app <- function() {
             Start.Date,
             End.Date
           )
-      # }) %>% bindEvent(input$make_line_plot)
       })
       
       output$affiliation_table <- renderDataTable({

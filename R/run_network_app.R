@@ -343,8 +343,8 @@ run_network_app <- function() {
                    br(),
                    
                    h4("CLUSTER-NORMALIZED CROSS BETWEENNEESS normalizes cross betweenness
-                      using the sizes of Louvain clusters being bridged; emphasizes uniqueness
-                      and scales down arbitrary score increases due to organization size."),
+                      using the sizes of Louvain clusters being bridged; it emphasizes uniqueness
+                      and scales down arbitrary score increases due to an organization's size."),
                    br(),
 
                    # h4("CROSS-GROUP DEGREE refers to the total number of connections
@@ -520,9 +520,9 @@ run_network_app <- function() {
                    conditionalPanel(
                      condition = "output.metric_df_ready",
                      div(
-                       style = "display: flex; justify-content: space-between; align-items: center;",
                        h3("Metric Values Over Time"),
-                       checkboxInput("aggregate_metrics", "Aggregate over time", value = FALSE)
+                       checkboxInput("aggregate_metrics", "Aggregate over time", value = FALSE),
+                       checkboxInput("show_all_metrics", "Show all metrics", value = FALSE)
                      ),
                      dataTableOutput("metric_df"),
                      downloadButton("download_metric_df", "Download Metric CSV")
@@ -713,7 +713,6 @@ run_network_app <- function() {
 
 
       #### Set upnode appearance ####
-
 
       ## node_color_by_group: "None" or column name
       ## node_shape_by_group: "None" or column name
@@ -930,7 +929,12 @@ run_network_app <- function() {
       get_filename <- function() {
         # Only take the first n names to avoid file name length issues
         name_num <- 10
-        names_vec <- metric_df()$Full.Name %>% unique() %>% na.omit() %>% head(name_num)
+        names_vec <- metric_df() %>%
+          filter(!is.na(Selected.Metric)) %>%
+          pull(Full.Name) %>%
+          unique() %>%
+          na.omit() %>%
+          head(name_num)
         names_ascii <- iconv(names_vec, from = "UTF-8", to = "ASCII//TRANSLIT")
         names_safe <- names_ascii %>%
           gsub("[^A-Za-z0-9]+", "_", .) %>%
@@ -938,35 +942,7 @@ run_network_app <- function() {
         if (identical(names_safe, "")) names_safe <- "data"
         paste0(names_safe, "_", input$metric, "_", first_date_2(), "_", last_date_2())
       }
-      
-      # Narrow member selection drop down menu by search field
-      # observeEvent(input$member_search, {
-      # observeEvent(input$confirm_search, {
-      #   req(input$member_search)
-      #   
-      #   search_term <- tolower(remove_accents(input$member_search))
-      #   
-      #   matched_ids <- member_meta_info %>%
-      #     mutate(
-      #       Name1 = paste0(Last.Name, ", ", First.Middle.Name),
-      #       Name2 = paste(First.Middle.Name, Last.Name),
-      #       Search1 = tolower(remove_accents(Name1)),
-      #       Search2 = tolower(remove_accents(Name2))
-      #     ) %>%
-      #     filter(
-      #       grepl(search_term, Search1) |
-      #         grepl(search_term, Search2)
-      #     ) %>%
-      #     pull(Member.ID)
-      #   
-      #   if (length(matched_ids) > 0) {
-      #     updatePickerInput(
-      #       session = session,
-      #       inputId = "person_lines",
-      #       selected = unique(c(input$person_lines, matched_ids))
-      #     )
-      #   }
-      # })
+
       observeEvent(input$confirm_search, {
         req(input$member_search)
         
@@ -1089,9 +1065,6 @@ run_network_app <- function() {
             Full.Name,
             RT.Affiliation,
             Organization.Name,
-            # Umbrella,
-            # Subgroup,
-            # Category,
             Start.Date,
             End.Date
           )
@@ -1113,31 +1086,61 @@ run_network_app <- function() {
           arrange(desc(.data[[metric_label]]))
       }
   
+      # To be used when saving the metric_df
+      current_metric_table <- reactiveVal(NULL)
+      
       output$metric_df <- renderDataTable({
-        df <- metric_df() %>%
-          filter(!is.na(Selected.Metric))
-        
+        df <- metric_df()
+        result <- NULL
         if (input$aggregate_metrics) {
-          metric_label <- paste0("Overall_Avg_", input$metric)
-          compute_avg_metric_df(df, metric_label)
+          if (input$show_all_metrics) {
+            metric_cols <- c("Centrality", "Degree", "Centrality.Normalized", 
+                             "Degree.Normalized", "CrossBetweenness", "Cross.Betweenness.Norm")
+            
+            all_results <- lapply(metric_cols, function(metric) {
+              tmp_df <- df %>%
+                filter(!is.na(.data[[metric]])) %>%
+                mutate(Selected.Metric = .data[[metric]])
+              
+              metric_label <- paste0("Overall_Avg_", metric)
+              compute_avg_metric_df(tmp_df, metric_label)
+            })
+            
+            result <- reduce(all_results, full_join, by = c("Full.Name", "RT.Affiliation"))
+          } else {
+            metric_label <- paste0("Overall_Avg_", input$metric)
+            result <- df %>%
+              filter(!is.na(.data[[input$metric]])) %>%
+              mutate(Selected.Metric = .data[[input$metric]]) %>%
+              compute_avg_metric_df(metric_label)
+          }
         } else {
-          df %>%
-            select(Full.Name, input$metric, Start.Date, End.Date)
+          if (input$show_all_metrics) {
+            result <- df %>%
+              filter(!is.na(.data[[input$metric]])) %>%
+              select(Full.Name, RT.Affiliation,
+                     Centrality, Degree, Centrality.Normalized,
+                     Degree.Normalized, CrossBetweenness, Cross.Betweenness.Norm,
+                     Start.Date, End.Date
+              )
+          } else {
+            result <- df %>%
+              filter(!is.na(.data[[input$metric]])) %>%
+              select(Full.Name, RT.Affiliation, input$metric, Start.Date, End.Date)
+          }
         }
+        current_metric_table(result)
+        result
       })
 
       # output$my_line_plot <- renderPlot({
       generate_plot <- function() {
-
         if (input$group_lines != "None") {
-
           p <- metric_df() %>%
             plot_metric(metric_col = Selected.Metric,
                         group_col = !!sym(input$group_lines)) +
             geom_line(linewidth = input$line_size)
-
         } else {
-
           p <- metric_df() %>%
             plot_metric(metric_col = Selected.Metric,
                         group_col = Full.Name) +
@@ -1184,9 +1187,6 @@ run_network_app <- function() {
           theme(
             axis.text.x = element_text(angle = 45, vjust = 1.2, hjust=1)
           )
-
-
-      # }) %>% bindEvent(input$make_line_plot)
       }
       
       output$affiliation_table <- renderDataTable({
@@ -1202,7 +1202,6 @@ run_network_app <- function() {
         # Save selected options to be used as a filename if plot is saved
         prefix <- get_filename()
         plot_filename_prefix(prefix)
-
 
         # save the current plot so that it may be tied to download plot button
         current_plot(plot_obj)
@@ -1237,22 +1236,15 @@ run_network_app <- function() {
       # CSV download: metric_df
       output$download_metric_df <- downloadHandler(
         filename = function() {
-          suffix <- if (input$aggregate_metrics) "_aggregated" else ""
+          suffix <- if (input$aggregate_metrics) {
+            if (input$show_all_metrics) "_aggregated_all" else "_aggregated"
+          } else {
+            ""
+          }
           paste0(get_filename(), suffix, ".csv")
         },
         content = function(file) {
-          df <- metric_df() %>%
-            filter(!is.na(Selected.Metric))
-          
-          if (input$aggregate_metrics) {
-            metric_label <- paste0("Overall_Avg_", input$metric)
-            compute_avg_metric_df(df, metric_label) %>%
-              write.csv(file, row.names = FALSE)
-          } else {
-            df %>%
-              select(Full.Name, RT.Affiliation, input$metric, Start.Date, End.Date) %>%
-              write.csv(file, row.names = FALSE)
-          }
+          write.csv(current_metric_table(), file, row.names = FALSE)
         }
       )
       

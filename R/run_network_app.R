@@ -519,7 +519,11 @@ run_network_app <- function() {
                    # Metric table and download
                    conditionalPanel(
                      condition = "output.metric_df_ready",
-                     h3("Metric Values Over Time"),
+                     div(
+                       style = "display: flex; justify-content: space-between; align-items: center;",
+                       h3("Metric Values Over Time"),
+                       checkboxInput("aggregate_metrics", "Aggregate over time", value = FALSE)
+                     ),
                      dataTableOutput("metric_df"),
                      downloadButton("download_metric_df", "Download Metric CSV")
                    )
@@ -924,7 +928,9 @@ run_network_app <- function() {
 
       # To be used for saving plots and tables
       get_filename <- function() {
-        names_vec <- metric_df()$Full.Name %>% unique() %>% na.omit()
+        # Only take the first n names to avoid file name length issues
+        name_num <- 10
+        names_vec <- metric_df()$Full.Name %>% unique() %>% na.omit() %>% head(name_num)
         names_ascii <- iconv(names_vec, from = "UTF-8", to = "ASCII//TRANSLIT")
         names_safe <- names_ascii %>%
           gsub("[^A-Za-z0-9]+", "_", .) %>%
@@ -1095,12 +1101,29 @@ run_network_app <- function() {
         affiliation_df()
       }) %>%
         bindEvent(input$make_line_plot)
-
+      
+      # Helper function for aggregating selected metric df
+      compute_avg_metric_df <- function(df, metric_label) {
+        df %>%
+          mutate(Year = format(as.Date(Start.Date), "%Y")) %>%
+          group_by(Full.Name, RT.Affiliation, Year) %>%
+          summarise(avg = mean(Selected.Metric, na.rm = TRUE), .groups = "drop") %>%
+          group_by(Full.Name, RT.Affiliation) %>%
+          summarise("{metric_label}" := mean(avg, na.rm = TRUE), .groups = "drop") %>%
+          arrange(desc(.data[[metric_label]]))
+      }
+  
       output$metric_df <- renderDataTable({
-        metric_df() %>%
-          dplyr::filter(!is.na(Selected.Metric)) %>%
-          select(Full.Name, input$metric, Start.Date, End.Date)
-      # }) %>% bindEvent(input$make_line_plot)
+        df <- metric_df() %>%
+          filter(!is.na(Selected.Metric))
+        
+        if (input$aggregate_metrics) {
+          metric_label <- paste0("Overall_Avg_", input$metric)
+          compute_avg_metric_df(df, metric_label)
+        } else {
+          df %>%
+            select(Full.Name, input$metric, Start.Date, End.Date)
+        }
       })
 
       # output$my_line_plot <- renderPlot({
@@ -1214,13 +1237,22 @@ run_network_app <- function() {
       # CSV download: metric_df
       output$download_metric_df <- downloadHandler(
         filename = function() {
-          paste0(get_filename(), ".csv")
+          suffix <- if (input$aggregate_metrics) "_aggregated" else ""
+          paste0(get_filename(), suffix, ".csv")
         },
         content = function(file) {
-          metric_df() %>%
-            filter(!is.na(Selected.Metric)) %>%
-            select(Full.Name, input$metric, Start.Date, End.Date) %>%
-            write.csv(file, row.names = FALSE)
+          df <- metric_df() %>%
+            filter(!is.na(Selected.Metric))
+          
+          if (input$aggregate_metrics) {
+            metric_label <- paste0("Overall_Avg_", input$metric)
+            compute_avg_metric_df(df, metric_label) %>%
+              write.csv(file, row.names = FALSE)
+          } else {
+            df %>%
+              select(Full.Name, RT.Affiliation, input$metric, Start.Date, End.Date) %>%
+              write.csv(file, row.names = FALSE)
+          }
         }
       )
       
